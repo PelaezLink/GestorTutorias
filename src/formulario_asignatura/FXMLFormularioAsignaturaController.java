@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package formulario_tutoria;
+package formulario_asignatura;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
@@ -20,18 +17,12 @@ import javafx.scene.control.TextField;
  *
  * @author Luis
  */
-public class FXMLFormularioTutoriaController implements Initializable {
+public class FXMLFormularioAsignaturaController implements Initializable {
 
     @FXML
-    private ComboBox<?> asignatura;
+    private TextField nombreAsignatura;
     @FXML
-    private ComboBox<?> hora_inicio;
-    @FXML
-    private ComboBox<?> hora_fin;
-    @FXML
-    private ChoiceBox<?> alumnos;
-    @FXML
-    private TextArea comentarios;
+    private TextField codigoAsignatura;
     @FXML
     private Button boton_confirmar;
     @FXML

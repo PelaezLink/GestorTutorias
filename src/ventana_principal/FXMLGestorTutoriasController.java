@@ -46,6 +46,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         inicializarCalendario();
+        
     }
 
     public void inicializarCalendario() {

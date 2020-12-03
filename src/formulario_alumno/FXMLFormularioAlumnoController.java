@@ -3,39 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package formulario_tutoria;
+package formulario_alumno;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
  *
  * @author Luis
  */
-public class FXMLFormularioTutoriaController implements Initializable {
+public class FXMLFormularioAlumnoController implements Initializable {
 
     @FXML
-    private ComboBox<?> asignatura;
+    private ImageView foto;
     @FXML
-    private ComboBox<?> hora_inicio;
+    private TextField nombre;
     @FXML
-    private ComboBox<?> hora_fin;
+    private TextField apellidos;
     @FXML
-    private ChoiceBox<?> alumnos;
+    private TextField correo;
     @FXML
-    private TextArea comentarios;
+    private Button boton_cerrar;
     @FXML
-    private Button boton_confirmar;
-    @FXML
-    private Button boton_cancelar;
+    private Button boton_eliminar;
 
     /**
      * Initializes the controller class.
