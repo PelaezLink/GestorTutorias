@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src;
+package ventana_principal;
 
 import com.sun.javafx.scene.control.skin.DatePickerSkin;
 import java.net.URL;
@@ -14,9 +14,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
@@ -29,6 +31,16 @@ public class FXMLGestorTutoriasController implements Initializable {
     @FXML
     private BorderPane borderPane;
     private DatePicker calendario;
+    @FXML
+    private Button boton_asignaturas;
+    @FXML
+    private Button boton_alumnos;
+    @FXML
+    private Button boton_salir;
+    @FXML
+    private ListView<?> viewer;
+    @FXML
+    private Button boton_crear;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

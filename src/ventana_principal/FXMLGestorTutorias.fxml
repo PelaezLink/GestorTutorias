@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ventana_principal.FXMLGestorTutoriasController">
+   <right>
+      <VBox prefHeight="591.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="viewer" prefHeight="534.0" prefWidth="275.0" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER" prefHeight="57.0" prefWidth="294.0" spacing="20.0" VBox.vgrow="NEVER">
+               <children>
+                  <Button fx:id="boton_crear" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" text="Nueva Tutoría">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding></HBox>
+         </children>
+         <padding>
+            <Insets right="15.0" />
+         </padding>
+      </VBox>
+   </right>
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="890.0" spacing="60.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="boton_asignaturas" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Asignaturas">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="boton_alumnos" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Alumnos">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="69.0" prefWidth="537.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button fx:id="boton_salir" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Salir">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets right="15.0" />
+               </padding>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="60.0" />
+         </padding></HBox>
+   </top>
+</BorderPane>
