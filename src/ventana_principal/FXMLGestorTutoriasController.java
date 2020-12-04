@@ -5,11 +5,14 @@
  */
 package ventana_principal;
 
+import accesoBD.AccesoBD;
 import com.sun.javafx.scene.control.skin.DatePickerSkin;
 import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,8 +22,12 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import modelo.Tutoria;
+import modelo.Tutorias;
 
 /**
  *
@@ -30,6 +37,7 @@ public class FXMLGestorTutoriasController implements Initializable {
 
     @FXML
     private BorderPane borderPane;
+    
     private DatePicker calendario;
     @FXML
     private Button boton_asignaturas;
@@ -38,17 +46,29 @@ public class FXMLGestorTutoriasController implements Initializable {
     @FXML
     private Button boton_salir;
     @FXML
-    private ListView<?> viewer;
-    @FXML
     private Button boton_crear;
+    
+    public Tutorias misTutorias;
+    @FXML
+    private TableColumn<?, ?> columna_inicio;
+    @FXML
+    private TableColumn<?, ?> columna_fin;
+    @FXML
+    private TableColumn<?, ?> columna_asignatura;
+    @FXML
+    private TableColumn<?, ?> columna_alumnos;
+    @FXML
+    private TableView<?> tabla_tutorias;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         inicializarCalendario();
+        misTutorias = AccesoBD.getInstance().getTutorias();
         
     }
-
+    
+//USAMOS EL CÓDIGO DEL EJEMPLO DATEPIC PARA MOSTRAR EL CALENDARIO
     public void inicializarCalendario() {
         DatePicker calendario = new DatePicker(LocalDate.now());
         calendario.setShowWeekNumbers(false);
@@ -60,9 +80,22 @@ public class FXMLGestorTutoriasController implements Initializable {
         borderPane.setCenter(popupContent);
 
     }
+    
+    //Metodo que apartir de la fecha busca en la lista de tutorias las que
+    //haya ese dia y las muestra en el tableView (EN PROCESO)
+    public void mostarTablaTutorias(LocalDate fecha) {
+        ObservableList<Tutoria> listaTutorias = misTutorias.getTutoriasConcertadas();
+        for (Iterator<Tutoria> iterator = listaTutorias.iterator(); iterator.hasNext();) {
+            Tutoria next = iterator.next();
+            
+            
+        }
+        
+    }
 
 }
 
+//USAMOS EL CODIGO DE DATEPIC PARA CUSTOMIZAR LA CELDA
 class DiaCelda extends DateCell {
 
     String newline = System.getProperty("line.separator");

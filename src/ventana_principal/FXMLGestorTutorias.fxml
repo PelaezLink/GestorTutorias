@@ -2,7 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -10,23 +11,30 @@
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ventana_principal.FXMLGestorTutoriasController">
    <right>
-      <VBox prefHeight="591.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="591.0" prefWidth="332.0" BorderPane.alignment="CENTER">
          <children>
-            <ListView fx:id="viewer" prefHeight="534.0" prefWidth="275.0" VBox.vgrow="ALWAYS" />
+            <TableView fx:id="tabla_tutorias" prefHeight="532.0" prefWidth="283.0" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="columna_inicio" prefWidth="60.0" text="Inicio" />
+                <TableColumn fx:id="columna_fin" prefWidth="55.0" text="Fin" />
+                  <TableColumn fx:id="columna_asignatura" prefWidth="111.0" text="Asignatura" />
+                  <TableColumn fx:id="columna_alumnos" prefWidth="74.0" text="Alumnos" />
+              </columns>
+            </TableView>
             <HBox alignment="CENTER" prefHeight="57.0" prefWidth="294.0" spacing="20.0" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
                <children>
                   <Button fx:id="boton_crear" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" text="Nueva Tutoría">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="20.0" right="20.0" />
-               </padding></HBox>
+               </children></HBox>
          </children>
          <padding>
             <Insets left="15.0" right="15.0" />
