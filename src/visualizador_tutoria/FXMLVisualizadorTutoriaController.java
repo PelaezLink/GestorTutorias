@@ -26,8 +26,6 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
     @FXML
     private TextField hora_inicio;
     @FXML
-    private TextField hora_fin;
-    @FXML
     private TextField alumnos;
     @FXML
     private ComboBox<?> estado;
@@ -35,6 +33,8 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
     private Button boton_cerrar;
     @FXML
     private TextArea comentarios;
+    @FXML
+    private TextField duracion;
 
     /**
      * Initializes the controller class.

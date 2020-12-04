@@ -74,14 +74,10 @@
          </padding></HBox>
    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="550.0" prefWidth="514.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="centro" alignment="CENTER" prefHeight="550.0" prefWidth="514.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </BorderPane.margin>
-         <children>
-            <VBox fx:id="centroUno" alignment="CENTER" VBox.vgrow="ALWAYS" />
-            <VBox fx:id="centroDos" alignment="CENTER" />
-         </children>
       </VBox>
    </center>
 </BorderPane>

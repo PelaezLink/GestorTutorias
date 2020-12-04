@@ -39,14 +39,19 @@
                         <TextField fx:id="hora_inicio" editable="false" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="580.0" spacing="20.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="580.0" spacing="5.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hora Fin" wrappingWidth="92.8359375">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Duracion" wrappingWidth="105.8359375">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="hora_fin" editable="false" />
+                        <TextField fx:id="duracion" editable="false" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="m">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
                      </children>
                   </HBox>
                </children>

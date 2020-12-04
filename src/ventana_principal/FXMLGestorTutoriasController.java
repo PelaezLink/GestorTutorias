@@ -65,9 +65,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     @FXML
     private TableColumn<Tutoria, String> columna_duracion;
     @FXML
-    private VBox centroUno;
-    @FXML
-    private VBox centroDos;
+    private VBox centro;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -79,7 +77,7 @@ public class FXMLGestorTutoriasController implements Initializable {
 
 //USAMOS EL CÓDIGO DEL EJEMPLO DATEPIC PARA MOSTRAR EL CALENDARIO
     public void inicializarCalendario() {
-        centroUno.getChildren().clear();
+        centro.getChildren().clear();
         DatePicker calendario = new DatePicker(LocalDate.now());
         calendario.setShowWeekNumbers(false);
         calendario.setDayCellFactory(cel -> new DiaCelda());
@@ -87,7 +85,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         DatePickerSkin datePickerSkin = new DatePickerSkin(calendario);
         Node popupContent = datePickerSkin.getPopupContent();
 
-        centroUno.getChildren().add(popupContent);
+        centro.getChildren().add(popupContent);
 
         //borderPane.setCenter(popupContent);
     }
@@ -117,8 +115,8 @@ public class FXMLGestorTutoriasController implements Initializable {
 //AL PULSAR EL BOTON DE NUEVA ASIGNATURA
     @FXML
     private void nuevaTutoria(ActionEvent event) throws IOException {
-        centroUno.getChildren().clear();
-        centroDos.getChildren().add(FXMLLoader.load(getClass().getResource("/formulario_tutoria/FXMLFormularioTutoria.fxml")));
+        centro.getChildren().clear();
+        centro.getChildren().add(FXMLLoader.load(getClass().getResource("/formulario_tutoria/FXMLFormularioTutoria.fxml")));
         boton_crear.setDisable(true);
     }
 
