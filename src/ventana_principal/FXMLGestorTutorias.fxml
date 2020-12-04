@@ -28,7 +28,7 @@
                   <Insets left="20.0" right="20.0" />
                </padding>
                <children>
-                  <Button fx:id="boton_crear" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" text="Nueva Tutoría">
+                  <Button fx:id="boton_crear" mnemonicParsing="false" onAction="#nuevaTutoria" prefHeight="35.0" prefWidth="118.0" text="Nueva Tutoría">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -73,4 +73,15 @@
             <Insets left="60.0" />
          </padding></HBox>
    </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="550.0" prefWidth="514.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </BorderPane.margin>
+         <children>
+            <VBox fx:id="centroUno" alignment="CENTER" VBox.vgrow="ALWAYS" />
+            <VBox fx:id="centroDos" alignment="CENTER" />
+         </children>
+      </VBox>
+   </center>
 </BorderPane>

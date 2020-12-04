@@ -7,6 +7,7 @@ package ventana_principal;
 
 import accesoBD.AccesoBD;
 import com.sun.javafx.scene.control.skin.DatePickerSkin;
+import java.io.IOException;
 import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -28,6 +30,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import modelo.Tutoria;
 import modelo.Tutorias;
@@ -40,7 +44,7 @@ public class FXMLGestorTutoriasController implements Initializable {
 
     @FXML
     private BorderPane borderPane;
-    
+
     private DatePicker calendario;
     @FXML
     private Button boton_asignaturas;
@@ -50,8 +54,8 @@ public class FXMLGestorTutoriasController implements Initializable {
     private Button boton_salir;
     @FXML
     private Button boton_crear;
-    
-    public Tutorias misTutorias;
+
+    private Tutorias misTutorias;
     @FXML
     private TableColumn<Tutoria, String> columna_inicio;
     @FXML
@@ -60,17 +64,22 @@ public class FXMLGestorTutoriasController implements Initializable {
     private TableView<Tutoria> tabla_tutorias;
     @FXML
     private TableColumn<Tutoria, String> columna_duracion;
+    @FXML
+    private VBox centroUno;
+    @FXML
+    private VBox centroDos;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         inicializarCalendario();
         misTutorias = AccesoBD.getInstance().getTutorias();
-        
+
     }
-    
+
 //USAMOS EL CÓDIGO DEL EJEMPLO DATEPIC PARA MOSTRAR EL CALENDARIO
     public void inicializarCalendario() {
+        centroUno.getChildren().clear();
         DatePicker calendario = new DatePicker(LocalDate.now());
         calendario.setShowWeekNumbers(false);
         calendario.setDayCellFactory(cel -> new DiaCelda());
@@ -78,10 +87,11 @@ public class FXMLGestorTutoriasController implements Initializable {
         DatePickerSkin datePickerSkin = new DatePickerSkin(calendario);
         Node popupContent = datePickerSkin.getPopupContent();
 
-        borderPane.setCenter(popupContent);
+        centroUno.getChildren().add(popupContent);
 
+        //borderPane.setCenter(popupContent);
     }
-    
+
     //Metodo que apartir de la fecha busca en la lista de tutorias las que
     //haya ese dia y las muestra en el tableView (EN PROCESO)
     public void mostarTablaTutorias(LocalDate fecha) {
@@ -100,6 +110,16 @@ public class FXMLGestorTutoriasController implements Initializable {
         columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
         columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().asignaturaProperty());
         columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty());
+    }
+
+
+//CODIGO QUE QUITA EL CALENDARIO Y MUESTRA EL FORMULARIO DE NUEVA ASIGNATURA
+//AL PULSAR EL BOTON DE NUEVA ASIGNATURA
+    @FXML
+    private void nuevaTutoria(ActionEvent event) throws IOException {
+        centroUno.getChildren().clear();
+        centroDos.getChildren().add(FXMLLoader.load(getClass().getResource("/formulario_tutoria/FXMLFormularioTutoria.fxml")));
+        boton_crear.setDisable(true);
     }
 
 }
