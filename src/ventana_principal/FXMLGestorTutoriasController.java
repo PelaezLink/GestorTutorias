@@ -93,6 +93,17 @@ public class FXMLGestorTutoriasController implements Initializable {
     //Metodo que apartir de la fecha busca en la lista de tutorias las que
     //haya ese dia y las muestra en el tableView (EN PROCESO)
     public void mostarTablaTutorias(LocalDate fecha) {
+        
+        ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha);
+        tabla_tutorias.setItems(listaTutoriasDia);
+        columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
+        columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().asignaturaProperty());
+        columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty());
+    }
+
+    
+    //Metodo para devolver una lista con las Tutorias de una fecha dada.
+    public ObservableList<Tutoria> getTutoriasDia(LocalDate fecha) {
         ArrayList<Tutoria> lista = new ArrayList<Tutoria>();
         ObservableList<Tutoria> listaTutoriasDia = FXCollections.observableList(lista);
 
@@ -104,12 +115,9 @@ public class FXMLGestorTutoriasController implements Initializable {
             }
 
         }
-        tabla_tutorias.setItems(listaTutoriasDia);
-        columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
-        columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().asignaturaProperty());
-        columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty());
-    }
+        return listaTutoriasDia;
 
+    }
 
 //CODIGO QUE QUITA EL CALENDARIO Y MUESTRA EL FORMULARIO DE NUEVA ASIGNATURA
 //AL PULSAR EL BOTON DE NUEVA ASIGNATURA

@@ -66,6 +66,11 @@
                                     <Insets />
                                  </HBox.margin>
                               </ComboBox>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="m">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </HBox>
                      </children>
