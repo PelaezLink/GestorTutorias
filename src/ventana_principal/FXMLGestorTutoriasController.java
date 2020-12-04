@@ -10,8 +10,11 @@ import com.sun.javafx.scene.control.skin.DatePickerSkin;
 import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,15 +53,13 @@ public class FXMLGestorTutoriasController implements Initializable {
     
     public Tutorias misTutorias;
     @FXML
-    private TableColumn<?, ?> columna_inicio;
+    private TableColumn<Tutoria, String> columna_inicio;
     @FXML
-    private TableColumn<?, ?> columna_fin;
+    private TableColumn<Tutoria, String> columna_asignatura;
     @FXML
-    private TableColumn<?, ?> columna_asignatura;
+    private TableView<Tutoria> tabla_tutorias;
     @FXML
-    private TableColumn<?, ?> columna_alumnos;
-    @FXML
-    private TableView<?> tabla_tutorias;
+    private TableColumn<Tutoria, String> columna_duracion;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -84,13 +85,21 @@ public class FXMLGestorTutoriasController implements Initializable {
     //Metodo que apartir de la fecha busca en la lista de tutorias las que
     //haya ese dia y las muestra en el tableView (EN PROCESO)
     public void mostarTablaTutorias(LocalDate fecha) {
+        ArrayList<Tutoria> lista = new ArrayList<Tutoria>();
+        ObservableList<Tutoria> listaTutoriasDia = FXCollections.observableList(lista);
+
         ObservableList<Tutoria> listaTutorias = misTutorias.getTutoriasConcertadas();
         for (Iterator<Tutoria> iterator = listaTutorias.iterator(); iterator.hasNext();) {
             Tutoria next = iterator.next();
-            
-            
+            if (next.getFecha() == fecha) {
+                listaTutoriasDia.add(next);
+            }
+
         }
-        
+        tabla_tutorias.setItems(listaTutoriasDia);
+        columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
+        columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().asignaturaProperty());
+        columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty());
     }
 
 }

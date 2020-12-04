@@ -11,14 +11,13 @@
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="911.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ventana_principal.FXMLGestorTutoriasController">
    <right>
-      <VBox prefHeight="591.0" prefWidth="332.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="591.0" prefWidth="304.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tabla_tutorias" prefHeight="532.0" prefWidth="283.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tabla_tutorias" prefHeight="534.0" prefWidth="282.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="columna_inicio" prefWidth="60.0" text="Inicio" />
-                <TableColumn fx:id="columna_fin" prefWidth="55.0" text="Fin" />
-                  <TableColumn fx:id="columna_asignatura" prefWidth="111.0" text="Asignatura" />
-                  <TableColumn fx:id="columna_alumnos" prefWidth="74.0" text="Alumnos" />
+                <TableColumn fx:id="columna_inicio" prefWidth="91.0" text="Inicio" />
+                <TableColumn fx:id="columna_duracion" prefWidth="91.0" text="Duracion" />
+                  <TableColumn fx:id="columna_asignatura" prefWidth="90.0" text="Asignatura" />
               </columns>
             </TableView>
             <HBox alignment="CENTER" prefHeight="57.0" prefWidth="294.0" spacing="20.0" VBox.vgrow="NEVER">
