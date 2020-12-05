@@ -42,16 +42,8 @@ import modelo.Tutorias;
  */
 public class FXMLGestorTutoriasController implements Initializable {
 
-    @FXML
-    private BorderPane borderPane;
 
     private DatePicker calendario;
-    @FXML
-    private Button boton_asignaturas;
-    @FXML
-    private Button boton_alumnos;
-    @FXML
-    private Button boton_salir;
     @FXML
     private Button boton_crear;
 
@@ -66,6 +58,10 @@ public class FXMLGestorTutoriasController implements Initializable {
     private TableColumn<Tutoria, String> columna_duracion;
     @FXML
     private VBox centro;
+    @FXML
+    private BorderPane borderPane;
+    @FXML
+    private VBox hueco_tabla;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -119,13 +115,40 @@ public class FXMLGestorTutoriasController implements Initializable {
 
     }
 
-//CODIGO QUE QUITA EL CALENDARIO Y MUESTRA EL FORMULARIO DE NUEVA ASIGNATURA
-//AL PULSAR EL BOTON DE NUEVA ASIGNATURA
+    //CODIGO QUE QUITA EL CALENDARIO Y MUESTRA EL FORMULARIO DE NUEVA ASIGNATURA
+    //AL PULSAR EL BOTON DE NUEVA ASIGNATURA
     @FXML
-    private void nuevaTutoria(ActionEvent event) throws IOException {
-        centro.getChildren().clear();
-        centro.getChildren().add(FXMLLoader.load(getClass().getResource("/formulario_tutoria/FXMLFormularioTutoria.fxml")));
-        boton_crear.setDisable(true);
+    private void crearNuevo(ActionEvent event) throws IOException {
+        if ("Nueva Tutoria".equals(boton_crear.getText())) {
+            centro.getChildren().clear();
+            centro.getChildren().add(FXMLLoader.load(getClass().getResource("/formulario_tutoria/FXMLFormularioTutoria.fxml")));
+            boton_crear.setDisable(true);
+        }
+        
+        if ("Nuevo Alumno".equals(boton_crear.getText())) {
+            centro.getChildren().clear();
+            centro.getChildren().add(FXMLLoader.load(getClass().getResource("/formulario_alumno/FXMLFormularioAlumno.fxml")));
+            boton_crear.setDisable(true);
+        }
+    }
+
+    //Metodo que muestra la lista de asignaturas en el tableView llamando
+    //al fichero FXML que tiene la tabla de ese tipo
+    @FXML
+    private void mostrarTablaAsignaturas(ActionEvent event) throws IOException {
+        boton_crear.setText("Nueva Asignatura");
+        hueco_tabla.getChildren().clear();
+        hueco_tabla.getChildren().add(FXMLLoader.load(getClass().getResource("/tabla_asignaturas/FXMLTablaAsignaturas.fxml")));
+    }
+
+    //Metodo que muestra la lista de alumnos en el tableView
+    //al fichero FXML que tiene la tabla de ese tipo
+    @FXML
+    private void mostrarTablaAlumnos(ActionEvent event) throws IOException {
+        boton_crear.setText("Nuevo Alumno");
+        hueco_tabla.getChildren().clear();
+        hueco_tabla.getChildren().add(FXMLLoader.load(getClass().getResource("/tabla_alumnos/FXMLTablaAlumnos.fxml")));
+        ;
     }
 
 }

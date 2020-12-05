@@ -28,10 +28,6 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     private TextField apellidos;
     @FXML
     private TextField correo;
-    @FXML
-    private Button boton_cerrar;
-    @FXML
-    private Button boton_eliminar;
 
     /**
      * Initializes the controller class.

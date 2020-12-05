@@ -23,10 +23,6 @@ public class FXMLFormularioAsignaturaController implements Initializable {
     private TextField nombreAsignatura;
     @FXML
     private TextField codigoAsignatura;
-    @FXML
-    private Button boton_confirmar;
-    @FXML
-    private Button boton_cancelar;
 
     /**
      * Initializes the controller class.

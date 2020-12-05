@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualizador_alumno.FXMLVisualizadorAlumnoController">
    <children>
       <ImageView fx:id="foto" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
@@ -46,12 +45,12 @@
       <HBox prefHeight="84.0" prefWidth="560.0" />
       <HBox alignment="CENTER" prefHeight="48.0" prefWidth="560.0" spacing="30.0">
          <children>
-            <Button fx:id="boton_cerrar" mnemonicParsing="false" text="Cerrar">
+            <Button mnemonicParsing="false" text="Cerrar">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="boton_eliminar" mnemonicParsing="false" text="Eliminar">
+            <Button mnemonicParsing="false" text="Eliminar">
                <font>
                   <Font size="15.0" />
                </font>

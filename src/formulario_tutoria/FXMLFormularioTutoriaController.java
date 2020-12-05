@@ -46,10 +46,6 @@ public class FXMLFormularioTutoriaController implements Initializable {
     private ChoiceBox<Alumno> alumnos;
     @FXML
     private TextArea comentarios;
-    @FXML
-    private Button boton_confirmar;
-    @FXML
-    private Button boton_cancelar;
     
     private Tutorias misTutorias;
     @FXML

@@ -30,8 +30,6 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
     @FXML
     private ComboBox<?> estado;
     @FXML
-    private Button boton_cerrar;
-    @FXML
     private TextArea comentarios;
     @FXML
     private TextField duracion;

@@ -47,12 +47,12 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="72.0" prefWidth="366.0" spacing="30.0">
          <children>
-            <Button fx:id="boton_confirmar" mnemonicParsing="false" text="Confirmar">
+            <Button mnemonicParsing="false" text="Confirmar">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="boton_cancelar" mnemonicParsing="false" text="Cancelar">
+            <Button mnemonicParsing="false" text="Cancelar">
                <font>
                   <Font size="15.0" />
                </font>
