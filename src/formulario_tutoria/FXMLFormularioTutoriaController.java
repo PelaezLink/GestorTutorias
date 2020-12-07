@@ -51,6 +51,7 @@ public class FXMLFormularioTutoriaController implements Initializable {
     @FXML
     private ComboBox<String> duracion;
     private ObservableList<Tutoria> listaTutoriasDia;
+    private LocalDate fecha;
 
     /**
      * Initializes the controller class.
@@ -67,7 +68,7 @@ public class FXMLFormularioTutoriaController implements Initializable {
         minutos.addAll("10", "20", "30", "40", "50", "60");
         duracion.setItems(minutos);
         
-        //hora_inicio.setItems(getHorasDisponibles());       
+        hora_inicio.setItems(getHorasDisponibles());       
         
     }    
 
@@ -78,6 +79,7 @@ public class FXMLFormularioTutoriaController implements Initializable {
         nueva.setAnotaciones(comentarios.getText());
         nueva.setEstado(Tutoria.EstadoTutoria.PEDIDA);
         nueva.setInicio(hora_inicio.getValue());
+        nueva.setFecha(fecha);
         
         int dur = Integer.parseInt(duracion.getValue());
         nueva.setDuracion(ofMinutes(dur));
@@ -106,17 +108,18 @@ public class FXMLFormularioTutoriaController implements Initializable {
         //mismo dia
         for (Iterator<Tutoria> iterator = listaTutoriasDia.iterator(); iterator.hasNext();) {
             Tutoria next = iterator.next();
-            LocalTime inicio = next.getInicio();
-            Duration duracionTutoria = next.getDuracion();
-            long minutosDuracion = duracionTutoria.toMinutes();
-            int iteraciones = (int) minutosDuracion / 10;
-            for(int i = 1; i<= iteraciones; i++) {
-                horasDisponibles.remove(inicio);
-                inicio = inicio.plusMinutes(10);
+            if (fecha == next.getFecha()) {
+                LocalTime inicio = next.getInicio();
+                Duration duracionTutoria = next.getDuracion();
+                long minutosDuracion = duracionTutoria.toMinutes();
+                int iteraciones = (int) minutosDuracion / 10;
+                for (int i = 1; i <= iteraciones; i++) {
+                    horasDisponibles.remove(inicio);
+                    inicio = inicio.plusMinutes(10);
+                }
             }
-            
         }
-        return horasDisponibles;         
-    } 
-    
+        return horasDisponibles;
+    }
+
 }
