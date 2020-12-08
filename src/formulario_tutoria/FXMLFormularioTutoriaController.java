@@ -68,7 +68,7 @@ public class FXMLFormularioTutoriaController implements Initializable {
         minutos.addAll("10", "20", "30", "40", "50", "60");
         duracion.setItems(minutos);
         
-        hora_inicio.setItems(getHorasDisponibles());       
+        //hora_inicio.setItems(getHorasDisponibles());       
         
     }    
 
