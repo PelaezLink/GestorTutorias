@@ -5,7 +5,10 @@
 
 <TableView fx:id="tabla_asignaturas" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="674.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tabla_asignaturas.FXMLTablaAsignaturasController">
   <columns>
-    <TableColumn fx:id="columna_nombre_asignatura" prefWidth="164.0" text="Asignatura" />
-    <TableColumn fx:id="columna_codigo" prefWidth="125.0" text="Codigo" />
+    <TableColumn fx:id="columna_nombre_asignatura" prefWidth="302.0" text="Asignatura" />
+    <TableColumn fx:id="columna_codigo" prefWidth="297.0" text="Codigo" />
   </columns>
+   <columnResizePolicy>
+      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+   </columnResizePolicy>
 </TableView>
