@@ -5,14 +5,20 @@
  */
 package formulario_asignatura;
 
+import accesoBD.AccesoBD;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import modelo.Alumno;
+import modelo.Asignatura;
+import modelo.Tutorias;
 
 /**
  * FXML Controller class
@@ -25,8 +31,9 @@ public class FXMLFormularioAsignaturaController implements Initializable {
     private TextField nombreAsignatura;
     @FXML
     private TextField codigoAsignatura;
+    private Tutorias misTutorias;
     @FXML
-    private Button boton_cancelar;
+    private Button boton_confirmar;
 
     /**
      * Initializes the controller class.
@@ -34,11 +41,26 @@ public class FXMLFormularioAsignaturaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        misTutorias = AccesoBD.getInstance().getTutorias();
+        boton_confirmar.disableProperty().bind(Bindings.or(codigoAsignatura.textProperty().isEmpty(), nombreAsignatura.textProperty().isEmpty()));
     }    
 
     @FXML
     private void cerrarVentana(ActionEvent event) {
         ((Node) event.getSource()).getScene().getWindow().hide();
+    }
+
+    @FXML
+    private void confirmar(ActionEvent event) {
+        Asignatura nuevaAsignatura = new Asignatura(codigoAsignatura.getText(), nombreAsignatura.getText());
+        ObservableList<Asignatura> listaAsignaturas = misTutorias.getAsignaturas();
+        listaAsignaturas.add(nuevaAsignatura);
+        
+        nombreAsignatura.clear();
+        codigoAsignatura.clear(); 
+        
+        
+        
     }
     
 

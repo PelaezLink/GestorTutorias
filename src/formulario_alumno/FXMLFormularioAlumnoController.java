@@ -8,6 +8,7 @@ package formulario_alumno;
 import accesoBD.AccesoBD;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,6 +35,8 @@ public class FXMLFormularioAlumnoController implements Initializable {
     @FXML
     private TextField correo;
     private Tutorias misTutorias;
+    @FXML
+    private Button boton_confirmar;
 
     /**
      * Initializes the controller class.
@@ -42,6 +45,7 @@ public class FXMLFormularioAlumnoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         misTutorias = AccesoBD.getInstance().getTutorias();
+        boton_confirmar.disableProperty().bind(Bindings.or(correo.textProperty().isEmpty(),(Bindings.or(nombre.textProperty().isEmpty(), apellidos.textProperty().isEmpty()))));
         
     }    
 
@@ -50,6 +54,10 @@ public class FXMLFormularioAlumnoController implements Initializable {
         Alumno nuevoAlumno = new Alumno(nombre.getText(), apellidos.getText(), correo.getText());
         ObservableList<Alumno> listaAlumnos = misTutorias.getAlumnosTutorizados();
         listaAlumnos.add(nuevoAlumno);
+        
+        nombre.clear();
+        apellidos.clear();
+        correo.clear();
     }
 
     @FXML

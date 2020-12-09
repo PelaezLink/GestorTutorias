@@ -15,6 +15,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,6 +54,8 @@ public class FXMLFormularioTutoriaController implements Initializable {
     private ObservableList<Tutoria> listaTutoriasDia;
     private LocalDate fecha;
     private FXMLGestorTutoriasController principal;
+    @FXML
+    private Button boton_confirmar;
 
     /**
      * Initializes the controller class.
@@ -71,7 +74,8 @@ public class FXMLFormularioTutoriaController implements Initializable {
         
         principal = new FXMLGestorTutoriasController();
         fecha = principal.getFecha();
-        //hora_inicio.setItems(getHorasDisponibles());       
+        //hora_inicio.setItems(getHorasDisponibles());    
+        
         
     }    
 

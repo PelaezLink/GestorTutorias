@@ -27,7 +27,7 @@
                   </TableView>
                </children>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="57.0" prefWidth="294.0" spacing="20.0" VBox.vgrow="NEVER">
+            <HBox fx:id="botones_tabla" alignment="CENTER" prefHeight="57.0" prefWidth="294.0" spacing="20.0" VBox.vgrow="NEVER">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -35,7 +35,7 @@
                   <Insets left="20.0" right="20.0" />
                </padding>
                <children>
-                  <Button fx:id="boton_crear" mnemonicParsing="false" onAction="#crearNuevo" prefHeight="35.0" prefWidth="118.0" text="Nueva Tutoria">
+                  <Button fx:id="boton_crear" mnemonicParsing="false" onAction="#crearNuevo" prefHeight="30.0" prefWidth="134.0" text="Nueva Tutoria">
                      <font>
                         <Font size="14.0" />
                      </font>

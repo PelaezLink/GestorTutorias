@@ -88,7 +88,7 @@
                   </HBox>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="68.0" prefWidth="313.0" spacing="40.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#confirmar" prefHeight="33.0" prefWidth="105.0" text="Confirmar">
+                        <Button fx:id="boton_confirmar" mnemonicParsing="false" onAction="#confirmar" prefHeight="33.0" prefWidth="105.0" text="Confirmar">
                            <font>
                               <Font size="15.0" />
                            </font>

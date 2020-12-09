@@ -49,7 +49,7 @@
       <HBox prefHeight="84.0" prefWidth="560.0" />
       <HBox alignment="CENTER" prefHeight="48.0" prefWidth="560.0" spacing="30.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#confirmar" text="Confimar">
+            <Button fx:id="boton_confirmar" mnemonicParsing="false" onAction="#confirmar" text="Confimar">
                <font>
                   <Font size="15.0" />
                </font>

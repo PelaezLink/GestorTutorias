@@ -67,12 +67,20 @@ public class FXMLGestorTutoriasController implements Initializable {
     @FXML
     private VBox hueco_tabla;
     private LocalDate fechaSeleccionada;
+    private Button boton_borrar_asignatura;//para copiar el tamaño y sus propiedades, luego le cambiamos el texto
+    @FXML
+    private HBox botones_tabla;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         inicializarCalendario();
         misTutorias = AccesoBD.getInstance().getTutorias();
+        boton_borrar_asignatura = new Button("Eliminar");
+        boton_borrar_asignatura.setPrefSize(100, 30);
+        boton_borrar_asignatura.setFont(boton_crear.getFont());
+        boton_borrar_asignatura.setDisable(true);
+        
 
     }
 
@@ -155,12 +163,15 @@ public class FXMLGestorTutoriasController implements Initializable {
         boton_crear.setText("Nueva Asignatura");
         hueco_tabla.getChildren().clear();
         hueco_tabla.getChildren().add(FXMLLoader.load(getClass().getResource("/tabla_asignaturas/FXMLTablaAsignaturas.fxml")));
+        botones_tabla.getChildren().add(boton_borrar_asignatura);
+        
     }
 
     //Metodo que muestra la lista de alumnos en el tableView
     //al fichero FXML que tiene la tabla de ese tipo
     @FXML
     private void mostrarTablaAlumnos(ActionEvent event) throws IOException {
+        botones_tabla.getChildren().remove(boton_borrar_asignatura);
         boton_crear.setText("Nuevo Alumno");
         hueco_tabla.getChildren().clear();
         hueco_tabla.getChildren().add(FXMLLoader.load(getClass().getResource("/tabla_alumnos/FXMLTablaAlumnos.fxml")));
