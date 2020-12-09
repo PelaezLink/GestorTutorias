@@ -52,6 +52,7 @@ public class FXMLFormularioTutoriaController implements Initializable {
     private ComboBox<String> duracion;
     private ObservableList<Tutoria> listaTutoriasDia;
     private LocalDate fecha;
+    private FXMLGestorTutoriasController principal;
 
     /**
      * Initializes the controller class.
@@ -68,6 +69,8 @@ public class FXMLFormularioTutoriaController implements Initializable {
         minutos.addAll("10", "20", "30", "40", "50", "60");
         duracion.setItems(minutos);
         
+        principal = new FXMLGestorTutoriasController();
+        fecha = principal.getFecha();
         //hora_inicio.setItems(getHorasDisponibles());       
         
     }    

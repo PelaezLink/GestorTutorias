@@ -62,6 +62,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     private BorderPane borderPane;
     @FXML
     private VBox hueco_tabla;
+    private LocalDate fechaSeleccionada;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -150,6 +151,19 @@ public class FXMLGestorTutoriasController implements Initializable {
         hueco_tabla.getChildren().add(FXMLLoader.load(getClass().getResource("/tabla_alumnos/FXMLTablaAlumnos.fxml")));
         ;
     }
+    
+    //Metodo que devuelve la fecha clickada en el calendario para poder usarla
+    //en otros controladores
+    public LocalDate getFecha() {
+        return fechaSeleccionada;
+    }
+    
+    //Constructor de la clase
+    public FXMLGestorTutoriasController() {
+    
+    }
+    
+    
 
 }
 
