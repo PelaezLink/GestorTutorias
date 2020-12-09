@@ -22,6 +22,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -33,6 +35,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import modelo.Tutoria;
 import modelo.Tutorias;
 
@@ -130,6 +134,17 @@ public class FXMLGestorTutoriasController implements Initializable {
             centro.getChildren().clear();
             centro.getChildren().add(FXMLLoader.load(getClass().getResource("/formulario_alumno/FXMLFormularioAlumno.fxml")));
             boton_crear.setDisable(true);
+        }
+        
+        if ("Nueva Asignatura".equals(boton_crear.getText())) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/formulario_asignatura/FXMLFormularioAsignatura.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage ventana2= new Stage();
+            ventana2.initModality(Modality.APPLICATION_MODAL);
+            ventana2.setScene(scene);
+            ventana2.showAndWait();
+        
         }
     }
 

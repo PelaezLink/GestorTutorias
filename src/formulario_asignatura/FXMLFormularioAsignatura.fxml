@@ -52,7 +52,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" text="Cancelar">
+            <Button fx:id="boton_cancelar" mnemonicParsing="false" onAction="#cerrarVentana" text="Cancelar">
                <font>
                   <Font size="15.0" />
                </font>
