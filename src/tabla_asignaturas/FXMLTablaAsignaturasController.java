@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import modelo.Asignatura;
 import modelo.Tutoria;
 import modelo.Tutorias;
@@ -33,6 +34,7 @@ public class FXMLTablaAsignaturasController implements Initializable {
     private TableColumn<Asignatura, String> columna_codigo;
     private Tutorias misTutorias;
     private FXMLGestorTutoriasController principal;
+    private Asignatura seleccionada;
 
     /**
      * Initializes the controller class.
@@ -49,6 +51,19 @@ public class FXMLTablaAsignaturasController implements Initializable {
         tabla_asignaturas.setItems(listaAsignaturas);
         columna_nombre_asignatura.setCellValueFactory(cellData -> cellData.getValue().descripcionProperty());
         columna_codigo.setCellValueFactory(cellData -> cellData.getValue().codigoProperty());
+    }
+    
+    //Elimina la asignatura seleccionada de la lista.
+    public void eliminarAsignatura() {
+        ObservableList<Asignatura> lista_asignaturas = misTutorias.getAsignaturas();
+        lista_asignaturas.remove(seleccionada);
+        
+    
+    }
+     
+    @FXML
+    private void asignaturaSeleccionada(MouseEvent event) {
+        seleccionada = tabla_asignaturas.getSelectionModel().getSelectedItem();        
     }
 
     
