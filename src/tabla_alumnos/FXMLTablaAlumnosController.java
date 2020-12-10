@@ -6,6 +6,7 @@
 package tabla_alumnos;
 
 import accesoBD.AccesoBD;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -13,9 +14,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import modelo.Alumno;
 import modelo.Asignatura;
 import modelo.Tutorias;
+import ventana_principal.FXMLGestorTutoriasController;
 
 /**
  * FXML Controller class
@@ -31,6 +34,8 @@ public class FXMLTablaAlumnosController implements Initializable {
     @FXML
     private TableColumn<Alumno, String> columna_apellidos;
     private Tutorias misTutorias;
+    private Alumno seleccionado;
+    private FXMLGestorTutoriasController principal;
 
     /**
      * Initializes the controller class.
@@ -40,9 +45,25 @@ public class FXMLTablaAlumnosController implements Initializable {
         // TODO
         misTutorias = AccesoBD.getInstance().getTutorias();
         ObservableList<Alumno> listaAlumnos = misTutorias.getAlumnosTutorizados();
+        //Inicializamos el valor de las columnas.
         tabla_alumnos.setItems(listaAlumnos);
         columna_nombre.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
         columna_apellidos.setCellValueFactory(cellData -> cellData.getValue().apellidosProperty());
     }    
+    
+    //Metodo que al clickar en un alumno de la tabla lo muestra en el visualizador
+    @FXML
+    private void mostrar_alumno(MouseEvent event) throws IOException {
+        seleccionado = tabla_alumnos.getSelectionModel().getSelectedItem();
+        principal = new FXMLGestorTutoriasController();
+        principal.mostrar_alumno();
+    }
+    
+    public FXMLTablaAlumnosController() {}
+    
+   //Metodo para obtener el alumno a mostrar en el controlador del visualizador.
+    public Alumno getAlumnoSeleccionado() {
+        return seleccionado;
+    }
     
 }

@@ -50,6 +50,8 @@ public class FXMLFormularioAsignaturaController implements Initializable {
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
+    
+    //Cuando se pulsa el boton confirmar se guarda la asignatura y se vacia el formulario
     @FXML
     private void confirmar(ActionEvent event) {
         Asignatura nuevaAsignatura = new Asignatura(codigoAsignatura.getText(), nombreAsignatura.getText());

@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import modelo.Asignatura;
 import modelo.Tutoria;
 import modelo.Tutorias;
+import ventana_principal.FXMLGestorTutoriasController;
 
 /**
  * FXML Controller class
@@ -31,6 +32,7 @@ public class FXMLTablaAsignaturasController implements Initializable {
     @FXML
     private TableColumn<Asignatura, String> columna_codigo;
     private Tutorias misTutorias;
+    private FXMLGestorTutoriasController principal;
 
     /**
      * Initializes the controller class.
@@ -40,6 +42,10 @@ public class FXMLTablaAsignaturasController implements Initializable {
         // TODO
         misTutorias = AccesoBD.getInstance().getTutorias();
         ObservableList<Asignatura> listaAsignaturas = misTutorias.getAsignaturas();
+        //Activamos el boton para poder borrar asignaturas.
+        principal = new FXMLGestorTutoriasController();
+        principal.activarBotonEliminarAsignatura();
+        
         tabla_asignaturas.setItems(listaAsignaturas);
         columna_nombre_asignatura.setCellValueFactory(cellData -> cellData.getValue().descripcionProperty());
         columna_codigo.setCellValueFactory(cellData -> cellData.getValue().codigoProperty());

@@ -47,7 +47,7 @@
                            </font>
                         </Text>
                         <TextField fx:id="duracion" editable="false" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="m">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="min">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -82,7 +82,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="105.0" text="Cerrar">
+                  <Button mnemonicParsing="false" onAction="#cerrar" prefHeight="33.0" prefWidth="105.0" text="Cerrar">
                      <font>
                         <Font size="15.0" />
                      </font>

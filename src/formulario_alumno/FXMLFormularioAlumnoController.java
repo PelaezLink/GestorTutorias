@@ -48,7 +48,8 @@ public class FXMLFormularioAlumnoController implements Initializable {
         boton_confirmar.disableProperty().bind(Bindings.or(correo.textProperty().isEmpty(),(Bindings.or(nombre.textProperty().isEmpty(), apellidos.textProperty().isEmpty()))));
         
     }    
-
+    
+    //Cuando se pulsa el boton confirmar se guarda el alumno y se vacia el formulario
     @FXML
     private void confirmar(ActionEvent event) {
         Alumno nuevoAlumno = new Alumno(nombre.getText(), apellidos.getText(), correo.getText());
@@ -60,6 +61,7 @@ public class FXMLFormularioAlumnoController implements Initializable {
         correo.clear();
     }
 
+    //Cerramos la ventana
     @FXML
     private void cancelar(ActionEvent event) {
     }

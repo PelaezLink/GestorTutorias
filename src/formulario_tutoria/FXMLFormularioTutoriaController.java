@@ -60,6 +60,8 @@ public class FXMLFormularioTutoriaController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    //Inicializamos los campos
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -78,7 +80,8 @@ public class FXMLFormularioTutoriaController implements Initializable {
         
         
     }    
-
+    
+    //Cuando se pulsa el boton confirmar se guarda la tutoria y se vacua el formulario
     @FXML
     private void confirmar(ActionEvent event) {
         Tutoria nueva = new Tutoria();
@@ -99,7 +102,8 @@ public class FXMLFormularioTutoriaController implements Initializable {
         
  
     }
-
+    
+    //Cerramos la ventana
     @FXML
     private void cancelar(ActionEvent event) {
                 

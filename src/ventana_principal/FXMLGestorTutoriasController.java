@@ -31,6 +31,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -67,15 +68,17 @@ public class FXMLGestorTutoriasController implements Initializable {
     @FXML
     private VBox hueco_tabla;
     private LocalDate fechaSeleccionada;
-    private Button boton_borrar_asignatura;//para copiar el tamaño y sus propiedades, luego le cambiamos el texto
+    private Button boton_borrar_asignatura;
     @FXML
     private HBox botones_tabla;
+    private Tutoria seleccionada;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         inicializarCalendario();
         misTutorias = AccesoBD.getInstance().getTutorias();
+        //Creamos un boton que solo se usara para asignaturas
         boton_borrar_asignatura = new Button("Eliminar");
         boton_borrar_asignatura.setPrefSize(100, 30);
         boton_borrar_asignatura.setFont(boton_crear.getFont());
@@ -128,8 +131,10 @@ public class FXMLGestorTutoriasController implements Initializable {
 
     }
 
-    //CODIGO QUE QUITA EL CALENDARIO Y MUESTRA EL FORMULARIO DE NUEVA ASIGNATURA
-    //AL PULSAR EL BOTON DE NUEVA ASIGNATURA
+    //Código que quita el calendario y en su lugar muestra el formulario para
+    //nueva tutoria, alumno o asignatura. En el caso de asignatura es una
+    //ventana modal
+    
     @FXML
     private void crearNuevo(ActionEvent event) throws IOException {
         if ("Nueva Tutoria".equals(boton_crear.getText())) {
@@ -157,7 +162,8 @@ public class FXMLGestorTutoriasController implements Initializable {
     }
 
     //Metodo que muestra la lista de asignaturas en el tableView llamando
-    //al fichero FXML que tiene la tabla de ese tipo
+    //al fichero FXML que tiene la tabla de ese tipo cuando se pulsa el 
+    //boton asignaturas.
     @FXML
     private void mostrarTablaAsignaturas(ActionEvent event) throws IOException {
         boton_crear.setText("Nueva Asignatura");
@@ -168,7 +174,8 @@ public class FXMLGestorTutoriasController implements Initializable {
     }
 
     //Metodo que muestra la lista de alumnos en el tableView
-    //al fichero FXML que tiene la tabla de ese tipo
+    //al fichero FXML que tiene la tabla de ese tipo cuando se pulsa el
+    //boton alumnos
     @FXML
     private void mostrarTablaAlumnos(ActionEvent event) throws IOException {
         botones_tabla.getChildren().remove(boton_borrar_asignatura);
@@ -184,12 +191,41 @@ public class FXMLGestorTutoriasController implements Initializable {
         return fechaSeleccionada;
     }
     
+    //Metodo para obtener en el controlador del visualiadro al tutoria que se ha
+    //seleccionada aqui en la tabla.
+    public Tutoria getTutoriaSeleccionada() {
+        return seleccionada;
+    }
+    
     //Constructor de la clase
     public FXMLGestorTutoriasController() {
     
     }
     
+    //Metodo que se lanza al clickar en una Tutoria de la tabla y que muestra sus
+    //datos detallados en el visualizador.
+    @FXML
+    public void mostrar_tutoria(MouseEvent event) throws IOException {
+        seleccionada = tabla_tutorias.getSelectionModel().getSelectedItem();
+        centro.getChildren().clear();
+        centro.getChildren().add(FXMLLoader.load(getClass().getResource("/visualizador_tutoria/FXMLVisualizadorTutoria.fxml")));
+        boton_crear.setDisable(true);
+           
+    }
     
+    //Metodo que se llamara desde e controlador de la tabla de alumnos cuando 
+    //se pinche en alguno para mostrar sus datos detallados en el visualizador
+    public void mostrar_alumno() throws IOException {
+        centro.getChildren().clear();
+        centro.getChildren().add(FXMLLoader.load(getClass().getResource("/visualizador_alumno/FXMLVisualizadorAlumno.fxml")));
+        boton_crear.setDisable(true);
+    }
+    
+    //Metodo para poder activar el boton desde la clase la tabla de asignaturas. 
+    public void activarBotonEliminarAsignatura() {
+        boton_borrar_asignatura.setDisable(false);
+    }
+     
 
 }
 
