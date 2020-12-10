@@ -40,7 +40,6 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
     private TextArea comentarios;
     @FXML
     private TextField duracion;
-    private FXMLGestorTutoriasController principal;
     private Tutoria tutoria;
     private Tutorias misTutorias;
 
@@ -50,8 +49,6 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        principal = new FXMLGestorTutoriasController();
-        tutoria = principal.getTutoriaSeleccionada();
         misTutorias = AccesoBD.getInstance().getTutorias();
         //Inicializamos todos los campos.
         asignatura.setText(tutoria.getAsignatura().toString());
@@ -74,6 +71,10 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
       tutoria.setEstado(estado.getValue());
       tutoria.setAnotaciones(comentarios.getText());
       lista_tutorias.add(tutoria);
+    }
+    
+    public void setTutoria(Tutoria t) {
+        tutoria = t;
     }
     
 }

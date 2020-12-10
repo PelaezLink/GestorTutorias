@@ -7,6 +7,7 @@ package ventana_principal;
 
 import accesoBD.AccesoBD;
 import com.sun.javafx.scene.control.skin.DatePickerSkin;
+import formulario_tutoria.FXMLFormularioTutoriaController;
 import java.io.IOException;
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -40,6 +41,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Tutoria;
 import modelo.Tutorias;
+import visualizador_tutoria.FXMLVisualizadorTutoriaController;
 
 /**
  *
@@ -71,7 +73,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     private Button boton_borrar_asignatura;
     @FXML
     private HBox botones_tabla;
-    private Tutoria seleccionada;
+    private Tutoria tutoria_seleccionada;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -139,13 +141,17 @@ public class FXMLGestorTutoriasController implements Initializable {
     private void crearNuevo(ActionEvent event) throws IOException {
         if ("Nueva Tutoria".equals(boton_crear.getText())) {
             centro.getChildren().clear();
-            centro.getChildren().add(FXMLLoader.load(getClass().getResource("/formulario_tutoria/FXMLFormularioTutoria.fxml")));
+            FXMLLoader formulario_tutoria = new FXMLLoader(getClass().getResource("/formulario_tutoria/FXMLFormularioTutoria.fxml"));
+            FXMLFormularioTutoriaController controlador_formulario_tutoria = formulario_tutoria.getController();
+            controlador_formulario_tutoria.setFecha(fechaSeleccionada);
+            centro.getChildren().add(formulario_tutoria.load());
             boton_crear.setDisable(true);
         }
         
         if ("Nuevo Alumno".equals(boton_crear.getText())) {
             centro.getChildren().clear();
-            centro.getChildren().add(FXMLLoader.load(getClass().getResource("/formulario_alumno/FXMLFormularioAlumno.fxml")));
+            FXMLLoader formulario_alumno = new FXMLLoader(getClass().getResource("/formulario_alumno/FXMLFormularioAlumno.fxml"));
+            centro.getChildren().add(formulario_alumno.load());
             boton_crear.setDisable(true);
         }
         
@@ -168,7 +174,8 @@ public class FXMLGestorTutoriasController implements Initializable {
     private void mostrarTablaAsignaturas(ActionEvent event) throws IOException {
         boton_crear.setText("Nueva Asignatura");
         hueco_tabla.getChildren().clear();
-        hueco_tabla.getChildren().add(FXMLLoader.load(getClass().getResource("/tabla_asignaturas/FXMLTablaAsignaturas.fxml")));
+        FXMLLoader tabla_asignaturas = new FXMLLoader(getClass().getResource("/tabla_asignaturas/FXMLTablaAsignaturas.fxml"));
+        hueco_tabla.getChildren().add(tabla_asignaturas.load());
         botones_tabla.getChildren().add(boton_borrar_asignatura);
         
     }
@@ -181,22 +188,12 @@ public class FXMLGestorTutoriasController implements Initializable {
         botones_tabla.getChildren().remove(boton_borrar_asignatura);
         boton_crear.setText("Nuevo Alumno");
         hueco_tabla.getChildren().clear();
-        hueco_tabla.getChildren().add(FXMLLoader.load(getClass().getResource("/tabla_alumnos/FXMLTablaAlumnos.fxml")));
-        ;
+        FXMLLoader tabla_alumnos = new FXMLLoader(getClass().getResource("/tabla_alumnos/FXMLTablaAlumnos.fxml"));
+        hueco_tabla.getChildren().add(tabla_alumnos.load());
     }
     
-    //Metodo que devuelve la fecha clickada en el calendario para poder usarla
-    //en otros controladores
-    public LocalDate getFecha() {
-        return fechaSeleccionada;
-    }
     
-    //Metodo para obtener en el controlador del visualiadro al tutoria que se ha
-    //seleccionada aqui en la tabla.
-    public Tutoria getTutoriaSeleccionada() {
-        return seleccionada;
-    }
-    
+
     //Constructor de la clase
     public FXMLGestorTutoriasController() {
     
@@ -206,9 +203,12 @@ public class FXMLGestorTutoriasController implements Initializable {
     //datos detallados en el visualizador.
     @FXML
     public void mostrar_tutoria(MouseEvent event) throws IOException {
-        seleccionada = tabla_tutorias.getSelectionModel().getSelectedItem();
+        tutoria_seleccionada = tabla_tutorias.getSelectionModel().getSelectedItem();
         centro.getChildren().clear();
-        centro.getChildren().add(FXMLLoader.load(getClass().getResource("/visualizador_tutoria/FXMLVisualizadorTutoria.fxml")));
+        FXMLLoader visualizador_tutoria = new FXMLLoader(getClass().getResource("/visualizador_tutoria/FXMLVisualizadorTutoria.fxml"));
+        FXMLVisualizadorTutoriaController controlador_visualizador_tutoria = visualizador_tutoria.getController();
+        controlador_visualizador_tutoria.setTutoria(tutoria_seleccionada);
+        centro.getChildren().add(visualizador_tutoria.load());
         boton_crear.setDisable(true);
            
     }
@@ -217,7 +217,8 @@ public class FXMLGestorTutoriasController implements Initializable {
     //se pinche en alguno para mostrar sus datos detallados en el visualizador
     public void mostrar_alumno() throws IOException {
         centro.getChildren().clear();
-        centro.getChildren().add(FXMLLoader.load(getClass().getResource("/visualizador_alumno/FXMLVisualizadorAlumno.fxml")));
+        FXMLLoader visualizador_alumno = new FXMLLoader(getClass().getResource("/visualizador_alumno/FXMLVisualizadorAlumno.fxml"));
+        centro.getChildren().add(visualizador_alumno.load());
         boton_crear.setDisable(true);
     }
     

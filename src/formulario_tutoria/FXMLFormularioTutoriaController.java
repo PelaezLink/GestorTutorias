@@ -53,7 +53,6 @@ public class FXMLFormularioTutoriaController implements Initializable {
     private ComboBox<String> duracion;
     private ObservableList<Tutoria> listaTutoriasDia;
     private LocalDate fecha;
-    private FXMLGestorTutoriasController principal;
     @FXML
     private Button boton_confirmar;
 
@@ -74,8 +73,6 @@ public class FXMLFormularioTutoriaController implements Initializable {
         minutos.addAll("10", "20", "30", "40", "50", "60");
         duracion.setItems(minutos);
         
-        principal = new FXMLGestorTutoriasController();
-        fecha = principal.getFecha();
         //hora_inicio.setItems(getHorasDisponibles());    
         
         
@@ -107,6 +104,10 @@ public class FXMLFormularioTutoriaController implements Initializable {
     @FXML
     private void cancelar(ActionEvent event) {
                 
+    }
+    
+    public void setFecha(LocalDate f) {
+        fecha = f;
     }
     
     //Metodo que nos devuelve la lista con las horas de inicio dispoibles para elegir en la nueva tutoria.
