@@ -35,7 +35,7 @@ public class FXMLTablaAlumnosController implements Initializable {
     private TableColumn<Alumno, String> columna_apellidos;
     private Tutorias misTutorias;
     private Alumno seleccionado;
-    private FXMLGestorTutoriasController principal;
+    private FXMLGestorTutoriasController controlador_principal;
 
     /**
      * Initializes the controller class.
@@ -55,15 +55,12 @@ public class FXMLTablaAlumnosController implements Initializable {
     @FXML
     private void mostrar_alumno(MouseEvent event) throws IOException {
         seleccionado = tabla_alumnos.getSelectionModel().getSelectedItem();
-        principal = new FXMLGestorTutoriasController();
-        principal.mostrar_alumno();
+        controlador_principal.mostrar_alumno(seleccionado);
     }
     
-    public FXMLTablaAlumnosController() {}
-    
-   //Metodo para obtener el alumno a mostrar en el controlador del visualizador.
-    public Alumno getAlumnoSeleccionado() {
-        return seleccionado;
+    public void setControladorPrincipal(FXMLGestorTutoriasController c) {
+        controlador_principal = c;   
     }
+    
     
 }

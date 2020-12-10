@@ -26,7 +26,7 @@ public class GestorTutorias extends Application {
         
         stage.setScene(scene);
         stage.show();
-        //Liena de codigo de stack overflow: https://stackoverflow.com/questions/44548460/javafx-stage-close-event-handler
+        //Linea de codigo de stack overflow: https://stackoverflow.com/questions/44548460/javafx-stage-close-event-handler
         //Para guardar el estado de las tutorias cuando se cierre la aplicación.
         //stage.setOnHiding( event -> {AccesoBD.getInstance().salvar();} );
     }

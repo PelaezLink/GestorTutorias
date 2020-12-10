@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,8 +40,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import modelo.Alumno;
 import modelo.Tutoria;
 import modelo.Tutorias;
+import tabla_alumnos.FXMLTablaAlumnosController;
+import tabla_asignaturas.FXMLTablaAsignaturasController;
+import visualizador_alumno.FXMLVisualizadorAlumnoController;
 import visualizador_tutoria.FXMLVisualizadorTutoriaController;
 
 /**
@@ -69,7 +74,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     private BorderPane borderPane;
     @FXML
     private VBox hueco_tabla;
-    private LocalDate fechaSeleccionada;
+    private LocalDate fecha_seleccionada;
     private Button boton_borrar_asignatura;
     @FXML
     private HBox botones_tabla;
@@ -96,6 +101,14 @@ public class FXMLGestorTutoriasController implements Initializable {
         calendario.setShowWeekNumbers(false);
         calendario.setDayCellFactory(cel -> new DiaCelda());
 
+        calendario.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                fecha_seleccionada = calendario.getValue();
+                mostarTablaTutorias(calendario.getValue());
+                
+            }
+        });
+
         DatePickerSkin datePickerSkin = new DatePickerSkin(calendario);
         Node popupContent = datePickerSkin.getPopupContent();
 
@@ -107,7 +120,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     //Metodo que apartir de la fecha busca en la lista de tutorias las que
     //haya ese dia y las muestra en el tableView (EN PROCESO)
     public void mostarTablaTutorias(LocalDate fecha) {
-        
+
         ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha);
         tabla_tutorias.setItems(listaTutoriasDia);
         columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
@@ -143,7 +156,7 @@ public class FXMLGestorTutoriasController implements Initializable {
             centro.getChildren().clear();
             FXMLLoader formulario_tutoria = new FXMLLoader(getClass().getResource("/formulario_tutoria/FXMLFormularioTutoria.fxml"));
             FXMLFormularioTutoriaController controlador_formulario_tutoria = formulario_tutoria.getController();
-            controlador_formulario_tutoria.setFecha(fechaSeleccionada);
+            //controlador_formulario_tutoria.setFecha(fecha_seleccionada);
             centro.getChildren().add(formulario_tutoria.load());
             boton_crear.setDisable(true);
         }
@@ -175,9 +188,10 @@ public class FXMLGestorTutoriasController implements Initializable {
         boton_crear.setText("Nueva Asignatura");
         hueco_tabla.getChildren().clear();
         FXMLLoader tabla_asignaturas = new FXMLLoader(getClass().getResource("/tabla_asignaturas/FXMLTablaAsignaturas.fxml"));
+        FXMLTablaAsignaturasController controlador_tabla_asiganturas = tabla_asignaturas.getController();
+        //controlador_tabla_asiganturas.setControladorPrincipal(this);
         hueco_tabla.getChildren().add(tabla_asignaturas.load());
-        botones_tabla.getChildren().add(boton_borrar_asignatura);
-        
+        botones_tabla.getChildren().add(boton_borrar_asignatura);  
     }
 
     //Metodo que muestra la lista de alumnos en el tableView
@@ -189,15 +203,11 @@ public class FXMLGestorTutoriasController implements Initializable {
         boton_crear.setText("Nuevo Alumno");
         hueco_tabla.getChildren().clear();
         FXMLLoader tabla_alumnos = new FXMLLoader(getClass().getResource("/tabla_alumnos/FXMLTablaAlumnos.fxml"));
+        FXMLTablaAlumnosController controlador_tabla_alumnos = tabla_alumnos.getController();
+        //controlador_tabla_alumnos.setControladorPrincipal(this);
         hueco_tabla.getChildren().add(tabla_alumnos.load());
     }
-    
-    
 
-    //Constructor de la clase
-    public FXMLGestorTutoriasController() {
-    
-    }
     
     //Metodo que se lanza al clickar en una Tutoria de la tabla y que muestra sus
     //datos detallados en el visualizador.
@@ -215,9 +225,11 @@ public class FXMLGestorTutoriasController implements Initializable {
     
     //Metodo que se llamara desde e controlador de la tabla de alumnos cuando 
     //se pinche en alguno para mostrar sus datos detallados en el visualizador
-    public void mostrar_alumno() throws IOException {
+    public void mostrar_alumno(Alumno a) throws IOException {
         centro.getChildren().clear();
         FXMLLoader visualizador_alumno = new FXMLLoader(getClass().getResource("/visualizador_alumno/FXMLVisualizadorAlumno.fxml"));
+        FXMLVisualizadorAlumnoController controlador_visualizador_alumno = visualizador_alumno.getController();
+        controlador_visualizador_alumno.setAlumno(a);
         centro.getChildren().add(visualizador_alumno.load());
         boton_crear.setDisable(true);
     }

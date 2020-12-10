@@ -36,7 +36,6 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     private TextField correo;
     private Tutorias misTutorias;
     private Alumno alumno;
-    private FXMLTablaAlumnosController tabla_alumnos;
 
     /**
      * Initializes the controller class.
@@ -45,8 +44,6 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         misTutorias = AccesoBD.getInstance().getTutorias();
-        tabla_alumnos = new FXMLTablaAlumnosController();
-        alumno = tabla_alumnos.getAlumnoSeleccionado();
         //Inicializamos los datos.
         nombre.setText(alumno.getNombre());
         apellidos.setText(alumno.getApellidos());
@@ -62,6 +59,10 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     private void eliminar(ActionEvent event) {
         ObservableList<Alumno> lista_alumnos = misTutorias.getAlumnosTutorizados();
         lista_alumnos.remove(alumno);
+    }
+    
+    public void setAlumno(Alumno a) {
+        alumno = a;
     }
     
 }
