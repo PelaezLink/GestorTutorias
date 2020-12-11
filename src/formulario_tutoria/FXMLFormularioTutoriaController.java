@@ -78,13 +78,10 @@ public class FXMLFormularioTutoriaController implements Initializable {
         ObservableList<String> minutos = FXCollections.observableArrayList();
         minutos.addAll("10", "20", "30", "40", "50", "60");        
         duracion.setItems(minutos);
-        
-        //hora_inicio.setItems(getHorasDisponibles());    
-        
-        
+                
     }    
     
-    //Cuando se pulsa el boton confirmar se guarda la tutoria y se vacua el formulario
+    //Cuando se pulsa el boton confirmar se guarda la tutoria y se vacia el formulario
     @FXML
     private void confirmar(ActionEvent event) {
         Tutoria nueva = new Tutoria();
@@ -103,25 +100,27 @@ public class FXMLFormularioTutoriaController implements Initializable {
         ObservableList<Tutoria> lista_tutorias = misTutorias.getTutoriasConcertadas();
         lista_tutorias.add(nueva);
         
- 
     }
-    
+
     //Cerramos la ventana
     @FXML
     private void cancelar(ActionEvent event) {
         controlador_principal.inicializarCalendario();
-        
-                
+
     }
-    
+
+    public void setInicio() {
+        hora_inicio.setItems(getHorasDisponibles());
+    }
+
     public void setFecha(LocalDate f) {
         fecha = f;
     }
-    
+
     public void setTutoriasDia(ObservableList<Tutoria> t) {
-        listaTutoriasDia = t;    
+        listaTutoriasDia = t;
     }
-    
+
     public void setControladorPrincipal(FXMLGestorTutoriasController c) {
         controlador_principal = c;
     }

@@ -104,7 +104,6 @@ public class FXMLGestorTutoriasController implements Initializable {
             public void handle(ActionEvent event) {
                 fecha_seleccionada = calendario.getValue();
                 mostarTablaTutorias(calendario.getValue());
-                
             }
         });
 
@@ -175,7 +174,8 @@ public class FXMLGestorTutoriasController implements Initializable {
             FXMLFormularioTutoriaController controlador_formulario_tutoria = formulario_tutoria.getController();
             controlador_formulario_tutoria.setControladorPrincipal(this);
             controlador_formulario_tutoria.setFecha(fecha_seleccionada);
-            controlador_formulario_tutoria.setTutoriasDia(getTutoriasDia(fecha_seleccionada)); 
+            controlador_formulario_tutoria.setTutoriasDia(getTutoriasDia(fecha_seleccionada));
+            controlador_formulario_tutoria.setInicio();
             boton_crear.setDisable(true);
         }
         
@@ -254,6 +254,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         centro.getChildren().add(visualizador_alumno.load());
         FXMLVisualizadorAlumnoController controlador_visualizador_alumno = visualizador_alumno.getController();
         controlador_visualizador_alumno.setAlumno(a);
+        controlador_visualizador_alumno.setControladorPrincipal(this);
         boton_crear.setDisable(true);
     }
 

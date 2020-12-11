@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import modelo.Alumno;
 import modelo.Tutorias;
 import tabla_alumnos.FXMLTablaAlumnosController;
+import ventana_principal.FXMLGestorTutoriasController;
 
 /**
  * FXML Controller class
@@ -36,6 +37,7 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     private TextField correo;
     private Tutorias misTutorias;
     private Alumno alumno;
+    private FXMLGestorTutoriasController controlador_principal; 
 
     /**
      * Initializes the controller class.
@@ -43,16 +45,12 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        misTutorias = AccesoBD.getInstance().getTutorias();
-        //Inicializamos los datos.
-        nombre.setText(alumno.getNombre());
-        apellidos.setText(alumno.getApellidos());
-        correo.setText(alumno.getEmail());               
-        
+        misTutorias = AccesoBD.getInstance().getTutorias();               
     }    
 
     @FXML
     private void cerrar(ActionEvent event) {
+        controlador_principal.inicializarCalendario();
     }
 
     @FXML
@@ -63,6 +61,16 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     
     public void setAlumno(Alumno a) {
         alumno = a;
+        //Inicializamos los datos aqui y no en el intialice porque debemos tener
+        //el alumno setado primero antes, y el initialize se ejecuta antes de 
+        //setear el alumno.
+        nombre.setText(alumno.getNombre());
+        apellidos.setText(alumno.getApellidos());
+        correo.setText(alumno.getEmail());
+    }
+    
+    public void setControladorPrincipal(FXMLGestorTutoriasController c) {
+        controlador_principal = c;
     }
     
 }
