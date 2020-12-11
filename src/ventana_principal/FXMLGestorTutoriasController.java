@@ -132,13 +132,16 @@ public class FXMLGestorTutoriasController implements Initializable {
 
     //Metodo que apartir de la fecha busca en la lista de tutorias las que
     //haya ese dia y las muestra en el tableView
-    public void mostarTablaTutorias(LocalDate fecha) {
-
+    public void mostarTablaTutorias(LocalDate fecha) {        
+        boton_crear.setText("Nueva Tutoria");
+        hueco_tabla.getChildren().clear();
+        hueco_tabla.getChildren().add(tabla_tutorias); 
         ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha);
         tabla_tutorias.setItems(listaTutoriasDia);
         columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
         columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().asignaturaProperty());
         columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty());
+        boton_borrar_asignatura.setDisable(true);
     }
 
     
@@ -210,6 +213,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         controladorAsignaturas = controlador_tabla_asiganturas;
         controlador_tabla_asiganturas.setControladorPrincipal(this);
         botones_tabla.getChildren().add(boton_borrar_asignatura);
+        boton_borrar_asignatura.setDisable(true);
     }
 
     //Metodo que muestra la lista de alumnos en el tableView
@@ -224,6 +228,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         hueco_tabla.getChildren().add(tabla_alumnos.load());
         FXMLTablaAlumnosController controlador_tabla_alumnos = tabla_alumnos.getController();
         controlador_tabla_alumnos.setControladorPrincipal(this);
+        boton_borrar_asignatura.setDisable(true);
     }
 
     //Metodo que se lanza al clickar en una Tutoria de la tabla y que muestra sus

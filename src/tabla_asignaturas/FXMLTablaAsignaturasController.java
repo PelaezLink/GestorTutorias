@@ -62,13 +62,15 @@ public class FXMLTablaAsignaturasController implements Initializable {
      
     @FXML
     private void asignaturaSeleccionada(MouseEvent event) {
-        seleccionada = tabla_asignaturas.getSelectionModel().getSelectedItem(); 
-        controlador_principal.activarBotonEliminarAsignatura();
+        seleccionada = tabla_asignaturas.getSelectionModel().getSelectedItem();
+        if (seleccionada != null) {
+            controlador_principal.activarBotonEliminarAsignatura();
+        }
     }
-    
+
     public void setControladorPrincipal(FXMLGestorTutoriasController p) {
         controlador_principal = p;
     }
-    
+
     
 }

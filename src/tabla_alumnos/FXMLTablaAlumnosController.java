@@ -55,12 +55,14 @@ public class FXMLTablaAlumnosController implements Initializable {
     @FXML
     private void mostrar_alumno(MouseEvent event) throws IOException {
         seleccionado = tabla_alumnos.getSelectionModel().getSelectedItem();
-        controlador_principal.mostrar_alumno(seleccionado);
+        if (seleccionado != null) {
+            controlador_principal.mostrar_alumno(seleccionado);
+        }
     }
-    
+
     public void setControladorPrincipal(FXMLGestorTutoriasController c) {
-        controlador_principal = c;   
+        controlador_principal = c;
     }
-    
+
     
 }
