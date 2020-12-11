@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import modelo.Alumno;
 import modelo.Tutorias;
+import ventana_principal.FXMLGestorTutoriasController;
 
 /**
  * FXML Controller class
@@ -37,6 +38,7 @@ public class FXMLFormularioAlumnoController implements Initializable {
     private Tutorias misTutorias;
     @FXML
     private Button boton_confirmar;
+    private FXMLGestorTutoriasController controlador_principal;
 
     /**
      * Initializes the controller class.
@@ -64,6 +66,11 @@ public class FXMLFormularioAlumnoController implements Initializable {
     //Cerramos la ventana
     @FXML
     private void cancelar(ActionEvent event) {
+        controlador_principal.inicializarCalendario();
     }
     
+    
+    public void setControladorPrincipal(FXMLGestorTutoriasController c) {
+        controlador_principal = c;
+    }
 }

@@ -7,6 +7,7 @@ package ventana_principal;
 
 import accesoBD.AccesoBD;
 import com.sun.javafx.scene.control.skin.DatePickerSkin;
+import formulario_alumno.FXMLFormularioAlumnoController;
 import formulario_tutoria.FXMLFormularioTutoriaController;
 import java.io.IOException;
 import java.net.URL;
@@ -81,19 +82,15 @@ public class FXMLGestorTutoriasController implements Initializable {
     @FXML
     private HBox botones_tabla;
     private Tutoria tutoria_seleccionada;
+    private FXMLTablaAsignaturasController controladorAsignaturas;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         inicializarCalendario();
         misTutorias = AccesoBD.getInstance().getTutorias();
-        //Creamos un boton que solo se usara para asignaturas
-        boton_borrar_asignatura = new Button("Eliminar");
-        boton_borrar_asignatura.setPrefSize(100, 30);
-        boton_borrar_asignatura.setFont(boton_crear.getFont());
-        boton_borrar_asignatura.setDisable(true);
+        inicializarBotonBorrar();
         
-
     }
 
 //USAMOS EL CÓDIGO DEL EJEMPLO DATEPIC PARA MOSTRAR EL CALENDARIO
@@ -115,8 +112,22 @@ public class FXMLGestorTutoriasController implements Initializable {
         Node popupContent = datePickerSkin.getPopupContent();
 
         centro.getChildren().add(popupContent);
-
+        boton_crear.setDisable(false);
         //borderPane.setCenter(popupContent);
+    }
+
+    //Creamos un boton que solo se usara para asignaturas
+    public void inicializarBotonBorrar() {
+        boton_borrar_asignatura = new Button("Eliminar");
+        boton_borrar_asignatura.setPrefSize(100, 30);
+        boton_borrar_asignatura.setFont(boton_crear.getFont());
+        boton_borrar_asignatura.setDisable(true);
+        
+        boton_borrar_asignatura.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+               controladorAsignaturas.eliminarAsignatura();
+            }
+        });
     }
 
     //Metodo que apartir de la fecha busca en la lista de tutorias las que
@@ -157,10 +168,11 @@ public class FXMLGestorTutoriasController implements Initializable {
         if ("Nueva Tutoria".equals(boton_crear.getText())) {
             centro.getChildren().clear();
             FXMLLoader formulario_tutoria = new FXMLLoader(getClass().getResource("/formulario_tutoria/FXMLFormularioTutoria.fxml"));
-            FXMLFormularioTutoriaController controlador_formulario_tutoria = formulario_tutoria.getController();
-            //controlador_formulario_tutoria.setFecha(fecha_seleccionada);
-            //controlador_formulario_tutoria.setTutoriasDia(getTutoriasDia(fecha_seleccionada));
             centro.getChildren().add(formulario_tutoria.load());
+            FXMLFormularioTutoriaController controlador_formulario_tutoria = formulario_tutoria.getController();
+            controlador_formulario_tutoria.setControladorPrincipal(this);
+            controlador_formulario_tutoria.setFecha(fecha_seleccionada);
+            controlador_formulario_tutoria.setTutoriasDia(getTutoriasDia(fecha_seleccionada)); 
             boton_crear.setDisable(true);
         }
         
@@ -168,6 +180,8 @@ public class FXMLGestorTutoriasController implements Initializable {
             centro.getChildren().clear();
             FXMLLoader formulario_alumno = new FXMLLoader(getClass().getResource("/formulario_alumno/FXMLFormularioAlumno.fxml"));
             centro.getChildren().add(formulario_alumno.load());
+            FXMLFormularioAlumnoController controlador_formulario_alumno = formulario_alumno.getController();
+            controlador_formulario_alumno.setControladorPrincipal(this);
             boton_crear.setDisable(true);
         }
         
@@ -175,7 +189,7 @@ public class FXMLGestorTutoriasController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/formulario_asignatura/FXMLFormularioAsignatura.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            Stage ventana2= new Stage();
+            Stage ventana2 = new Stage();
             ventana2.initModality(Modality.APPLICATION_MODAL);
             ventana2.setScene(scene);
             ventana2.showAndWait();
@@ -191,9 +205,10 @@ public class FXMLGestorTutoriasController implements Initializable {
         boton_crear.setText("Nueva Asignatura");
         hueco_tabla.getChildren().clear();
         FXMLLoader tabla_asignaturas = new FXMLLoader(getClass().getResource("/tabla_asignaturas/FXMLTablaAsignaturas.fxml"));
-        FXMLTablaAsignaturasController controlador_tabla_asiganturas = tabla_asignaturas.getController();
-        //controlador_tabla_asiganturas.setControladorPrincipal(this);
         hueco_tabla.getChildren().add(tabla_asignaturas.load());
+        FXMLTablaAsignaturasController controlador_tabla_asiganturas = tabla_asignaturas.getController();
+        controladorAsignaturas = controlador_tabla_asiganturas;
+        controlador_tabla_asiganturas.setControladorPrincipal(this);
         botones_tabla.getChildren().add(boton_borrar_asignatura);
     }
 
@@ -206,9 +221,9 @@ public class FXMLGestorTutoriasController implements Initializable {
         boton_crear.setText("Nuevo Alumno");
         hueco_tabla.getChildren().clear();
         FXMLLoader tabla_alumnos = new FXMLLoader(getClass().getResource("/tabla_alumnos/FXMLTablaAlumnos.fxml"));
-        FXMLTablaAlumnosController controlador_tabla_alumnos = tabla_alumnos.getController();
-        //controlador_tabla_alumnos.setControladorPrincipal(this);
         hueco_tabla.getChildren().add(tabla_alumnos.load());
+        FXMLTablaAlumnosController controlador_tabla_alumnos = tabla_alumnos.getController();
+        controlador_tabla_alumnos.setControladorPrincipal(this);
     }
 
     //Metodo que se lanza al clickar en una Tutoria de la tabla y que muestra sus
@@ -219,9 +234,9 @@ public class FXMLGestorTutoriasController implements Initializable {
         if (tutoria_seleccionada != null) {
             centro.getChildren().clear();
             FXMLLoader visualizador_tutoria = new FXMLLoader(getClass().getResource("/visualizador_tutoria/FXMLVisualizadorTutoria.fxml"));
+            centro.getChildren().add(visualizador_tutoria.load());
             FXMLVisualizadorTutoriaController controlador_visualizador_tutoria = visualizador_tutoria.getController();
             controlador_visualizador_tutoria.setTutoria(tutoria_seleccionada);
-            centro.getChildren().add(visualizador_tutoria.load());
             boton_crear.setDisable(true);
         }
     }
@@ -231,9 +246,9 @@ public class FXMLGestorTutoriasController implements Initializable {
     public void mostrar_alumno(Alumno a) throws IOException {
         centro.getChildren().clear();
         FXMLLoader visualizador_alumno = new FXMLLoader(getClass().getResource("/visualizador_alumno/FXMLVisualizadorAlumno.fxml"));
+        centro.getChildren().add(visualizador_alumno.load());
         FXMLVisualizadorAlumnoController controlador_visualizador_alumno = visualizador_alumno.getController();
         controlador_visualizador_alumno.setAlumno(a);
-        centro.getChildren().add(visualizador_alumno.load());
         boton_crear.setDisable(true);
     }
 
@@ -242,37 +257,6 @@ public class FXMLGestorTutoriasController implements Initializable {
         boton_borrar_asignatura.setDisable(false);
     }
 
-    public boolean huecosLibres(LocalDate dia) {
-        
-        ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(dia);
-        //Primero creamos la lista con todos los intervalos de 10 minutos entre
-        //las 8:00 y las 20:00
-        ArrayList<LocalTime> lista = new ArrayList<LocalTime>();
-        ObservableList<LocalTime> horasDisponibles = FXCollections.observableList(lista);
-        LocalTime hora = LocalTime.of(8, 0);
-        horasDisponibles.add(hora);
-        for (int j = 0; j < 72; j++) {
-            hora = hora.plusMinutes(10);
-            horasDisponibles.add(hora);
-        }
-
-        //Ahora borramos las que estan ocupadas por otras tutorias de ese 
-        //mismo dia
-        for (Iterator<Tutoria> iterator = listaTutoriasDia.iterator(); iterator.hasNext();) {
-            Tutoria next = iterator.next();
-            if (dia == next.getFecha()) {
-                LocalTime inicio = next.getInicio();
-                Duration duracionTutoria = next.getDuracion();
-                long minutosDuracion = duracionTutoria.toMinutes();
-                int iteraciones = (int) minutosDuracion / 10;
-                for (int i = 1; i <= iteraciones; i++) {
-                    horasDisponibles.remove(inicio);
-                    inicio = inicio.plusMinutes(10);
-                }
-            }
-        }
-        return horasDisponibles.size() != 0;
-    }
 
 }
 

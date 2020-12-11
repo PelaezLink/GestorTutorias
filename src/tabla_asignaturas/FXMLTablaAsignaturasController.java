@@ -45,7 +45,7 @@ public class FXMLTablaAsignaturasController implements Initializable {
         misTutorias = AccesoBD.getInstance().getTutorias();
         ObservableList<Asignatura> listaAsignaturas = misTutorias.getAsignaturas();
         //Activamos el boton para poder borrar asignaturas.
-        //controlador_principal.activarBotonEliminarAsignatura();
+        
         
         tabla_asignaturas.setItems(listaAsignaturas);
         columna_nombre_asignatura.setCellValueFactory(cellData -> cellData.getValue().descripcionProperty());
@@ -62,7 +62,8 @@ public class FXMLTablaAsignaturasController implements Initializable {
      
     @FXML
     private void asignaturaSeleccionada(MouseEvent event) {
-        seleccionada = tabla_asignaturas.getSelectionModel().getSelectedItem();        
+        seleccionada = tabla_asignaturas.getSelectionModel().getSelectedItem(); 
+        controlador_principal.activarBotonEliminarAsignatura();
     }
     
     public void setControladorPrincipal(FXMLGestorTutoriasController p) {

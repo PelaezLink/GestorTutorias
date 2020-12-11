@@ -56,6 +56,7 @@ public class FXMLFormularioTutoriaController implements Initializable {
     private LocalDate fecha;
     @FXML
     private Button boton_confirmar;
+    private FXMLGestorTutoriasController controlador_principal;
 
     /**
      * Initializes the controller class.
@@ -108,6 +109,8 @@ public class FXMLFormularioTutoriaController implements Initializable {
     //Cerramos la ventana
     @FXML
     private void cancelar(ActionEvent event) {
+        controlador_principal.inicializarCalendario();
+        
                 
     }
     
@@ -117,6 +120,10 @@ public class FXMLFormularioTutoriaController implements Initializable {
     
     public void setTutoriasDia(ObservableList<Tutoria> t) {
         listaTutoriasDia = t;    
+    }
+    
+    public void setControladorPrincipal(FXMLGestorTutoriasController c) {
+        controlador_principal = c;
     }
     
     //Metodo que nos devuelve la lista con las horas de inicio dispoibles para elegir en la nueva tutoria.
