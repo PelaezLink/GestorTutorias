@@ -26,6 +26,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
 import modelo.Alumno;
 import modelo.Asignatura;
 import modelo.Tutoria;
@@ -64,13 +65,17 @@ public class FXMLFormularioTutoriaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
         misTutorias = AccesoBD.getInstance().getTutorias();
         
+        comboBoxAsignaturaConverter();
         asignatura.setItems(misTutorias.getAsignaturas());
+        
+        comboBoxAlumnosConverter();
         alumnos.setItems(misTutorias.getAlumnosTutorizados());
         
         ObservableList<String> minutos = FXCollections.observableArrayList();
-        minutos.addAll("10", "20", "30", "40", "50", "60");
+        minutos.addAll("10", "20", "30", "40", "50", "60");        
         duracion.setItems(minutos);
         
         //hora_inicio.setItems(getHorasDisponibles());    
@@ -140,6 +145,37 @@ public class FXMLFormularioTutoriaController implements Initializable {
             }
         }
         return horasDisponibles;
+    }
+    
+    
+    //AQUI TENEmos LOS CONVERTERS PARA LOS COMBO BOX DEL FORMULARIO, CÓDIGO DE:
+    //https://medium.com/@idrisbalikisopeyemi/working-with-javafx-combobox-a0c3ce7a440e
+    private void comboBoxAsignaturaConverter() {
+        asignatura.setConverter(new StringConverter<Asignatura>() {
+            @Override
+            public String toString(Asignatura a) {
+                return a.getDescripcion();
+            }
+
+            @Override
+            public Asignatura fromString(final String string) {
+                return asignatura.getItems().stream().filter(asignatura -> asignatura.getDescripcion().equals(string)).findFirst().orElse(null);
+            }
+        });
+    }
+    
+        private void comboBoxAlumnosConverter() {
+        alumnos.setConverter(new StringConverter<Alumno>() {
+            @Override
+            public String toString(Alumno a) {
+                return a.getNombre() + " " + a.getApellidos();
+            }
+
+            @Override
+            public Alumno fromString(final String string) {
+                return alumnos.getItems().stream().filter(alumnos -> alumnos.getApellidos().equals(string)).findFirst().orElse(null);
+            }
+        });
     }
 
 }
