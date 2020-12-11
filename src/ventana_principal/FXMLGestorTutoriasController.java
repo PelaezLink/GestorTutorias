@@ -11,7 +11,9 @@ import formulario_tutoria.FXMLFormularioTutoriaController;
 import java.io.IOException;
 import java.net.URL;
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -118,7 +120,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     }
 
     //Metodo que apartir de la fecha busca en la lista de tutorias las que
-    //haya ese dia y las muestra en el tableView (EN PROCESO)
+    //haya ese dia y las muestra en el tableView
     public void mostarTablaTutorias(LocalDate fecha) {
 
         ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha);
@@ -157,6 +159,7 @@ public class FXMLGestorTutoriasController implements Initializable {
             FXMLLoader formulario_tutoria = new FXMLLoader(getClass().getResource("/formulario_tutoria/FXMLFormularioTutoria.fxml"));
             FXMLFormularioTutoriaController controlador_formulario_tutoria = formulario_tutoria.getController();
             //controlador_formulario_tutoria.setFecha(fecha_seleccionada);
+            //controlador_formulario_tutoria.setTutoriasDia(getTutoriasDia(fecha_seleccionada));
             centro.getChildren().add(formulario_tutoria.load());
             boton_crear.setDisable(true);
         }
@@ -191,7 +194,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         FXMLTablaAsignaturasController controlador_tabla_asiganturas = tabla_asignaturas.getController();
         //controlador_tabla_asiganturas.setControladorPrincipal(this);
         hueco_tabla.getChildren().add(tabla_asignaturas.load());
-        botones_tabla.getChildren().add(boton_borrar_asignatura);  
+        botones_tabla.getChildren().add(boton_borrar_asignatura);
     }
 
     //Metodo que muestra la lista de alumnos en el tableView
@@ -208,21 +211,21 @@ public class FXMLGestorTutoriasController implements Initializable {
         hueco_tabla.getChildren().add(tabla_alumnos.load());
     }
 
-    
     //Metodo que se lanza al clickar en una Tutoria de la tabla y que muestra sus
     //datos detallados en el visualizador.
     @FXML
     public void mostrar_tutoria(MouseEvent event) throws IOException {
         tutoria_seleccionada = tabla_tutorias.getSelectionModel().getSelectedItem();
-        centro.getChildren().clear();
-        FXMLLoader visualizador_tutoria = new FXMLLoader(getClass().getResource("/visualizador_tutoria/FXMLVisualizadorTutoria.fxml"));
-        FXMLVisualizadorTutoriaController controlador_visualizador_tutoria = visualizador_tutoria.getController();
-        controlador_visualizador_tutoria.setTutoria(tutoria_seleccionada);
-        centro.getChildren().add(visualizador_tutoria.load());
-        boton_crear.setDisable(true);
-           
+        if (tutoria_seleccionada != null) {
+            centro.getChildren().clear();
+            FXMLLoader visualizador_tutoria = new FXMLLoader(getClass().getResource("/visualizador_tutoria/FXMLVisualizadorTutoria.fxml"));
+            FXMLVisualizadorTutoriaController controlador_visualizador_tutoria = visualizador_tutoria.getController();
+            controlador_visualizador_tutoria.setTutoria(tutoria_seleccionada);
+            centro.getChildren().add(visualizador_tutoria.load());
+            boton_crear.setDisable(true);
+        }
     }
-    
+
     //Metodo que se llamara desde e controlador de la tabla de alumnos cuando 
     //se pinche en alguno para mostrar sus datos detallados en el visualizador
     public void mostrar_alumno(Alumno a) throws IOException {
@@ -233,12 +236,43 @@ public class FXMLGestorTutoriasController implements Initializable {
         centro.getChildren().add(visualizador_alumno.load());
         boton_crear.setDisable(true);
     }
-    
+
     //Metodo para poder activar el boton desde la clase la tabla de asignaturas. 
     public void activarBotonEliminarAsignatura() {
         boton_borrar_asignatura.setDisable(false);
     }
-     
+
+    public boolean huecosLibres(LocalDate dia) {
+        
+        ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(dia);
+        //Primero creamos la lista con todos los intervalos de 10 minutos entre
+        //las 8:00 y las 20:00
+        ArrayList<LocalTime> lista = new ArrayList<LocalTime>();
+        ObservableList<LocalTime> horasDisponibles = FXCollections.observableList(lista);
+        LocalTime hora = LocalTime.of(8, 0);
+        horasDisponibles.add(hora);
+        for (int j = 0; j < 72; j++) {
+            hora = hora.plusMinutes(10);
+            horasDisponibles.add(hora);
+        }
+
+        //Ahora borramos las que estan ocupadas por otras tutorias de ese 
+        //mismo dia
+        for (Iterator<Tutoria> iterator = listaTutoriasDia.iterator(); iterator.hasNext();) {
+            Tutoria next = iterator.next();
+            if (dia == next.getFecha()) {
+                LocalTime inicio = next.getInicio();
+                Duration duracionTutoria = next.getDuracion();
+                long minutosDuracion = duracionTutoria.toMinutes();
+                int iteraciones = (int) minutosDuracion / 10;
+                for (int i = 1; i <= iteraciones; i++) {
+                    horasDisponibles.remove(inicio);
+                    inicio = inicio.plusMinutes(10);
+                }
+            }
+        }
+        return horasDisponibles.size() != 0;
+    }
 
 }
 
@@ -250,8 +284,9 @@ class DiaCelda extends DateCell {
     @Override
     public void updateItem(LocalDate item, boolean empty) {
         super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
-
+        
         // Show Weekends in blue color
+        
         DayOfWeek day = DayOfWeek.from(item);
         if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) {
             this.setTextFill(Color.ROSYBROWN);
@@ -259,7 +294,8 @@ class DiaCelda extends DateCell {
 
             this.setText(this.getText() + "\r");
         } else {
-            this.setText(this.getText() + "\rlibre");
+
+            this.setText(this.getText() + "\rLibre");
         }
     }
 

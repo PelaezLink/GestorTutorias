@@ -51,7 +51,7 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
         // TODO
         misTutorias = AccesoBD.getInstance().getTutorias();
         //Inicializamos todos los campos.
-        asignatura.setText(tutoria.getAsignatura().toString());
+        asignatura.setText(tutoria.getAsignatura().getDescripcion());
         hora_inicio.setText(tutoria.getInicio().toString());
         estado.setValue(tutoria.getEstado());
         comentarios.setText(tutoria.getAnotaciones());

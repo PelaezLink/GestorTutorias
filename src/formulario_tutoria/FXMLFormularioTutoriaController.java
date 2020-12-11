@@ -115,6 +115,10 @@ public class FXMLFormularioTutoriaController implements Initializable {
         fecha = f;
     }
     
+    public void setTutoriasDia(ObservableList<Tutoria> t) {
+        listaTutoriasDia = t;    
+    }
+    
     //Metodo que nos devuelve la lista con las horas de inicio dispoibles para elegir en la nueva tutoria.
     public ObservableList<LocalTime> getHorasDisponibles() {
         
