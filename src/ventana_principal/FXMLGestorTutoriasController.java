@@ -34,6 +34,7 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -44,6 +45,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Alumno;
+import modelo.Asignatura;
 import modelo.Tutoria;
 import modelo.Tutorias;
 import tabla_alumnos.FXMLTablaAlumnosController;
@@ -87,8 +89,8 @@ public class FXMLGestorTutoriasController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        inicializarCalendario();
         misTutorias = AccesoBD.getInstance().getTutorias();
+        inicializarCalendario();
         inicializarBotonBorrar();
         
     }
@@ -96,7 +98,7 @@ public class FXMLGestorTutoriasController implements Initializable {
 //USAMOS EL CÓDIGO DEL EJEMPLO DATEPIC PARA MOSTRAR EL CALENDARIO
     public void inicializarCalendario() {
         centro.getChildren().clear();
-        DatePicker calendario = new DatePicker(LocalDate.now());
+        calendario = new DatePicker(LocalDate.now());
         calendario.setShowWeekNumbers(false);
         calendario.setDayCellFactory(cel -> new DiaCelda());
 
@@ -131,28 +133,29 @@ public class FXMLGestorTutoriasController implements Initializable {
 
     //Metodo que apartir de la fecha busca en la lista de tutorias las que
     //haya ese dia y las muestra en el tableView
-    public void mostarTablaTutorias(LocalDate fecha) {        
+    public void mostarTablaTutorias(LocalDate fecha) { 
+        botones_tabla.getChildren().remove(boton_borrar_asignatura);
+        boton_borrar_asignatura.setDisable(true);
         boton_crear.setText("Nueva Tutoria");
         hueco_tabla.getChildren().clear();
         hueco_tabla.getChildren().add(tabla_tutorias); 
         ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha);
-        tabla_tutorias.setItems(listaTutoriasDia);
+        tabla_tutorias.setItems(listaTutoriasDia); 
         columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
         columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().asignaturaProperty());
         columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty());
-        boton_borrar_asignatura.setDisable(true);
-    }
+    }    
 
     
     //Metodo para devolver una lista con las Tutorias de una fecha dada.
     public ObservableList<Tutoria> getTutoriasDia(LocalDate fecha) {
-        ArrayList<Tutoria> lista = new ArrayList<Tutoria>();
-        ObservableList<Tutoria> listaTutoriasDia = FXCollections.observableList(lista);
+        //ArrayList<Tutoria> lista = new ArrayList<Tutoria>();
+        ObservableList<Tutoria> listaTutoriasDia = FXCollections.observableArrayList();
 
         ObservableList<Tutoria> listaTutorias = misTutorias.getTutoriasConcertadas();
         for (Iterator<Tutoria> iterator = listaTutorias.iterator(); iterator.hasNext();) {
             Tutoria next = iterator.next();
-            if (next.getFecha() == fecha) {
+            if (next.getFecha().equals(fecha)) { //importante aqui que se equals y no ==
                 listaTutoriasDia.add(next);
             }
 
@@ -242,6 +245,7 @@ public class FXMLGestorTutoriasController implements Initializable {
             centro.getChildren().add(visualizador_tutoria.load());
             FXMLVisualizadorTutoriaController controlador_visualizador_tutoria = visualizador_tutoria.getController();
             controlador_visualizador_tutoria.setTutoria(tutoria_seleccionada);
+            controlador_visualizador_tutoria.setControladorPrincipal(this);
             boton_crear.setDisable(true);
         }
     }

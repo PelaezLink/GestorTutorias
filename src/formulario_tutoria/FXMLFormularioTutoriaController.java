@@ -95,10 +95,11 @@ public class FXMLFormularioTutoriaController implements Initializable {
         nueva.setDuracion(ofMinutes(dur));
         
         ObservableList<Alumno> lista_alumnos = nueva.getAlumnos();
-        lista_alumnos.addAll(alumnos.getItems());
+        lista_alumnos.addAll(alumnos.getValue());
         
         ObservableList<Tutoria> lista_tutorias = misTutorias.getTutoriasConcertadas();
         lista_tutorias.add(nueva);
+        controlador_principal.mostarTablaTutorias(fecha);
         
     }
 
