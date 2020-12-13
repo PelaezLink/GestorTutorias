@@ -57,6 +57,7 @@ public class FXMLFormularioTutoriaController implements Initializable {
     @FXML
     private Button boton_confirmar;
     private FXMLGestorTutoriasController controlador_principal;
+    private ObservableList<LocalTime> inicios;
 
     /**
      * Initializes the controller class.
@@ -74,10 +75,6 @@ public class FXMLFormularioTutoriaController implements Initializable {
         
         comboBoxAlumnosConverter();
         alumnos.setItems(misTutorias.getAlumnosTutorizados());
-        
-        ObservableList<String> minutos = FXCollections.observableArrayList();
-        minutos.addAll("10", "20", "30", "40", "50", "60");        
-        duracion.setItems(minutos);
                 
     }    
     
@@ -112,6 +109,8 @@ public class FXMLFormularioTutoriaController implements Initializable {
 
     public void setInicio() {
         hora_inicio.setItems(getHorasDisponibles());
+        inicios = getHorasDisponibles();
+        
     }
 
     public void setFecha(LocalDate f) {
@@ -124,6 +123,13 @@ public class FXMLFormularioTutoriaController implements Initializable {
 
     public void setControladorPrincipal(FXMLGestorTutoriasController c) {
         controlador_principal = c;
+    }
+    
+    @FXML
+    private void setDuraciones(ActionEvent event) {
+        if(hora_inicio.getValue() != null) {
+            duracion.setItems(getDuracionesPosibles(hora_inicio.getValue()));
+        }
     }
     
     //Metodo que nos devuelve la lista con las horas de inicio dispoibles para elegir en la nueva tutoria.
@@ -144,20 +150,39 @@ public class FXMLFormularioTutoriaController implements Initializable {
         //mismo dia
         for (Iterator<Tutoria> iterator = listaTutoriasDia.iterator(); iterator.hasNext();) {
             Tutoria next = iterator.next();
-            if (fecha == next.getFecha()) {
-                LocalTime inicio = next.getInicio();
-                Duration duracionTutoria = next.getDuracion();
-                long minutosDuracion = duracionTutoria.toMinutes();
-                int iteraciones = (int) minutosDuracion / 10;
-                for (int i = 1; i <= iteraciones; i++) {
-                    horasDisponibles.remove(inicio);
-                    inicio = inicio.plusMinutes(10);
-                }
+
+            LocalTime inicio = next.getInicio();
+            Duration duracionTutoria = next.getDuracion();
+            long minutosDuracion = duracionTutoria.toMinutes();
+            int iteraciones = (int) minutosDuracion / 10;
+            for (int i = 1; i <= iteraciones; i++) {
+                horasDisponibles.remove(inicio);
+                inicio = inicio.plusMinutes(10);
             }
+
         }
         return horasDisponibles;
     }
-    
+
+    //Metodo que calcula las duraciones posibles apartir de la hora de inicio 
+    //que ha elegido el usuario, para que no coincida con otras tutorias de ese
+    //mismo dia, asi evitamos que el usuario se equivoque. 
+    public ObservableList<String> getDuracionesPosibles(LocalTime ini) {
+        ObservableList<String> minutos = FXCollections.observableArrayList();
+        minutos.add("10");
+        long min = 20;
+        
+        for (int i = 0; i < 5; i++) {
+            if (inicios.contains(ini.plusMinutes(min - 10))) {
+                minutos.add(min + "");
+                min += 10;
+            } else {
+                break;
+            }
+        }
+        return minutos;
+    }
+
     
     //AQUI TENEmos LOS CONVERTERS PARA LOS COMBO BOX DEL FORMULARIO, CÓDIGO DE:
     //https://medium.com/@idrisbalikisopeyemi/working-with-javafx-combobox-a0c3ce7a440e
@@ -188,5 +213,7 @@ public class FXMLFormularioTutoriaController implements Initializable {
             }
         });
     }
+
+
 
 }
