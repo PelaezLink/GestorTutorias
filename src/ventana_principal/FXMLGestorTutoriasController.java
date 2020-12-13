@@ -52,6 +52,11 @@ import tabla_alumnos.FXMLTablaAlumnosController;
 import tabla_asignaturas.FXMLTablaAsignaturasController;
 import visualizador_alumno.FXMLVisualizadorAlumnoController;
 import visualizador_tutoria.FXMLVisualizadorTutoriaController;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.geometry.Insets;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -152,8 +157,7 @@ public class FXMLGestorTutoriasController implements Initializable {
 
     
     //Metodo para devolver una lista con las Tutorias de una fecha dada.
-    public ObservableList<Tutoria> getTutoriasDia(LocalDate fecha) {
-        //ArrayList<Tutoria> lista = new ArrayList<Tutoria>();
+    public ObservableList<Tutoria> getTutoriasDia(LocalDate fecha) {       
         ObservableList<Tutoria> listaTutoriasDia = FXCollections.observableArrayList();
 
         ObservableList<Tutoria> listaTutorias = misTutorias.getTutoriasConcertadas();
@@ -279,39 +283,104 @@ public class FXMLGestorTutoriasController implements Initializable {
     public void activarBotonEliminarAsignatura() {
         boton_borrar_asignatura.setDisable(false);
     }
-    
+
     public void activarBotonAlumnos(boolean valor) {
         boton_alumnos.setDisable(!valor);
     }
-    
+
     public void activarBotonAsignaturas(boolean valor) {
         boton_asignaturas.setDisable(!valor);
-    }   
-        
+    }
 
 }
 
-//USAMOS EL CODIGO DE DATEPIC PARA CUSTOMIZAR LA CELDA
+//USAMOS EL CODIGO DE DATEPIC PARA CUSTOMIZAR LA CELDA y lo modificamos para añadir
+//alguna cosa mas.
 class DiaCelda extends DateCell {
 
     String newline = System.getProperty("line.separator");
+    private Tutorias misTutorias = AccesoBD.getInstance().getTutorias();
 
     @Override
     public void updateItem(LocalDate item, boolean empty) {
         super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
-        
+
         // Show Weekends in blue color
-        
         DayOfWeek day = DayOfWeek.from(item);
         if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) {
             this.setTextFill(Color.ROSYBROWN);
             this.setDisable(true);
 
             this.setText(this.getText() + "\r");
+            this.setText(this.getText() + "\r");
+            this.setText(this.getText() + "\r");
         } else {
 
-            this.setText(this.getText() + "\rLibre");
+            //this.setText(this.getText() + "\rLibre");
+            int num = getTutoriasDia(item).size();
+            this.setText(this.getText() + "\r");
+            this.setText(this.getText() + "\r" + "Tutorias: " + num);
+
+            if (HuecosLibres(item)) {
+                this.setText(this.getText() + "\r" + "Huecos libres");
+            }
+
+            if (!HuecosLibres(item)) {
+                this.setText(this.getText() + "\r" + "Ocupado");
+                this.backgroundProperty().set(new Background(new BackgroundFill(Color.SALMON, CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+
+            if (num > 0 && HuecosLibres(item)) {
+                this.backgroundProperty().set(new Background(new BackgroundFill(Color.MOCCASIN, CornerRadii.EMPTY, Insets.EMPTY)));
+            }
         }
+    }
+
+    private ObservableList<Tutoria> getTutoriasDia(LocalDate item) {
+        ObservableList<Tutoria> listaTutoriasDia = FXCollections.observableArrayList();
+
+        ObservableList<Tutoria> listaTutorias = misTutorias.getTutoriasConcertadas();
+        for (Iterator<Tutoria> iterator = listaTutorias.iterator(); iterator.hasNext();) {
+            Tutoria next = iterator.next();
+            if (next.getFecha().equals(item)) { //importante aqui que se equals y no ==
+                listaTutoriasDia.add(next);
+            }
+
+        }
+        return listaTutoriasDia;
+    }
+
+    //Metodo que nos devuelve si hay huecos libres para un dia dado.
+    public boolean HuecosLibres(LocalDate dia) {
+
+        ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(dia);
+        //Primero creamos la lista con todos los intervalos de 10 minutos entre
+        //las 8:00 y las 20:00
+        ArrayList<LocalTime> lista = new ArrayList<LocalTime>();
+        ObservableList<LocalTime> horasDisponibles = FXCollections.observableList(lista);
+        LocalTime hora = LocalTime.of(8, 0);
+        horasDisponibles.add(hora);
+        for (int j = 0; j < 72; j++) {
+            hora = hora.plusMinutes(10);
+            horasDisponibles.add(hora);
+        }
+
+        //Ahora borramos las que estan ocupadas por otras tutorias de ese 
+        //mismo dia
+        for (Iterator<Tutoria> iterator = listaTutoriasDia.iterator(); iterator.hasNext();) {
+            Tutoria next = iterator.next();
+
+            LocalTime inicio = next.getInicio();
+            Duration duracionTutoria = next.getDuracion();
+            long minutosDuracion = duracionTutoria.toMinutes();
+            int iteraciones = (int) minutosDuracion / 10;
+            for (int i = 1; i <= iteraciones; i++) {
+                horasDisponibles.remove(inicio);
+                inicio = inicio.plusMinutes(10);
+            }
+
+        }
+        return horasDisponibles.size() > 0;
     }
 
 }
