@@ -51,6 +51,8 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     @FXML
     private void cerrar(ActionEvent event) {
         controlador_principal.inicializarCalendario();
+        controlador_principal.activarBotonAlumnos(true);
+        controlador_principal.activarBotonAsignaturas(true);
     }
 
     @FXML

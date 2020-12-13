@@ -255,6 +255,8 @@ public class FXMLGestorTutoriasController implements Initializable {
             controlador_visualizador_tutoria.setTutoria(tutoria_seleccionada);
             controlador_visualizador_tutoria.setControladorPrincipal(this);
             boton_crear.setDisable(true);
+            activarBotonAlumnos(false);
+            activarBotonAsignaturas(false);
         }
     }
 
@@ -268,6 +270,8 @@ public class FXMLGestorTutoriasController implements Initializable {
         controlador_visualizador_alumno.setAlumno(a);
         controlador_visualizador_alumno.setControladorPrincipal(this);
         boton_crear.setDisable(true);
+        activarBotonAlumnos(false);
+        activarBotonAsignaturas(false);
     }
 
     //Metodos para poder activar o desctivar botones de la ventana principal 
@@ -282,7 +286,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     
     public void activarBotonAsignaturas(boolean valor) {
         boton_asignaturas.setDisable(!valor);
-    }
+    }   
         
 
 }

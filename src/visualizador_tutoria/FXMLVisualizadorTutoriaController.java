@@ -75,6 +75,8 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
       tutoria.setAnotaciones(comentarios.getText());
       lista_tutorias.add(tutoria);
       controlador_principal.inicializarCalendario();
+      controlador_principal.activarBotonAlumnos(true);
+      controlador_principal.activarBotonAsignaturas(true);
       
     }
     
