@@ -98,12 +98,22 @@ public class FXMLFormularioTutoriaController implements Initializable {
         lista_tutorias.add(nueva);
         controlador_principal.mostarTablaTutorias(fecha);
         
+        //Limpiamos el formulario.
+        asignatura.setValue(null);
+        hora_inicio.setValue(null);
+        setTutoriasDia(lista_tutorias);
+        setInicio();
+        alumnos.setValue(null);
+        comentarios.setText(null);
+        duracion.setItems(null);   
     }
 
     //Cerramos la ventana
     @FXML
     private void cancelar(ActionEvent event) {
         controlador_principal.inicializarCalendario();
+        controlador_principal.activarBotonAlumnos(true);
+        controlador_principal.activarBotonAsignaturas(true);
 
     }
 

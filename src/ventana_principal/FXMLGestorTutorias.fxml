@@ -53,12 +53,12 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="527.0" spacing="60.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#mostrarTablaAsignaturas" prefHeight="35.0" prefWidth="100.0" text="Asignaturas">
+            <Button fx:id="boton_asignaturas" mnemonicParsing="false" onAction="#mostrarTablaAsignaturas" prefHeight="35.0" prefWidth="100.0" text="Asignaturas">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#mostrarTablaAlumnos" prefHeight="35.0" prefWidth="100.0" text="Alumnos">
+            <Button fx:id="boton_alumnos" mnemonicParsing="false" onAction="#mostrarTablaAlumnos" prefHeight="35.0" prefWidth="100.0" text="Alumnos">
                <font>
                   <Font size="15.0" />
                </font>

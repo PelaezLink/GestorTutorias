@@ -85,6 +85,10 @@ public class FXMLGestorTutoriasController implements Initializable {
     private HBox botones_tabla;
     private Tutoria tutoria_seleccionada;
     private FXMLTablaAsignaturasController controladorAsignaturas;
+    @FXML
+    private Button boton_asignaturas;
+    @FXML
+    private Button boton_alumnos;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -180,6 +184,8 @@ public class FXMLGestorTutoriasController implements Initializable {
             controlador_formulario_tutoria.setTutoriasDia(getTutoriasDia(fecha_seleccionada));
             controlador_formulario_tutoria.setInicio();
             boton_crear.setDisable(true);
+            activarBotonAlumnos(false);
+            activarBotonAsignaturas(false);
         }
         
         if ("Nuevo Alumno".equals(boton_crear.getText())) {
@@ -189,6 +195,8 @@ public class FXMLGestorTutoriasController implements Initializable {
             FXMLFormularioAlumnoController controlador_formulario_alumno = formulario_alumno.getController();
             controlador_formulario_alumno.setControladorPrincipal(this);
             boton_crear.setDisable(true);
+            activarBotonAlumnos(false);
+            activarBotonAsignaturas(false);
         }
         
         if ("Nueva Asignatura".equals(boton_crear.getText())) {
@@ -262,11 +270,20 @@ public class FXMLGestorTutoriasController implements Initializable {
         boton_crear.setDisable(true);
     }
 
-    //Metodo para poder activar el boton desde la clase la tabla de asignaturas. 
+    //Metodos para poder activar o desctivar botones de la ventana principal 
+    //desde otros controladores
     public void activarBotonEliminarAsignatura() {
         boton_borrar_asignatura.setDisable(false);
     }
-
+    
+    public void activarBotonAlumnos(boolean valor) {
+        boton_alumnos.setDisable(!valor);
+    }
+    
+    public void activarBotonAsignaturas(boolean valor) {
+        boton_asignaturas.setDisable(!valor);
+    }
+        
 
 }
 
