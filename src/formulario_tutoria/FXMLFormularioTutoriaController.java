@@ -76,7 +76,7 @@ public class FXMLFormularioTutoriaController implements Initializable {
         comboBoxAlumnosConverter();
         alumnos.setItems(misTutorias.getAlumnosTutorizados());
         
-         boton_confirmar.disableProperty().bind(Bindings.or(asignatura.valueProperty().isNull(),(Bindings.or(hora_inicio.valueProperty().isNull(),(Bindings.or(duracion.valueProperty().isNull(), alumnos.valueProperty().isNull()))))));        
+        boton_confirmar.disableProperty().bind(Bindings.or(asignatura.valueProperty().isNull(),(Bindings.or(hora_inicio.valueProperty().isNull(),(Bindings.or(duracion.valueProperty().isNull(), alumnos.valueProperty().isNull()))))));        
     }    
     
     //Cuando se pulsa el boton confirmar se guarda la tutoria y se vacia el formulario
