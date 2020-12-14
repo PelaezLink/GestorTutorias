@@ -300,7 +300,7 @@ class DiaCelda extends DateCell {
 
     String newline = System.getProperty("line.separator");
     private Tutorias misTutorias = AccesoBD.getInstance().getTutorias();
-
+    
     @Override
     public void updateItem(LocalDate item, boolean empty) {
         super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
@@ -308,31 +308,33 @@ class DiaCelda extends DateCell {
         // Show Weekends in blue color
         DayOfWeek day = DayOfWeek.from(item);
         if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) {
-            this.setTextFill(Color.ROSYBROWN);
+            
             this.setDisable(true);
 
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
         } else {
-
-            //this.setText(this.getText() + "\rLibre");
             int num = getTutoriasDia(item).size();
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r" + "Tutorias: " + num);
 
-            if (HuecosLibres(item)) {
+            if (HuecosLibres(item) && num == 0) {
                 this.setText(this.getText() + "\r" + "Huecos libres");
+                this.setStyle(null);
             }
-
+            
             if (!HuecosLibres(item)) {
                 this.setText(this.getText() + "\r" + "Ocupado");
-                this.backgroundProperty().set(new Background(new BackgroundFill(Color.SALMON, CornerRadii.EMPTY, Insets.EMPTY)));
+                this.setStyle("-fx-background-color: salmon");
             }
-
+            
             if (num > 0 && HuecosLibres(item)) {
-                this.backgroundProperty().set(new Background(new BackgroundFill(Color.MOCCASIN, CornerRadii.EMPTY, Insets.EMPTY)));
+                this.setText(this.getText() + "\r" + "Huecos libres");
+                this.setStyle("-fx-background-color: moccasin");
+                
             }
+            
         }
     }
 
