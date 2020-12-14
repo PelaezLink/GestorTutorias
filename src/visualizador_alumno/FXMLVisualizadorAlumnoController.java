@@ -7,14 +7,20 @@ package visualizador_alumno;
 
 import accesoBD.AccesoBD;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.StageStyle;
 import modelo.Alumno;
 import modelo.Tutorias;
 import tabla_alumnos.FXMLTablaAlumnosController;
@@ -58,7 +64,18 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     @FXML
     private void eliminar(ActionEvent event) {
         ObservableList<Alumno> lista_alumnos = misTutorias.getAlumnosTutorizados();
-        lista_alumnos.remove(alumno);
+        //Ventana Confirmación
+        Alert dialogoAlerta = new Alert(AlertType.CONFIRMATION);
+        dialogoAlerta.setTitle("Ventana Confirmación");
+        dialogoAlerta.setHeaderText(null);
+        dialogoAlerta.initStyle(StageStyle.UTILITY);
+        dialogoAlerta.setContentText("¿Realmente quieres eliminar el alumno seleccionado?");
+        dialogoAlerta.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/recursos/alertaIcono.png"))));
+        //Respuesta
+        Optional<ButtonType> result = dialogoAlerta.showAndWait();
+        if(result.get()==ButtonType.OK){
+            lista_alumnos.remove(alumno);
+        }
     }
     
     public void setAlumno(Alumno a) {

@@ -7,13 +7,19 @@ package tabla_asignaturas;
 
 import accesoBD.AccesoBD;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.StageStyle;
 import modelo.Asignatura;
 import modelo.Tutoria;
 import modelo.Tutorias;
@@ -55,8 +61,18 @@ public class FXMLTablaAsignaturasController implements Initializable {
     //Elimina la asignatura seleccionada de la lista.
     public void eliminarAsignatura() {
         ObservableList<Asignatura> lista_asignaturas = misTutorias.getAsignaturas();
-        lista_asignaturas.remove(seleccionada);
-        
+        //Ventana Confirmación
+        Alert dialogoAlerta = new Alert(Alert.AlertType.CONFIRMATION);
+        dialogoAlerta.setTitle("Ventana Confirmación");
+        dialogoAlerta.setHeaderText(null);
+        dialogoAlerta.initStyle(StageStyle.UTILITY);
+        dialogoAlerta.setContentText("¿Realmente quieres eliminar la asignatura seleccionada?");
+        dialogoAlerta.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/recursos/alertaIcono.png"))));
+        //Respuesta
+        Optional<ButtonType> result = dialogoAlerta.showAndWait();
+        if(result.get()==ButtonType.OK){
+            lista_asignaturas.remove(seleccionada);
+        }
     
     }
      
