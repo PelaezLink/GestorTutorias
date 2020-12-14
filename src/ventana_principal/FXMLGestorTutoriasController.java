@@ -101,7 +101,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         misTutorias = AccesoBD.getInstance().getTutorias();
         inicializarCalendario();
         inicializarBotonBorrar();
-        
+        fecha_seleccionada = LocalDate.now();
     }
 
 //USAMOS EL CÓDIGO DEL EJEMPLO DATEPIC PARA MOSTRAR EL CALENDARIO
