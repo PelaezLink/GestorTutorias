@@ -75,7 +75,10 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
         Optional<ButtonType> result = dialogoAlerta.showAndWait();
         if(result.get()==ButtonType.OK){
             lista_alumnos.remove(alumno);
-        }
+            nombre.setText(null);
+            apellidos.setText(null);
+            correo.setText(null);
+        }  
     }
     
     public void setAlumno(Alumno a) {
