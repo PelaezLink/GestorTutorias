@@ -21,6 +21,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 import modelo.Alumno;
 import modelo.Tutorias;
@@ -33,8 +34,6 @@ import ventana_principal.FXMLGestorTutoriasController;
  */
 public class FXMLVisualizadorAlumnoController implements Initializable {
 
-    @FXML
-    private ImageView foto;
     @FXML
     private TextField nombre;
     @FXML

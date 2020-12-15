@@ -57,6 +57,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -129,7 +130,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     //Creamos un boton que solo se usara para asignaturas
     public void inicializarBotonBorrar() {
         boton_borrar_asignatura = new Button("Eliminar");
-        boton_borrar_asignatura.setPrefSize(100, 30);
+        boton_borrar_asignatura.setPrefSize(134, 36);
         boton_borrar_asignatura.setFont(boton_crear.getFont());
         boton_borrar_asignatura.setDisable(true);
         
@@ -303,7 +304,9 @@ class DiaCelda extends DateCell {
     
     @Override
     public void updateItem(LocalDate item, boolean empty) {
-        super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
+        super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.     
+        Font fuente = new Font(15);
+        this.setFont(fuente);
 
         // Show Weekends in blue color
         DayOfWeek day = DayOfWeek.from(item);
@@ -314,8 +317,10 @@ class DiaCelda extends DateCell {
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
+            this.setText(this.getText() + "\r");
         } else {
             int num = getTutoriasDia(item).size();
+            this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r" + "Tutorias: " + num);
 

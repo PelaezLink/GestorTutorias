@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1057.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ventana_principal.FXMLGestorTutoriasController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1157.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ventana_principal.FXMLGestorTutoriasController">
    <right>
       <VBox prefHeight="591.0" prefWidth="326.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox fx:id="hueco_tabla" alignment="CENTER" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+            <VBox fx:id="hueco_tabla" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="tabla_tutorias" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mostrar_tutoria" prefHeight="592.0" prefWidth="296.0">
+                  <TableView fx:id="tabla_tutorias" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mostrar_tutoria" prefHeight="592.0" prefWidth="296.0" VBox.vgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="columna_inicio" prefWidth="93.0" text="Inicio" />
                       <TableColumn fx:id="columna_duracion" prefWidth="90.0" text="Duracion" />
@@ -27,7 +27,7 @@
                   </TableView>
                </children>
             </VBox>
-            <HBox fx:id="botones_tabla" alignment="CENTER" prefHeight="57.0" prefWidth="294.0" spacing="20.0" VBox.vgrow="NEVER">
+            <HBox fx:id="botones_tabla" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="57.0" prefWidth="294.0" spacing="20.0" VBox.vgrow="NEVER">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -35,9 +35,9 @@
                   <Insets left="20.0" right="20.0" />
                </padding>
                <children>
-                  <Button fx:id="boton_crear" mnemonicParsing="false" onAction="#crearNuevo" prefHeight="30.0" prefWidth="134.0" text="Nueva Tutoria">
+                  <Button fx:id="boton_crear" mnemonicParsing="false" onAction="#crearNuevo" prefHeight="36.0" prefWidth="134.0" text="Nueva Tutoria">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="15.0" />
                      </font>
                   </Button>
                </children></HBox>
@@ -51,7 +51,7 @@
       </VBox>
    </right>
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="527.0" spacing="60.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="607.0" spacing="30.0" BorderPane.alignment="CENTER_LEFT">
          <children>
             <Button fx:id="boton_asignaturas" mnemonicParsing="false" onAction="#mostrarTablaAsignaturas" prefHeight="35.0" prefWidth="100.0" text="Asignaturas">
                <font>
@@ -65,11 +65,8 @@
             </Button>
          </children>
          <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets left="60.0" />
-         </padding></HBox>
+            <Insets left="20.0" />
+         </BorderPane.margin></HBox>
    </top>
    <center>
       <VBox fx:id="centro" alignment="CENTER" prefHeight="550.0" prefWidth="514.0" BorderPane.alignment="CENTER">

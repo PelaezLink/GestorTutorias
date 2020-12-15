@@ -10,51 +10,61 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formulario_alumno.FXMLFormularioAlumnoController">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formulario_alumno.FXMLFormularioAlumnoController">
    <children>
-      <ImageView fx:id="foto" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="212.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../recursos/Image_Edit-14-512.png" />
+            <Image url="@../recursos/graduado.png" />
          </image></ImageView>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+      <HBox prefHeight="84.0" prefWidth="723.0" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="723.0" spacing="30.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre   ">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <TextField fx:id="nombre" />
+            <TextField fx:id="nombre">
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos ">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <TextField fx:id="apellidos" />
+            <TextField fx:id="apellidos">
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="560.0" spacing="30.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="560.0" spacing="30.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo     ">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <TextField fx:id="correo" />
+            <TextField fx:id="correo">
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
          </children>
       </HBox>
       <HBox prefHeight="84.0" prefWidth="560.0" />
       <HBox alignment="CENTER" prefHeight="48.0" prefWidth="560.0" spacing="30.0">
          <children>
-            <Button fx:id="boton_confirmar" mnemonicParsing="false" onAction="#confirmar" text="Confimar">
+            <Button fx:id="boton_confirmar" mnemonicParsing="false" onAction="#confirmar" prefHeight="40.0" prefWidth="81.0" text="Confimar">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar">
+            <Button mnemonicParsing="false" onAction="#cancelar" prefHeight="38.0" prefWidth="77.0" text="Cancelar">
                <font>
                   <Font size="15.0" />
                </font>
