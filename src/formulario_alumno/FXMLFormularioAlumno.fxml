@@ -16,10 +16,17 @@
          <image>
             <Image url="@../recursos/graduado.png" />
          </image></ImageView>
-      <HBox prefHeight="84.0" prefWidth="723.0" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="723.0" spacing="30.0">
+      <HBox alignment="CENTER" prefHeight="84.0" prefWidth="723.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre   ">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo alumno">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+         </children></HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="723.0" spacing="2.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" textAlignment="RIGHT" wrappingWidth="81.412109375">
                <font>
                   <Font size="20.0" />
                </font>
@@ -30,9 +37,9 @@
                </font></TextField>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos ">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:" textAlignment="RIGHT" wrappingWidth="87.966796875">
                <font>
                   <Font size="20.0" />
                </font>
@@ -43,9 +50,9 @@
                </font></TextField>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="560.0" spacing="30.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="560.0" spacing="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo     ">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" textAlignment="RIGHT" wrappingWidth="88.0">
                <font>
                   <Font size="20.0" />
                </font>

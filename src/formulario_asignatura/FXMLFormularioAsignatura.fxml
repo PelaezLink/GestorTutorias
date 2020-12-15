@@ -19,9 +19,9 @@
             </Text>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="600.0" spacing="30.0">
+      <HBox alignment="CENTER" prefHeight="48.0" prefWidth="600.0" spacing="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" textAlignment="RIGHT" wrappingWidth="77.412109375">
                <font>
                   <Font size="20.0" />
                </font>
@@ -35,9 +35,9 @@
             <Insets left="20.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="600.0" spacing="30.0">
+      <HBox alignment="CENTER" prefHeight="48.0" prefWidth="600.0" spacing="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo  ">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo:" textAlignment="RIGHT" wrappingWidth="80.033203125">
                <font>
                   <Font size="20.0" />
                </font>

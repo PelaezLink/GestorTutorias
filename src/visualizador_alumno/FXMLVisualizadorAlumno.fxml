@@ -16,10 +16,10 @@
          <image>
             <Image url="@../recursos/graduado.png" />
          </image></ImageView>
-      <HBox prefHeight="45.0" prefWidth="723.0" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="723.0" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre   ">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" textAlignment="RIGHT" wrappingWidth="87.412109375">
                <font>
                   <Font size="20.0" />
                </font>
@@ -29,10 +29,13 @@
                   <Font size="20.0" />
                </font></TextField>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos ">
+            <Text nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:" textAlignment="RIGHT" wrappingWidth="87.966796875">
                <font>
                   <Font size="20.0" />
                </font>
@@ -42,10 +45,13 @@
                   <Font size="20.0" />
                </font></TextField>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="560.0" spacing="10.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="560.0" spacing="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo     ">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" textAlignment="RIGHT" wrappingWidth="83.521484375">
                <font>
                   <Font size="20.0" />
                </font>
@@ -55,6 +61,9 @@
                   <Font size="20.0" />
                </font></TextField>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </HBox>
       <HBox prefHeight="45.0" prefWidth="723.0" />
       <HBox alignment="CENTER" prefHeight="70.0" prefWidth="723.0" spacing="30.0">

@@ -319,6 +319,7 @@ class DiaCelda extends DateCell {
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
+            
         } else {
             int num = getTutoriasDia(item).size();
             this.setText(this.getText() + "\r");
