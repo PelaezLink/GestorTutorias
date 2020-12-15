@@ -127,7 +127,6 @@ public class FXMLGestorTutoriasController implements Initializable {
 
         centro.getChildren().add(popupContent);
         boton_crear.setDisable(false);
-        //borderPane.setCenter(popupContent);
     }
 
     //Creamos un boton que solo se usara para asignaturas
@@ -305,11 +304,12 @@ public class FXMLGestorTutoriasController implements Initializable {
 }
 
 //USAMOS EL CODIGO DE DATEPIC PARA CUSTOMIZAR LA CELDA y lo modificamos para añadir
-//alguna cosa mas.
+//mas cosas.
 class DiaCelda extends DateCell {
 
     String newline = System.getProperty("line.separator");
-    private Tutorias misTutorias = AccesoBD.getInstance().getTutorias();
+    Tutorias misTutorias = AccesoBD.getInstance().getTutorias();
+    String estiloPrevioHover;
     
     @Override
     public void updateItem(LocalDate item, boolean empty) {
@@ -317,10 +317,26 @@ class DiaCelda extends DateCell {
         Font fuente = new Font(15);
         this.setFont(fuente);
 
+        this.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                estiloPrevioHover = ((Node) event.getSource()).getStyle();
+                ((Node) event.getSource()).setStyle("-fx-background-color: LightSkyBlue");
+            }
+        });
+
+        this.setOnMouseExited(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                if (!((Node) event.getSource()).getStyle().equals("-fx-background-color: CornflowerBlue")) {
+                    ((Node) event.getSource()).setStyle(estiloPrevioHover);
+                }
+            }
+        });
+
+
         // Show Weekends in blue color
         DayOfWeek day = DayOfWeek.from(item);
         if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) {
-            
+
             this.setDisable(true);
 
             this.setText(this.getText() + "\r");

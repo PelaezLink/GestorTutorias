@@ -79,7 +79,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <HBox prefHeight="42.0" prefWidth="316.0" />
+                  <HBox prefHeight="64.0" prefWidth="345.0" />
                   <HBox alignment="CENTER" prefHeight="79.0" prefWidth="345.0" spacing="2.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccionar Alumnos:" textAlignment="CENTER" wrappingWidth="246.8359375">
@@ -89,7 +89,7 @@
                         </Text>
                      </children>
                   </HBox>
-                  <ListView fx:id="selectorAlumnos" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="267.0" prefWidth="345.0" />
+                  <ListView fx:id="selectorAlumnos" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="255.0" prefWidth="204.0" />
                   <HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="78.0" prefWidth="305.0" spacing="40.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Button fx:id="boton_confirmar" mnemonicParsing="false" onAction="#confirmar" prefHeight="33.0" prefWidth="105.0" text="Confirmar">
