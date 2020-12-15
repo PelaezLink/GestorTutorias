@@ -24,7 +24,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.StageStyle;
 import modelo.Alumno;
 import modelo.Tutorias;
-import tabla_alumnos.FXMLTablaAlumnosController;
 import ventana_principal.FXMLGestorTutoriasController;
 
 /**
