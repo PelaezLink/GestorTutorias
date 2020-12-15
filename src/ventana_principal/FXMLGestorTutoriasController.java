@@ -152,7 +152,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha);
         tabla_tutorias.setItems(listaTutoriasDia); 
         columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
-        columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().asignaturaProperty());
+        columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().getAsignatura().descripcionProperty());
         columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty());
     }    
 
