@@ -50,7 +50,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#eliminar" text="Eliminar">
+            <Button fx:id="boton_eliminar" mnemonicParsing="false" onAction="#eliminar" text="Eliminar">
                <font>
                   <Font size="15.0" />
                </font>

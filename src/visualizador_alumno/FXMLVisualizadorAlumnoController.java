@@ -9,6 +9,7 @@ import accesoBD.AccesoBD;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,6 +45,8 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     private Tutorias misTutorias;
     private Alumno alumno;
     private FXMLGestorTutoriasController controlador_principal; 
+    @FXML
+    private Button boton_eliminar;
 
     /**
      * Initializes the controller class.
@@ -51,7 +54,7 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        misTutorias = AccesoBD.getInstance().getTutorias();               
+        misTutorias = AccesoBD.getInstance().getTutorias();
     }    
 
     @FXML
@@ -88,7 +91,7 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
         //setear el alumno.
         nombre.setText(alumno.getNombre());
         apellidos.setText(alumno.getApellidos());
-        correo.setText(alumno.getEmail());
+        correo.setText(alumno.getEmail());       
     }
     
     public void setControladorPrincipal(FXMLGestorTutoriasController c) {
