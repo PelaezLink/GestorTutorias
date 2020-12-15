@@ -16,6 +16,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -151,13 +153,16 @@ public class FXMLGestorTutoriasController implements Initializable {
         hueco_tabla.getChildren().clear();
         hueco_tabla.getChildren().add(tabla_tutorias); 
         ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha);
+        //columna_inicio.setSortType(TableColumn.SortType.ASCENDING);
         tabla_tutorias.setItems(listaTutoriasDia); 
+        //tabla_tutorias.getSortOrder().add(columna_inicio);
+        //tabla_tutorias.sort();
         columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
         columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().getAsignatura().descripcionProperty());
-        columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty());
-    }    
-
-    
+        columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty()); 
+        }
+        
+  
     //Metodo para devolver una lista con las Tutorias de una fecha dada.
     public ObservableList<Tutoria> getTutoriasDia(LocalDate fecha) {       
         ObservableList<Tutoria> listaTutoriasDia = FXCollections.observableArrayList();
