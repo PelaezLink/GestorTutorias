@@ -223,6 +223,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     //boton asignaturas.
     @FXML
     private void mostrarTablaAsignaturas(ActionEvent event) throws IOException {
+        calendario.setValue(null);
         boton_crear.setText("Nueva Asignatura");
         hueco_tabla.getChildren().clear();
         FXMLLoader tabla_asignaturas = new FXMLLoader(getClass().getResource("/tabla_asignaturas/FXMLTablaAsignaturas.fxml"));
@@ -231,7 +232,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         controladorAsignaturas = controlador_tabla_asiganturas;
         controlador_tabla_asiganturas.setControladorPrincipal(this);
         botones_tabla.getChildren().add(boton_borrar_asignatura);
-        boton_borrar_asignatura.setDisable(true);
+        boton_borrar_asignatura.setDisable(true);        
     }
 
     //Metodo que muestra la lista de alumnos en el tableView
@@ -239,6 +240,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     //boton alumnos
     @FXML
     private void mostrarTablaAlumnos(ActionEvent event) throws IOException {
+        calendario.setValue(null);
         botones_tabla.getChildren().remove(boton_borrar_asignatura);
         boton_crear.setText("Nuevo Alumno");
         hueco_tabla.getChildren().clear();
@@ -246,7 +248,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         hueco_tabla.getChildren().add(tabla_alumnos.load());
         FXMLTablaAlumnosController controlador_tabla_alumnos = tabla_alumnos.getController();
         controlador_tabla_alumnos.setControladorPrincipal(this);
-        boton_borrar_asignatura.setDisable(true);
+        boton_borrar_asignatura.setDisable(true);       
     }
 
     //Metodo que se lanza al clickar en una Tutoria de la tabla y que muestra sus
