@@ -67,14 +67,14 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
         ObservableList<Alumno> lista_alumnos = misTutorias.getAlumnosTutorizados();
         //Ventana Confirmación
         Alert dialogoAlerta = new Alert(AlertType.CONFIRMATION);
-        dialogoAlerta.setTitle("Ventana Confirmación");
-        dialogoAlerta.setHeaderText(null);
-        dialogoAlerta.initStyle(StageStyle.UTILITY);
-        dialogoAlerta.setContentText("¿Realmente quieres eliminar el alumno seleccionado?");
-        dialogoAlerta.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/recursos/alertaIcono.png"))));
+        dialogoAlerta.setTitle("Eliminar Alumno");
+        dialogoAlerta.setHeaderText("ATENCIÓN");
+        dialogoAlerta.initStyle(StageStyle.DECORATED);
+        dialogoAlerta.setContentText("¿Seguro que quieres eliminar el alumno seleccionado?" + "\r");
+        //dialogoAlerta.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/recursos/alertaIcono.png"))));
         //Respuesta
         Optional<ButtonType> result = dialogoAlerta.showAndWait();
-        if(result.get()==ButtonType.OK){
+        if(result.get() == ButtonType.OK){
             lista_alumnos.remove(alumno);
             nombre.setText(null);
             apellidos.setText(null);

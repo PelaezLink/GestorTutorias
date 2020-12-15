@@ -63,11 +63,11 @@ public class FXMLTablaAsignaturasController implements Initializable {
         ObservableList<Asignatura> lista_asignaturas = misTutorias.getAsignaturas();
         //Ventana Confirmación
         Alert dialogoAlerta = new Alert(Alert.AlertType.CONFIRMATION);
-        dialogoAlerta.setTitle("Ventana Confirmación");
-        dialogoAlerta.setHeaderText(null);
-        dialogoAlerta.initStyle(StageStyle.UTILITY);
-        dialogoAlerta.setContentText("¿Realmente quieres eliminar la asignatura seleccionada?");
-        dialogoAlerta.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/recursos/alertaIcono.png"))));
+        dialogoAlerta.setTitle("Eliminar Asignatura");
+        dialogoAlerta.setHeaderText("ATENCIÓN");
+        dialogoAlerta.initStyle(StageStyle.DECORATED);
+        dialogoAlerta.setContentText("¿Seguro que quieres eliminar la asignatura seleccionada?" + "\r");
+        //dialogoAlerta.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/recursos/iconoDialogo.png"))));
         //Respuesta
         Optional<ButtonType> result = dialogoAlerta.showAndWait();
         if(result.get()==ButtonType.OK){

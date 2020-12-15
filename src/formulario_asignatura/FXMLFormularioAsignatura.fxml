@@ -26,7 +26,10 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <TextField fx:id="nombreAsignatura" />
+            <TextField fx:id="nombreAsignatura">
+               <font>
+                  <Font size="15.0" />
+               </font></TextField>
          </children>
          <padding>
             <Insets left="20.0" />
@@ -39,7 +42,10 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <TextField fx:id="codigoAsignatura" />
+            <TextField fx:id="codigoAsignatura">
+               <font>
+                  <Font size="15.0" />
+               </font></TextField>
          </children>
          <padding>
             <Insets left="20.0" />

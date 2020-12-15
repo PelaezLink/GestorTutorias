@@ -130,7 +130,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     //Creamos un boton que solo se usara para asignaturas
     public void inicializarBotonBorrar() {
         boton_borrar_asignatura = new Button("Eliminar");
-        boton_borrar_asignatura.setPrefSize(134, 36);
+        boton_borrar_asignatura.setPrefSize(125, 36);
         boton_borrar_asignatura.setFont(boton_crear.getFont());
         boton_borrar_asignatura.setDisable(true);
         
@@ -209,6 +209,7 @@ public class FXMLGestorTutoriasController implements Initializable {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage ventana2 = new Stage();
+            ventana2.setTitle("Crear asignatura");
             ventana2.initModality(Modality.APPLICATION_MODAL);
             ventana2.setScene(scene);
             ventana2.showAndWait();

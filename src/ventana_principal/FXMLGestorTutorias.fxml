@@ -35,7 +35,7 @@
                   <Insets left="20.0" right="20.0" />
                </padding>
                <children>
-                  <Button fx:id="boton_crear" mnemonicParsing="false" onAction="#crearNuevo" prefHeight="36.0" prefWidth="134.0" text="Nueva Tutoria">
+                  <Button fx:id="boton_crear" mnemonicParsing="false" onAction="#crearNuevo" prefHeight="36.0" prefWidth="167.0" text="Nueva Tutoria">
                      <font>
                         <Font size="15.0" />
                      </font>

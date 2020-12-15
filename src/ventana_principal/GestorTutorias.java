@@ -23,7 +23,7 @@ public class GestorTutorias extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLGestorTutorias.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.setTitle("Gestor tutorias");
         stage.setScene(scene);
         stage.show();
         //Linea de codigo de stack overflow: https://stackoverflow.com/questions/44548460/javafx-stage-close-event-handler
