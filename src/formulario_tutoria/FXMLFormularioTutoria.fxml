@@ -2,8 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -80,17 +80,17 @@
                      </children>
                   </VBox>
                   <HBox prefHeight="42.0" prefWidth="316.0" />
-                  <HBox alignment="CENTER" prefHeight="54.0" prefWidth="580.0" spacing="2.0">
+                  <HBox alignment="CENTER" prefHeight="79.0" prefWidth="345.0" spacing="2.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alumnos:" textAlignment="RIGHT" wrappingWidth="107.8359375">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccionar Alumnos:" textAlignment="CENTER" wrappingWidth="246.8359375">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <ChoiceBox fx:id="alumnos" prefWidth="150.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="228.0" prefWidth="305.0" spacing="40.0" VBox.vgrow="ALWAYS">
+                  <ListView fx:id="selectorAlumnos" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="267.0" prefWidth="345.0" />
+                  <HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="78.0" prefWidth="305.0" spacing="40.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Button fx:id="boton_confirmar" mnemonicParsing="false" onAction="#confirmar" prefHeight="33.0" prefWidth="105.0" text="Confirmar">
                            <font>

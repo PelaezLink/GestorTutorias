@@ -80,14 +80,14 @@
                      </children>
                   </VBox>
                   <HBox prefHeight="23.0" prefWidth="316.0" />
-                  <HBox alignment="CENTER" prefHeight="123.0" prefWidth="398.0" spacing="2.0">
+                  <HBox alignment="CENTER" prefHeight="141.0" prefWidth="469.0" spacing="2.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alumnos:" textAlignment="RIGHT" wrappingWidth="98.8359375">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <TextArea fx:id="alumnos" editable="false" prefHeight="99.0" prefWidth="247.0">
+                        <TextArea fx:id="alumnos" editable="false" prefHeight="155.0" prefWidth="247.0">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -104,7 +104,7 @@
                         <ComboBox fx:id="estado" prefHeight="25.0" prefWidth="213.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="BOTTOM_CENTER" prefHeight="68.0" prefWidth="313.0" spacing="40.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="75.0" prefWidth="429.0" spacing="40.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </VBox.margin>
@@ -124,14 +124,14 @@
                   <Insets />
                </HBox.margin>
             </VBox>
-            <VBox alignment="TOP_CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="675.0" prefWidth="511.0" spacing="15.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="679.0" prefWidth="512.0" spacing="15.0" HBox.hgrow="ALWAYS">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comentarios">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <TextArea fx:id="comentarios" nodeOrientation="LEFT_TO_RIGHT" prefHeight="653.0" prefWidth="471.0" VBox.vgrow="ALWAYS">
+                  <TextArea fx:id="comentarios" nodeOrientation="LEFT_TO_RIGHT" prefHeight="574.0" prefWidth="472.0" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="18.0" />
                      </font>

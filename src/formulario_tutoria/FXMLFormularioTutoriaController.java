@@ -21,13 +21,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxListCell;
+import javafx.scene.input.MouseEvent;
 import javafx.util.StringConverter;
 import modelo.Alumno;
 import modelo.Asignatura;
@@ -47,10 +52,8 @@ public class FXMLFormularioTutoriaController implements Initializable {
     @FXML
     private ComboBox<LocalTime> hora_inicio;
     @FXML
-    private ChoiceBox<Alumno> alumnos;
-    @FXML
     private TextArea comentarios;
-    
+
     private Tutorias misTutorias;
     @FXML
     private ComboBox<String> duracion;
@@ -60,27 +63,70 @@ public class FXMLFormularioTutoriaController implements Initializable {
     private Button boton_confirmar;
     private FXMLGestorTutoriasController controlador_principal;
     private ObservableList<LocalTime> inicios;
+    @FXML
+    private ListView<Alumno> selectorAlumnos;
+    private ObservableList<Alumno> alumnosSeleccionados;
 
     /**
      * Initializes the controller class.
      */
-    
     //Inicializamos los campos
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
         misTutorias = AccesoBD.getInstance().getTutorias();
-        
+
         comboBoxAsignaturaConverter();
         asignatura.setItems(misTutorias.getAsignaturas());
-        
-        comboBoxAlumnosConverter();
-        alumnos.setItems(misTutorias.getAlumnosTutorizados());
-        
-        boton_confirmar.disableProperty().bind(Bindings.or(asignatura.valueProperty().isNull(),(Bindings.or(hora_inicio.valueProperty().isNull(),(Bindings.or(duracion.valueProperty().isNull(), alumnos.valueProperty().isNull()))))));        
-    }    
-    
+        selectorAlumnos.setItems(misTutorias.getAlumnosTutorizados().sorted());
+        selectorAlumnos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        selectorAlumnos.setCellFactory(c -> new AlumnoListCell());
+
+        selectorAlumnos.getSelectionModel().getSelectedItems();
+
+        //Manejador de eventos para no tener que tener mantenido el control para
+        //hacer seleccion multiple.
+        //Fuente: https://living-sun.com/es/java/454578-mimicking-ctrlclick-multiple-selection-in-listview-using-javafx-java-listview-javafx-javafx-8-mouseclick-event.html
+        selectorAlumnos.addEventFilter(MouseEvent.MOUSE_PRESSED, evt -> {
+            Node node = evt.getPickResult().getIntersectedNode();
+            alumnosSeleccionados = selectorAlumnos.getSelectionModel().getSelectedItems();
+
+            
+                // go up from the target node until a list cell is found or it"s clear
+                // it was not a cell that was clicked
+                while (node != null && node != selectorAlumnos && !(node instanceof ListCell)) {
+                    node = node.getParent();
+                }
+
+                // if is part of a cell or the cell,
+                // handle event instead of using standard handling
+                if (node instanceof ListCell) {
+                    // prevent further handling
+                    evt.consume();
+
+                    ListCell cell = (ListCell) node;
+                    ListView lv = cell.getListView();
+
+                    // focus the listview
+                    lv.requestFocus();
+
+                    if (!cell.isEmpty()) {
+                        // handle selection for non-empty cells
+                        int index = cell.getIndex();
+                        if (cell.isSelected()) {
+                            lv.getSelectionModel().clearSelection(index);
+                        } else if (alumnosSeleccionados.size() < 4) {
+                            lv.getSelectionModel().select(index);
+                        }
+                    }
+                }
+            
+        });
+
+       boton_confirmar.disableProperty().bind(Bindings.or(asignatura.valueProperty().isNull(),(Bindings.or(hora_inicio.valueProperty().isNull(),(Bindings.or(duracion.valueProperty().isNull(), Bindings.not(Bindings.size(selectorAlumnos.getSelectionModel().getSelectedItems()).greaterThan(0))))))));        
+    }
+
     //Cuando se pulsa el boton confirmar se guarda la tutoria y se vacia el formulario
     @FXML
     private void confirmar(ActionEvent event) {
@@ -94,8 +140,9 @@ public class FXMLFormularioTutoriaController implements Initializable {
         int dur = Integer.parseInt(duracion.getValue());
         nueva.setDuracion(ofMinutes(dur));
         
-        ObservableList<Alumno> lista_alumnos = nueva.getAlumnos();
-        lista_alumnos.addAll(alumnos.getValue());
+        ObservableList<Alumno> alumnosNueva = nueva.getAlumnos();
+        alumnosNueva.addAll(alumnosSeleccionados);
+        
         
         ObservableList<Tutoria> lista_tutorias = misTutorias.getTutoriasConcertadas();
         lista_tutorias.add(nueva);
@@ -106,9 +153,9 @@ public class FXMLFormularioTutoriaController implements Initializable {
         hora_inicio.setValue(null);
         setTutoriasDia(lista_tutorias);
         setInicio();
-        alumnos.setValue(null);
         comentarios.setText(null);
-        duracion.setItems(null);   
+        duracion.setItems(null);
+        selectorAlumnos.getSelectionModel().clearSelection();
     }
 
     //Cerramos la ventana
@@ -212,21 +259,20 @@ public class FXMLFormularioTutoriaController implements Initializable {
             }
         });
     }
-    
-        private void comboBoxAlumnosConverter() {
-        alumnos.setConverter(new StringConverter<Alumno>() {
-            @Override
-            public String toString(Alumno a) {
-                return a.getNombre() + " " + a.getApellidos();
-            }
 
-            @Override
-            public Alumno fromString(final String string) {
-                return alumnos.getItems().stream().filter(alumnos -> alumnos.getApellidos().equals(string)).findFirst().orElse(null);
-            }
-        });
+}
+
+
+//Clase para el formato de la listview selectora de los alumnos
+class AlumnoListCell extends ListCell<Alumno> {
+
+    @Override
+    protected void updateItem(Alumno item, boolean empty) {
+        super.updateItem(item, empty); // Obligatoria esta llamada
+        if (item == null || empty) {
+            setText(null);
+        } else {
+            setText(item.getNombre() + " " + item.getApellidos());
+        }
     }
-
-
-
 }
