@@ -153,7 +153,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         hueco_tabla.getChildren().clear();
         hueco_tabla.getChildren().add(tabla_tutorias); 
         ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha);
-        //columna_inicio.setSortType(TableColumn.SortType.ASCENDING);
+        //columna_inicio.setSortType(TableColumn.SortType.ASCENDING); no funciona pero debe ser algo asi
         tabla_tutorias.setItems(listaTutoriasDia); 
         //tabla_tutorias.getSortOrder().add(columna_inicio);
         //tabla_tutorias.sort();
