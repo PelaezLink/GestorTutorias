@@ -348,21 +348,23 @@ class DiaCelda extends DateCell {
             int num = getTutoriasDia(item).size();
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
-            this.setText(this.getText() + "\r" + "Tutorias: " + num);
-
+            
             if (HuecosLibres(item) && num == 0) {
-                this.setText(this.getText() + "\r" + "Huecos libres");
-                this.setStyle(null);
+                this.setText(this.getText() + "\r");
+                this.setText(this.getText() + "\r" + "Sin tutorias");
+                this.setStyle(null);                
             }
             
             if (!HuecosLibres(item)) {
+                this.setText(this.getText() + "\r" + "Tutorias: " + num);
                 this.setText(this.getText() + "\r" + "Ocupado");
-                this.setStyle("-fx-background-color: salmon");
+                this.setStyle("-fx-background-color: LightCoral");               
             }
             
             if (num > 0 && HuecosLibres(item)) {
+                this.setText(this.getText() + "\r" + "Tutorias: " + num);
                 this.setText(this.getText() + "\r" + "Huecos libres");
-                this.setStyle("-fx-background-color: moccasin");
+                this.setStyle("-fx-background-color: NavajoWhite");              
                 
             }
             
