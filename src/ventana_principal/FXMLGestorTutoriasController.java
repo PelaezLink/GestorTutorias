@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -150,12 +151,14 @@ public class FXMLGestorTutoriasController implements Initializable {
         boton_borrar_asignatura.setDisable(true);
         boton_crear.setText("Nueva Tutoria");
         hueco_tabla.getChildren().clear();
-        hueco_tabla.getChildren().add(tabla_tutorias); 
-        ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha);
-        //columna_inicio.setSortType(TableColumn.SortType.ASCENDING); no funciona pero debe ser algo asi
-        tabla_tutorias.setItems(listaTutoriasDia); 
-        //tabla_tutorias.getSortOrder().add(columna_inicio);
-        //tabla_tutorias.sort();
+        hueco_tabla.getChildren().add(tabla_tutorias);
+        ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha); 
+
+        SortedList<Tutoria> sortedData = new SortedList<Tutoria>(listaTutoriasDia);       
+        sortedData.setComparator((c1, c2) -> c1.getFecha().compareTo(c2.getFecha()));
+        sortedData.comparatorProperty().bind(tabla_tutorias.comparatorProperty());       
+        tabla_tutorias.setItems(sortedData);
+
         columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
         columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().getAsignatura().descripcionProperty());
         columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty()); 

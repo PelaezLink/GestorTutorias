@@ -7,6 +7,7 @@ package visualizador_tutoria;
 
 import accesoBD.AccesoBD;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -77,6 +78,7 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
       controlador_principal.inicializarCalendario();
       controlador_principal.activarBotonAlumnos(true);
       controlador_principal.activarBotonAsignaturas(true);
+      controlador_principal.mostarTablaTutorias(LocalDate.now());
       
     }
     
