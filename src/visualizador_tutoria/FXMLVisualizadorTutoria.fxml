@@ -109,6 +109,11 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </VBox.margin>
                      <children>
+                        <Button mnemonicParsing="false" onAction="#cerrarConfirmacion" prefHeight="33.0" prefWidth="148.0" text="Confirmar cambios">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
                         <Button mnemonicParsing="false" onAction="#cerrar" prefHeight="33.0" prefWidth="105.0" text="Cerrar">
                            <font>
                               <Font size="15.0" />

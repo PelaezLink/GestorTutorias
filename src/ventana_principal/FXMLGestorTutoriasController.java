@@ -6,6 +6,7 @@
 package ventana_principal;
 
 import accesoBD.AccesoBD;
+import com.sun.javafx.css.converters.DurationConverter;
 import com.sun.javafx.scene.control.skin.DatePickerSkin;
 import formulario_alumno.FXMLFormularioAlumnoController;
 import formulario_tutoria.FXMLFormularioTutoriaController;
@@ -59,8 +60,10 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.geometry.Insets;
+import javafx.scene.control.TableRow;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.util.Callback;
 
 /**
  *
@@ -136,37 +139,93 @@ public class FXMLGestorTutoriasController implements Initializable {
         boton_borrar_asignatura.setPrefSize(125, 36);
         boton_borrar_asignatura.setFont(boton_crear.getFont());
         boton_borrar_asignatura.setDisable(true);
-        
+
         boton_borrar_asignatura.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-               controladorAsignaturas.eliminarAsignatura();
+                controladorAsignaturas.eliminarAsignatura();
             }
         });
     }
 
     //Metodo que apartir de la fecha busca en la lista de tutorias las que
     //haya ese dia y las muestra en el tableView
-    public void mostarTablaTutorias(LocalDate fecha) { 
+    public void mostarTablaTutorias(LocalDate fecha) {
         botones_tabla.getChildren().remove(boton_borrar_asignatura);
         boton_borrar_asignatura.setDisable(true);
         boton_crear.setText("Nueva Tutoria");
         hueco_tabla.getChildren().clear();
         hueco_tabla.getChildren().add(tabla_tutorias);
-        ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha); 
+        ObservableList<Tutoria> listaTutoriasDia = getTutoriasDia(fecha);
 
-        SortedList<Tutoria> sortedData = new SortedList<Tutoria>(listaTutoriasDia);       
+        SortedList<Tutoria> sortedData = new SortedList<Tutoria>(listaTutoriasDia);
         sortedData.setComparator((c1, c2) -> c1.getFecha().compareTo(c2.getFecha()));
-        sortedData.comparatorProperty().bind(tabla_tutorias.comparatorProperty());       
+        sortedData.comparatorProperty().bind(tabla_tutorias.comparatorProperty());
         tabla_tutorias.setItems(sortedData);
 
         columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
         columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().getAsignatura().descripcionProperty());
-        columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty()); 
-        }
+        columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty());
         
-  
+        
+                //CODIGO PARA MOSTRAR LA FILA DE UN COLOR DEPENDIENDO DEL ESTADO DE LA TUTORIA
+        //CÓDIGO INSIPIRADO EN: https://stackoverflow.com/questions/20350099/programmatically-change-the-tableview-row-appearance
+        tabla_tutorias.setRowFactory(new Callback<TableView<Tutoria>, TableRow<Tutoria>>() {
+            String estiloPrevioClick;
+            Node filaAnterior = null;
+
+            @Override
+            public TableRow<Tutoria> call(TableView<Tutoria> tableView) {
+                final TableRow<Tutoria> row = new TableRow<Tutoria>() {
+                    @Override
+                    protected void updateItem(Tutoria tutoria, boolean empty) {
+                        super.updateItem(tutoria, empty);
+                        
+                        
+
+                        if (this.getItem() != null) {
+                            if (this.getItem().getEstado() == Tutoria.EstadoTutoria.ANULADA) {
+                                this.setStyle("-fx-background-color: Tomato");
+                            }
+
+                            if (this.getItem().getEstado() == Tutoria.EstadoTutoria.NO_ASISTIDA) {
+                                this.setStyle("-fx-background-color: LightBlue");
+                            }
+
+                            if (this.getItem().getEstado() == Tutoria.EstadoTutoria.PEDIDA) {
+                                this.setStyle("-fx-background-color: Gold");
+                            }
+
+                            if (this.getItem().getEstado() == Tutoria.EstadoTutoria.REALIZADA) {
+                                this.setStyle("-fx-background-color: MediumAquaMarine");
+                            }
+                        } else {
+                            this.setStyle(null);
+                        }
+
+                         //Posibilidad para mostrar la fila clickada de otro color
+//                        setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                            public void handle(MouseEvent event) {
+//                                if (filaAnterior != null) {
+//                                    filaAnterior.setStyle(estiloPrevioClick);
+//                                    
+//                                }
+//                                filaAnterior = ((Node) event.getSource());
+//                                estiloPrevioClick = ((Node) event.getSource()).getStyle();
+//
+//                                ((Node) event.getSource()).setStyle("-fx-background-color: SteelBlue");
+//
+//                            }
+//                        });
+                    }
+                };
+                return row;
+            }
+        });
+
+    }
+
     //Metodo para devolver una lista con las Tutorias de una fecha dada.
-    public ObservableList<Tutoria> getTutoriasDia(LocalDate fecha) {       
+    public ObservableList<Tutoria> getTutoriasDia(LocalDate fecha) {
         ObservableList<Tutoria> listaTutoriasDia = FXCollections.observableArrayList();
 
         ObservableList<Tutoria> listaTutorias = misTutorias.getTutoriasConcertadas();
@@ -306,6 +365,14 @@ public class FXMLGestorTutoriasController implements Initializable {
 
 }
 
+
+
+
+
+
+
+
+
 //USAMOS EL CODIGO DE DATEPIC PARA CUSTOMIZAR LA CELDA y lo modificamos para añadir
 //mas cosas.
 class DiaCelda extends DateCell {
@@ -422,3 +489,4 @@ class DiaCelda extends DateCell {
     }
 
 }
+

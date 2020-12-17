@@ -69,17 +69,23 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
     @FXML
     private void cerrar(ActionEvent event) {
       
+      controlador_principal.inicializarCalendario();
+      controlador_principal.activarBotonAlumnos(true);
+      controlador_principal.activarBotonAsignaturas(true);
+      controlador_principal.mostarTablaTutorias(LocalDate.now());
+      
+    }
+    
+        @FXML
+    private void cerrarConfirmacion(ActionEvent event) {
+              
       ObservableList<Tutoria> lista_tutorias = misTutorias.getTutoriasConcertadas();
       lista_tutorias.remove(tutoria);
       
       tutoria.setEstado(estado.getValue());
       tutoria.setAnotaciones(comentarios.getText());
       lista_tutorias.add(tutoria);
-      controlador_principal.inicializarCalendario();
-      controlador_principal.activarBotonAlumnos(true);
-      controlador_principal.activarBotonAsignaturas(true);
-      controlador_principal.mostarTablaTutorias(LocalDate.now());
-      
+      controlador_principal.mostarTablaTutorias(tutoria.getFecha());
     }
     
     public void setTutoria(Tutoria t) {
@@ -107,5 +113,7 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
     public void setControladorPrincipal(FXMLGestorTutoriasController c) {
         controlador_principal = c;
     }
+
+
     
 }
