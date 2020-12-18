@@ -355,6 +355,10 @@ public class FXMLGestorTutoriasController implements Initializable {
         boton_borrar_asignatura.setDisable(false);
     }
 
+    public void desactivarBotonEliminarAsignatura() {
+        boton_borrar_asignatura.setDisable(true);
+    }
+
     public void activarBotonAlumnos(boolean valor) {
         boton_alumnos.setDisable(!valor);
     }

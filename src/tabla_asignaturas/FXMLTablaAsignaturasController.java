@@ -73,6 +73,9 @@ public class FXMLTablaAsignaturasController implements Initializable {
         if(result.get()==ButtonType.OK){
             lista_asignaturas.remove(seleccionada);
         }
+        if(tabla_asignaturas.getItems().size() == 0) {
+            controlador_principal.desactivarBotonEliminarAsignatura();
+        }
     
     }
      
