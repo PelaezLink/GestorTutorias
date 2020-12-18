@@ -67,7 +67,6 @@ public class FXMLTablaAsignaturasController implements Initializable {
         dialogoAlerta.setHeaderText("ATENCIÓN");
         dialogoAlerta.initStyle(StageStyle.DECORATED);
         dialogoAlerta.setContentText("¿Seguro que quieres eliminar la asignatura seleccionada?" + "\r");
-        //dialogoAlerta.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/recursos/iconoDialogo.png"))));
         //Respuesta
         Optional<ButtonType> result = dialogoAlerta.showAndWait();
         if(result.get()==ButtonType.OK){
