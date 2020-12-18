@@ -53,6 +53,8 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         misTutorias = AccesoBD.getInstance().getTutorias();
+        
+        boton_eliminar.disableProperty().bind(Bindings.or(nombre.textProperty().isEmpty(),apellidos.textProperty().isEmpty()));
     }    
 
     @FXML
