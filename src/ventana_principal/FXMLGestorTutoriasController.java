@@ -140,6 +140,9 @@ public class FXMLGestorTutoriasController implements Initializable {
         boton_borrar_asignatura.setPrefSize(125, 36);
         boton_borrar_asignatura.setFont(boton_crear.getFont());
         boton_borrar_asignatura.setDisable(true);
+        boton_borrar_asignatura.setStyle("-fx-text-fill: white;\n"
+                + "    -fx-background-color: linear-gradient(#ff9966, #ff5e62);\n"
+                + "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
 
         boton_borrar_asignatura.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {

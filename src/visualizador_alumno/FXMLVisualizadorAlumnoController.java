@@ -45,6 +45,8 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     private FXMLGestorTutoriasController controlador_principal; 
     @FXML
     private Button boton_eliminar;
+    @FXML
+    private ImageView foto;
 
     /**
      * Initializes the controller class.

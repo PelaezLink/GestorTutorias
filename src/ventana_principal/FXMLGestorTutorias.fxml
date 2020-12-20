@@ -35,9 +35,9 @@
                   <Insets left="20.0" right="20.0" />
                </padding>
                <children>
-                  <Button fx:id="boton_crear" mnemonicParsing="false" onAction="#crearNuevo" prefHeight="36.0" prefWidth="167.0" styleClass="boton_nuevo" stylesheets="@estiloPrincipal.css" text="Nueva Tutoria">
+                  <Button fx:id="boton_crear" mnemonicParsing="false" onAction="#crearNuevo" prefHeight="36.0" prefWidth="190.0" styleClass="boton_nuevo" stylesheets="@estiloPrincipal.css" text="Nueva Tutoria">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
                </children></HBox>
@@ -53,14 +53,14 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="607.0" spacing="30.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Button fx:id="boton_asignaturas" mnemonicParsing="false" onAction="#mostrarTablaAsignaturas" prefHeight="35.0" prefWidth="100.0" text="Asignaturas">
+            <Button fx:id="boton_asignaturas" mnemonicParsing="false" onAction="#mostrarTablaAsignaturas" prefHeight="35.0" prefWidth="110.0" styleClass="boton_nuevo" stylesheets="@estiloPrincipal.css" text="Asignaturas">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="boton_alumnos" mnemonicParsing="false" onAction="#mostrarTablaAlumnos" prefHeight="35.0" prefWidth="100.0" text="Alumnos">
+            <Button fx:id="boton_alumnos" mnemonicParsing="false" onAction="#mostrarTablaAlumnos" prefHeight="35.0" prefWidth="100.0" styleClass="boton_nuevo" stylesheets="@estiloPrincipal.css" text="Alumnos">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
          </children>

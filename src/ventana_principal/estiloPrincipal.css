@@ -8,16 +8,57 @@ and open the template in the editor.
     Author     : Luis
 */
 .ventana_principal{
-    -fx-background-color: AliceBlue;   
+    -fx-background-color:SteelBlue;   
 }
 
-.boton_nuevo {
+
+
+
+.boton_nuevo{
     -fx-text-fill: white;
-    -fx-font-family: "Arial Narrow";
-    -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-background-color: linear-gradient(#00d2ff, #3a7bd5);
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
+
 .boton_nuevo:hover {
-    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+    -fx-background-color: linear-gradient(#3a7bd5, #00d2ff);
+}
+
+
+
+
+.boton_eliminar{
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(#ff9966, #ff5e62);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.boton_eliminar:hover {
+    -fx-background-color: linear-gradient(#ff5e62, #ff9966);
+}
+
+
+
+
+.boton_confirmar{
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(#93F9B9, #1D976C);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.boton_confirmar:hover {
+    -fx-background-color: linear-gradient(#1D976C, #93F9B9);
+}
+
+
+
+
+.boton_cancelar{
+    -fx-text-fill: black;
+    -fx-background-color: linear-gradient(#ffffff, #abbaab);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.boton_cancelar:hover {
+    -fx-background-color: linear-gradient(#abbaab, #ffffff);
 }

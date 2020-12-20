@@ -68,14 +68,14 @@
       <HBox prefHeight="45.0" prefWidth="723.0" />
       <HBox alignment="CENTER" prefHeight="70.0" prefWidth="723.0" spacing="30.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#cerrar" prefHeight="38.0" prefWidth="78.0" text="Cerrar">
+            <Button mnemonicParsing="false" onAction="#cerrar" prefHeight="38.0" prefWidth="78.0" styleClass="boton_cancelar" stylesheets="@../ventana_principal/estiloPrincipal.css" text="Cerrar">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="boton_eliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="38.0" prefWidth="84.0" text="Eliminar">
+            <Button fx:id="boton_eliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="38.0" prefWidth="84.0" styleClass="boton_eliminar" stylesheets="@../ventana_principal/estiloPrincipal.css" text="Eliminar">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
          </children>

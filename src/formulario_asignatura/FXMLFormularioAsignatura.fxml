@@ -53,12 +53,12 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="72.0" prefWidth="366.0" spacing="30.0">
          <children>
-            <Button fx:id="boton_confirmar" mnemonicParsing="false" onAction="#confirmar" text="Confirmar">
+            <Button fx:id="boton_confirmar" mnemonicParsing="false" onAction="#confirmar" styleClass="boton_confirmar" stylesheets="@../ventana_principal/estiloPrincipal.css" text="Confirmar">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#cerrarVentana" text="Cancelar">
+            <Button mnemonicParsing="false" onAction="#cerrarVentana" styleClass="boton_cancelar" stylesheets="@../ventana_principal/estiloPrincipal.css" text="Cancelar">
                <font>
                   <Font size="15.0" />
                </font>

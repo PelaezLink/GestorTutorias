@@ -109,12 +109,12 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </VBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#cerrarConfirmacion" prefHeight="33.0" prefWidth="148.0" text="Confirmar cambios">
+                        <Button mnemonicParsing="false" onAction="#cerrarConfirmacion" prefHeight="33.0" prefWidth="163.0" styleClass="boton_confirmar" stylesheets="@../ventana_principal/estiloPrincipal.css" text="Confirmar cambios">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#cerrar" prefHeight="33.0" prefWidth="105.0" text="Cerrar">
+                        <Button mnemonicParsing="false" onAction="#cerrar" prefHeight="33.0" prefWidth="105.0" styleClass="boton_cancelar" stylesheets="@../ventana_principal/estiloPrincipal.css" text="Cerrar">
                            <font>
                               <Font size="15.0" />
                            </font>
