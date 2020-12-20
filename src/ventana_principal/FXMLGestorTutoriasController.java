@@ -110,6 +110,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         inicializarBotonBorrar();
         fecha_seleccionada = LocalDate.now();
         mostarTablaTutorias(fecha_seleccionada);
+        
     }
 
 //USAMOS EL CÓDIGO DEL EJEMPLO DATEPIC PARA MOSTRAR EL CALENDARIO
