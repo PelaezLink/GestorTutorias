@@ -65,7 +65,7 @@
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Text>
-                              <ComboBox fx:id="duracion" prefHeight="25.0" prefWidth="151.0">
+                              <ComboBox fx:id="duracion" prefHeight="25.0" prefWidth="151.0" styleClass="combo" stylesheets="@../ventana_principal/estiloPrincipal.css">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
