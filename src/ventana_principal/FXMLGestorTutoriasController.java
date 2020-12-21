@@ -22,6 +22,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
@@ -168,10 +169,11 @@ public class FXMLGestorTutoriasController implements Initializable {
 
         columna_inicio.setCellValueFactory(cellData -> cellData.getValue().inicioProperty());
         columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().getAsignatura().descripcionProperty());
-        columna_duracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty());
+        //ReadOnlyStringWrapper para mostrar correctamente el formato de la columan duracion
+        columna_duracion.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getDuracion().toMinutes() + " min"));
         
         
-                //CODIGO PARA MOSTRAR LA FILA DE UN COLOR DEPENDIENDO DEL ESTADO DE LA TUTORIA
+        //CODIGO PARA MOSTRAR LA FILA DE UN COLOR DEPENDIENDO DEL ESTADO DE LA TUTORIA
         //CÓDIGO INSIPIRADO EN: https://stackoverflow.com/questions/20350099/programmatically-change-the-tableview-row-appearance
         tabla_tutorias.setRowFactory(new Callback<TableView<Tutoria>, TableRow<Tutoria>>() {
             String estiloPrevioClick;
@@ -207,6 +209,7 @@ public class FXMLGestorTutoriasController implements Initializable {
                         }
 
                          //Posibilidad para mostrar la fila clickada de otro color
+                         
 //                        setOnMouseClicked(new EventHandler<MouseEvent>() {
 //                            public void handle(MouseEvent event) {
 //                                if (filaAnterior != null) {

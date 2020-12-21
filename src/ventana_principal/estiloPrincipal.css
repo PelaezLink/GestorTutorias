@@ -63,6 +63,11 @@ and open the template in the editor.
     -fx-background-color: linear-gradient(#abbaab, #ffffff);
 }
 
+
+
+
+
+
 .combo{
     -fx-background-color: linear-gradient(#ffffff,#eaeaea);
 }
@@ -70,6 +75,10 @@ and open the template in the editor.
 .combo:hover{
      -fx-background-color: linear-gradient(#eaeaea,#ffffff);  
 }
+
+
+
+
 
 .tabla{
     -fx-font-size: 14;   
