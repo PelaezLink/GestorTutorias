@@ -10,6 +10,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -23,9 +24,10 @@ public class GestorTutorias extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLGestorTutorias.fxml"));
         
         Scene scene = new Scene(root);
-        stage.setTitle("Gestor tutorias");
+        stage.setTitle("GESTOR TUTORIAS");
         stage.setMinHeight(880);
         stage.setMinWidth(1157);
+        stage.getIcons().add(new Image("/recursos/en-linea.png"));
         stage.setScene(scene);
         stage.show();
         //Linea de codigo de stack overflow: https://stackoverflow.com/questions/44548460/javafx-stage-close-event-handler
