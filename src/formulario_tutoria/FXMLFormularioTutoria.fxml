@@ -12,11 +12,11 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="838.0" prefWidth="789.0" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formulario_tutoria.FXMLFormularioTutoriaController">
    <children>
-      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="112.0" prefWidth="789.0" VBox.vgrow="ALWAYS">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="112.0" prefWidth="789.0" VBox.vgrow="ALWAYS">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva tutoria" textAlignment="CENTER" wrappingWidth="310.85791015625">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva tutoria" textAlignment="CENTER" wrappingWidth="445.85791015625">
                <font>
-                  <Font size="29.0" />
+                  <Font name="System Bold" size="64.0" />
                </font>
             </Text>
          </children>
@@ -27,12 +27,12 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="150.0" prefWidth="313.0" spacing="2.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Asignatura:" textAlignment="RIGHT" wrappingWidth="111.8359375">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Asignatura:" textAlignment="RIGHT" wrappingWidth="113.8359375">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <ComboBox fx:id="asignatura" prefWidth="150.0">
+                        <ComboBox fx:id="asignatura" prefWidth="150.0" styleClass="combo" stylesheets="@../ventana_principal/estiloPrincipal.css">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -46,9 +46,9 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="54.0" prefWidth="580.0" spacing="2.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hora Inicio:" textAlignment="RIGHT" wrappingWidth="110.8359375">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora Inicio:" textAlignment="RIGHT" wrappingWidth="113.8359375">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font name="System Bold" size="20.0" />
                                  </font>
                               </Text>
                               <ComboBox fx:id="hora_inicio" onAction="#setDuraciones" prefWidth="150.0">
@@ -60,9 +60,9 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="54.0" prefWidth="580.0" spacing="2.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Duracion:" textAlignment="RIGHT" wrappingWidth="145.8359375">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Duracion:" textAlignment="RIGHT" wrappingWidth="154.8359375">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font name="System Bold" size="20.0" />
                                  </font>
                               </Text>
                               <ComboBox fx:id="duracion" prefHeight="25.0" prefWidth="151.0">
@@ -70,9 +70,9 @@
                                     <Insets />
                                  </HBox.margin>
                               </ComboBox>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="min">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="min">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font name="System Bold" size="20.0" />
                                  </font>
                               </Text>
                            </children>
@@ -82,9 +82,9 @@
                   <HBox prefHeight="64.0" prefWidth="345.0" />
                   <HBox alignment="CENTER" prefHeight="79.0" prefWidth="345.0" spacing="2.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccionar Alumnos:" textAlignment="CENTER" wrappingWidth="246.8359375">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccionar Alumnos:" textAlignment="CENTER" wrappingWidth="246.8359375">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                      </children>
@@ -117,9 +117,9 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="649.0" prefWidth="537.0" spacing="15.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comentarios">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Comentarios">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
                   <TextArea fx:id="comentarios" nodeOrientation="LEFT_TO_RIGHT" prefHeight="472.0" prefWidth="384.0" VBox.vgrow="ALWAYS">

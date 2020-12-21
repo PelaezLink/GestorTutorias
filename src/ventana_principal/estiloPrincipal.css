@@ -62,3 +62,11 @@ and open the template in the editor.
 .boton_cancelar:hover {
     -fx-background-color: linear-gradient(#abbaab, #ffffff);
 }
+
+.combo{
+    -fx-background-color: linear-gradient(#ffffff,#eaeaea);
+}
+
+.combo:hover{
+     -fx-background-color: linear-gradient(#eaeaea,#f2f2f2);  
+}

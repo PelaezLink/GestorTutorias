@@ -10,20 +10,20 @@
 
 <VBox alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="257.0" prefWidth="366.0" styleClass="ventana_principal" stylesheets="@../ventana_principal/estiloPrincipal.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formulario_asignatura.FXMLFormularioAsignaturaController">
    <children>
-      <HBox alignment="CENTER" prefHeight="90.0" prefWidth="366.0">
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="366.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva asignatura">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva Asignatura" textAlignment="CENTER">
                <font>
-                  <Font size="31.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Text>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="48.0" prefWidth="600.0" spacing="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" textAlignment="RIGHT" wrappingWidth="77.412109375">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" textAlignment="RIGHT" wrappingWidth="83.412109375">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Text>
             <TextField fx:id="nombreAsignatura">
@@ -37,9 +37,9 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="48.0" prefWidth="600.0" spacing="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo:" textAlignment="RIGHT" wrappingWidth="80.033203125">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo:" textAlignment="RIGHT" wrappingWidth="86.033203125">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Text>
             <TextField fx:id="codigoAsignatura">

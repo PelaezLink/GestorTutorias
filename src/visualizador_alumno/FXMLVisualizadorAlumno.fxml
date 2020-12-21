@@ -19,9 +19,9 @@
       <HBox alignment="CENTER" prefHeight="45.0" prefWidth="723.0" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" textAlignment="RIGHT" wrappingWidth="87.412109375">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" textAlignment="RIGHT" wrappingWidth="87.412109375">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Text>
             <TextField fx:id="nombre" editable="false">
@@ -35,9 +35,9 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="2.0">
          <children>
-            <Text nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:" textAlignment="RIGHT" wrappingWidth="87.966796875">
+            <Text fill="WHITE" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:" wrappingWidth="94.966796875">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Text>
             <TextField fx:id="apellidos" editable="false">
@@ -51,9 +51,9 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="560.0" spacing="2.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" textAlignment="RIGHT" wrappingWidth="83.521484375">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" textAlignment="RIGHT" wrappingWidth="83.521484375">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Text>
             <TextField fx:id="correo" editable="false">
