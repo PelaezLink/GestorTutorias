@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="705.0" prefWidth="1137.0" styleClass="ventana_principal" stylesheets="@estiloPrincipal.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ventana_principal.FXMLGestorTutoriasController">
+<BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="391.0" prefWidth="1137.0" styleClass="ventana_principal" stylesheets="@estiloPrincipal.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ventana_principal.FXMLGestorTutoriasController">
    <right>
       <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="591.0" prefWidth="326.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -69,9 +69,9 @@
          </BorderPane.margin></HBox>
    </top>
    <center>
-      <VBox fx:id="centro" alignment="CENTER" prefHeight="687.0" prefWidth="782.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="centro" alignment="CENTER" prefHeight="295.0" prefWidth="248.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="15.0" left="20.0" right="7.0" />
+            <Insets bottom="15.0" left="20.0" right="7.0" top="5.0" />
          </BorderPane.margin>
       </VBox>
    </center>
