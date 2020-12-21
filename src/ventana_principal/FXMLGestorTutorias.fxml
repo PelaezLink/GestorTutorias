@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1157.0" styleClass="ventana_principal" stylesheets="@estiloPrincipal.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ventana_principal.FXMLGestorTutoriasController">
+<BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="705.0" prefWidth="1137.0" styleClass="ventana_principal" stylesheets="@estiloPrincipal.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ventana_principal.FXMLGestorTutoriasController">
    <right>
-      <VBox prefHeight="591.0" prefWidth="326.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="591.0" prefWidth="326.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <VBox fx:id="hueco_tabla" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="tabla_tutorias" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mostrar_tutoria" prefHeight="592.0" prefWidth="296.0" styleClass="tabla" stylesheets="@estiloPrincipal.css" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="tabla_tutorias" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mostrar_tutoria" prefHeight="112.0" prefWidth="296.0" styleClass="tabla" stylesheets="@estiloPrincipal.css" VBox.vgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="columna_inicio" prefWidth="93.0" text="Inicio" />
                       <TableColumn fx:id="columna_duracion" prefWidth="90.0" sortable="false" text="Duracion" />
@@ -51,7 +51,7 @@
       </VBox>
    </right>
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="607.0" spacing="30.0" BorderPane.alignment="CENTER_LEFT">
+      <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="1137.0" spacing="30.0" BorderPane.alignment="CENTER_LEFT">
          <children>
             <Button fx:id="boton_asignaturas" mnemonicParsing="false" onAction="#mostrarTablaAsignaturas" prefHeight="35.0" prefWidth="110.0" styleClass="boton_nuevo" stylesheets="@estiloPrincipal.css" text="Asignaturas">
                <font>
@@ -69,9 +69,9 @@
          </BorderPane.margin></HBox>
    </top>
    <center>
-      <VBox fx:id="centro" alignment="CENTER" prefHeight="550.0" prefWidth="514.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="centro" alignment="CENTER" prefHeight="687.0" prefWidth="782.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="15.0" left="20.0" right="7.0" top="15.0" />
+            <Insets bottom="15.0" left="20.0" right="7.0" />
          </BorderPane.margin>
       </VBox>
    </center>
