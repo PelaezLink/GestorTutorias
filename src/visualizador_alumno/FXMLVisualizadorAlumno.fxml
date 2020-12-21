@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualizador_alumno.FXMLVisualizadorAlumnoController">
+<VBox alignment="TOP_CENTER" prefHeight="462.0" prefWidth="763.0" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualizador_alumno.FXMLVisualizadorAlumnoController">
    <children>
       <ImageView fx:id="foto" fitHeight="212.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,7 +19,7 @@
       <HBox alignment="CENTER" prefHeight="45.0" prefWidth="723.0" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="2.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" textAlignment="RIGHT" wrappingWidth="87.412109375">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" textAlignment="RIGHT" wrappingWidth="96.412109375">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -35,12 +35,12 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="2.0">
          <children>
-            <Text fill="WHITE" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:" wrappingWidth="94.966796875">
+            <Text fill="WHITE" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:" wrappingWidth="97.966796875">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Text>
-            <TextField fx:id="apellidos" editable="false">
+            <TextField fx:id="apellidos" editable="false" prefHeight="44.0" prefWidth="246.0">
                <font>
                   <Font size="20.0" />
                </font></TextField>
@@ -51,12 +51,12 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="560.0" spacing="2.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" textAlignment="RIGHT" wrappingWidth="83.521484375">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" textAlignment="RIGHT" wrappingWidth="95.521484375">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Text>
-            <TextField fx:id="correo" editable="false">
+            <TextField fx:id="correo" editable="false" prefHeight="44.0" prefWidth="248.0">
                <font>
                   <Font size="20.0" />
                </font></TextField>

@@ -63,7 +63,7 @@
                </font></TextField>
          </children>
       </HBox>
-      <HBox prefHeight="84.0" prefWidth="560.0" />
+      <HBox prefHeight="60.0" prefWidth="723.0" />
       <HBox alignment="CENTER" prefHeight="48.0" prefWidth="560.0" spacing="30.0">
          <children>
             <Button fx:id="boton_confirmar" mnemonicParsing="false" onAction="#confirmar" prefHeight="40.0" prefWidth="93.0" styleClass="boton_confirmar" stylesheets="@../ventana_principal/estiloPrincipal.css" text="Confimar">
@@ -80,6 +80,6 @@
       </HBox>
    </children>
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
    </padding>
 </VBox>
