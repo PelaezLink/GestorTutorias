@@ -120,6 +120,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         calendario = new DatePicker(LocalDate.now());
         calendario.setShowWeekNumbers(false);
         calendario.setDayCellFactory(cel -> new DiaCelda());
+        
 
         calendario.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -234,7 +235,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     //Metodo para devolver una lista con las Tutorias de una fecha dada.
     public ObservableList<Tutoria> getTutoriasDia(LocalDate fecha) {
         ObservableList<Tutoria> listaTutoriasDia = FXCollections.observableArrayList();
-
+        
         ObservableList<Tutoria> listaTutorias = misTutorias.getTutoriasConcertadas();
         for (Iterator<Tutoria> iterator = listaTutorias.iterator(); iterator.hasNext();) {
             Tutoria next = iterator.next();
@@ -423,11 +424,9 @@ class DiaCelda extends DateCell {
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
-            this.setText(this.getText() + "\r");
             
         } else {
             int num = getTutoriasDia(item).size();
-            this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
             
             if (HuecosLibres(item) && num == 0) {
