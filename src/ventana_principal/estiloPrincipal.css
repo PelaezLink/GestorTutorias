@@ -77,9 +77,10 @@ and open the template in the editor.
 }
 
 
-
-
-
 .tabla{
-    -fx-font-size: 14;   
+    -fx-font-size: 16;   
+}
+
+.lista_alumnos{
+    -fx-font-size: 16;    
 }
