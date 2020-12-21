@@ -3,7 +3,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<TableView fx:id="tabla_asignaturas" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#asignaturaSeleccionada" prefHeight="863.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tabla_asignaturas.FXMLTablaAsignaturasController">
+<TableView fx:id="tabla_asignaturas" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#asignaturaSeleccionada" prefHeight="863.0" prefWidth="601.0" styleClass="tabla" stylesheets="@../ventana_principal/estiloPrincipal.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tabla_asignaturas.FXMLTablaAsignaturasController">
   <columns>
     <TableColumn fx:id="columna_nombre_asignatura" prefWidth="302.0" text="Asignatura" />
     <TableColumn fx:id="columna_codigo" prefWidth="297.0" text="Codigo" />

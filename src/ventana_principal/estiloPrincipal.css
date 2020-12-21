@@ -70,3 +70,7 @@ and open the template in the editor.
 .combo:hover{
      -fx-background-color: linear-gradient(#eaeaea,#ffffff);  
 }
+
+.tabla{
+    -fx-font-size: 14;   
+}
