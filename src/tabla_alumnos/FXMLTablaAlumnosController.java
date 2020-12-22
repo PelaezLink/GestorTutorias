@@ -49,8 +49,8 @@ public class FXMLTablaAlumnosController implements Initializable {
         tabla_alumnos.setItems(listaAlumnos);
         columna_nombre.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
         columna_apellidos.setCellValueFactory(cellData -> cellData.getValue().apellidosProperty());
-    }    
-    
+    }
+
     //Metodo que al clickar en un alumno de la tabla lo muestra en el visualizador
     @FXML
     private void mostrar_alumno(MouseEvent event) throws IOException {
@@ -64,5 +64,4 @@ public class FXMLTablaAlumnosController implements Initializable {
         controlador_principal = c;
     }
 
-    
 }

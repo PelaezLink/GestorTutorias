@@ -18,11 +18,11 @@ import javafx.stage.Stage;
  * @author Luis
  */
 public class GestorTutorias extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLGestorTutorias.fxml"));
-        
+
         Scene scene = new Scene(root);
         stage.setTitle("GESTOR TUTORIAS");
         stage.setMinHeight(690);
@@ -32,7 +32,9 @@ public class GestorTutorias extends Application {
         stage.show();
         //Linea de codigo de stack overflow: https://stackoverflow.com/questions/44548460/javafx-stage-close-event-handler
         //Para guardar el estado de las tutorias cuando se cierre la aplicación.
-        stage.setOnHiding( event -> {AccesoBD.getInstance().salvar();} );
+        stage.setOnHiding(event -> {
+            AccesoBD.getInstance().salvar();
+        });
     }
 
     /**
@@ -41,5 +43,5 @@ public class GestorTutorias extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

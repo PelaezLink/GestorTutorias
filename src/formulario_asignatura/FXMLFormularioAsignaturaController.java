@@ -43,27 +43,23 @@ public class FXMLFormularioAsignaturaController implements Initializable {
         // TODO
         misTutorias = AccesoBD.getInstance().getTutorias();
         boton_confirmar.disableProperty().bind(Bindings.or(codigoAsignatura.textProperty().isEmpty(), nombreAsignatura.textProperty().isEmpty()));
-    }    
+    }
 
     @FXML
     private void cerrarVentana(ActionEvent event) {
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
 
-    
     //Cuando se pulsa el boton confirmar se guarda la asignatura y se vacia el formulario
     @FXML
     private void confirmar(ActionEvent event) {
         Asignatura nuevaAsignatura = new Asignatura(codigoAsignatura.getText(), nombreAsignatura.getText());
         ObservableList<Asignatura> listaAsignaturas = misTutorias.getAsignaturas();
         listaAsignaturas.add(nuevaAsignatura);
-        
+
         nombreAsignatura.clear();
-        codigoAsignatura.clear(); 
-        
-        
-        
+        codigoAsignatura.clear();
+
     }
-    
 
 }

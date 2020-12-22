@@ -57,37 +57,37 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         misTutorias = AccesoBD.getInstance().getTutorias();
-        
+
         ObservableList<EstadoTutoria> estados_posibles = FXCollections.observableArrayList();
         estados_posibles.addAll(Tutoria.EstadoTutoria.PEDIDA, Tutoria.EstadoTutoria.REALIZADA, Tutoria.EstadoTutoria.ANULADA, Tutoria.EstadoTutoria.NO_ASISTIDA);
         estado.setItems(estados_posibles);
-       
-    }    
+
+    }
 
     //Al pulsar el boton cerrar guardamos la nueva tutoria con los cambios que
     //se le puedan haber hecho en estado y comentarios.
     @FXML
     private void cerrar(ActionEvent event) {
-      
-      controlador_principal.inicializarCalendario();
-      controlador_principal.activarBotonAlumnos(true);
-      controlador_principal.activarBotonAsignaturas(true);
-      controlador_principal.mostarTablaTutorias(LocalDate.now());
-      
+
+        controlador_principal.inicializarCalendario();
+        controlador_principal.activarBotonAlumnos(true);
+        controlador_principal.activarBotonAsignaturas(true);
+        controlador_principal.mostarTablaTutorias(LocalDate.now());
+
     }
-    
-        @FXML
+
+    @FXML
     private void cerrarConfirmacion(ActionEvent event) {
-              
-      ObservableList<Tutoria> lista_tutorias = misTutorias.getTutoriasConcertadas();
-      lista_tutorias.remove(tutoria);
-      
-      tutoria.setEstado(estado.getValue());
-      tutoria.setAnotaciones(comentarios.getText());
-      lista_tutorias.add(tutoria);
-      controlador_principal.mostarTablaTutorias(tutoria.getFecha());
+
+        ObservableList<Tutoria> lista_tutorias = misTutorias.getTutoriasConcertadas();
+        lista_tutorias.remove(tutoria);
+
+        tutoria.setEstado(estado.getValue());
+        tutoria.setAnotaciones(comentarios.getText());
+        lista_tutorias.add(tutoria);
+        controlador_principal.mostarTablaTutorias(tutoria.getFecha());
     }
-    
+
     public void setTutoria(Tutoria t) {
         tutoria = t;
         //Inicializamos todos los campos aqui y no en el intializa porque debe 
@@ -96,24 +96,22 @@ public class FXMLVisualizadorTutoriaController implements Initializable {
         hora_inicio.setText(tutoria.getInicio().toString());
         estado.setValue(tutoria.getEstado());
         comentarios.setText(tutoria.getAnotaciones());
-        
+
         long dur = tutoria.getDuracion().toMinutes();
         duracion.setText("" + dur);
-        
+
         //Para visualizar la lista de alumnos correctamente
         ObservableList<Alumno> a = tutoria.getAlumnos();
         String alum = "";
         for (Iterator<Alumno> iterator = a.iterator(); iterator.hasNext();) {
             Alumno next = iterator.next();
-            alum += next.getNombre() + " " + next.getApellidos() + "\n";           
-        }        
+            alum += next.getNombre() + " " + next.getApellidos() + "\n";
+        }
         alumnos.setText(alum);
     }
-    
+
     public void setControladorPrincipal(FXMLGestorTutoriasController c) {
         controlador_principal = c;
     }
 
-
-    
 }

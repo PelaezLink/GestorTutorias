@@ -92,39 +92,38 @@ public class FXMLFormularioTutoriaController implements Initializable {
             Node node = evt.getPickResult().getIntersectedNode();
             alumnosSeleccionados = selectorAlumnos.getSelectionModel().getSelectedItems();
 
-            
-                // go up from the target node until a list cell is found or it"s clear
-                // it was not a cell that was clicked
-                while (node != null && node != selectorAlumnos && !(node instanceof ListCell)) {
-                    node = node.getParent();
-                }
+            // go up from the target node until a list cell is found or it"s clear
+            // it was not a cell that was clicked
+            while (node != null && node != selectorAlumnos && !(node instanceof ListCell)) {
+                node = node.getParent();
+            }
 
-                // if is part of a cell or the cell,
-                // handle event instead of using standard handling
-                if (node instanceof ListCell) {
-                    // prevent further handling
-                    evt.consume();
+            // if is part of a cell or the cell,
+            // handle event instead of using standard handling
+            if (node instanceof ListCell) {
+                // prevent further handling
+                evt.consume();
 
-                    ListCell cell = (ListCell) node;
-                    ListView lv = cell.getListView();
+                ListCell cell = (ListCell) node;
+                ListView lv = cell.getListView();
 
-                    // focus the listview
-                    lv.requestFocus();
+                // focus the listview
+                lv.requestFocus();
 
-                    if (!cell.isEmpty()) {
-                        // handle selection for non-empty cells
-                        int index = cell.getIndex();
-                        if (cell.isSelected()) {
-                            lv.getSelectionModel().clearSelection(index);
-                        } else if (alumnosSeleccionados.size() < 4) {
-                            lv.getSelectionModel().select(index);
-                        }
+                if (!cell.isEmpty()) {
+                    // handle selection for non-empty cells
+                    int index = cell.getIndex();
+                    if (cell.isSelected()) {
+                        lv.getSelectionModel().clearSelection(index);
+                    } else if (alumnosSeleccionados.size() < 4) {
+                        lv.getSelectionModel().select(index);
                     }
                 }
-            
+            }
+
         });
 
-       boton_confirmar.disableProperty().bind(Bindings.or(asignatura.valueProperty().isNull(),(Bindings.or(hora_inicio.valueProperty().isNull(),(Bindings.or(duracion.valueProperty().isNull(), Bindings.not(Bindings.size(selectorAlumnos.getSelectionModel().getSelectedItems()).greaterThan(0))))))));        
+        boton_confirmar.disableProperty().bind(Bindings.or(asignatura.valueProperty().isNull(), (Bindings.or(hora_inicio.valueProperty().isNull(), (Bindings.or(duracion.valueProperty().isNull(), Bindings.not(Bindings.size(selectorAlumnos.getSelectionModel().getSelectedItems()).greaterThan(0))))))));
     }
 
     //Cuando se pulsa el boton confirmar se guarda la tutoria y se vacia el formulario
@@ -136,18 +135,17 @@ public class FXMLFormularioTutoriaController implements Initializable {
         nueva.setEstado(Tutoria.EstadoTutoria.PEDIDA);
         nueva.setInicio(hora_inicio.getValue());
         nueva.setFecha(fecha);
-        
+
         int dur = Integer.parseInt(duracion.getValue());
         nueva.setDuracion(ofMinutes(dur));
-        
+
         ObservableList<Alumno> alumnosNueva = nueva.getAlumnos();
         alumnosNueva.addAll(alumnosSeleccionados);
-        
-        
+
         ObservableList<Tutoria> lista_tutorias = misTutorias.getTutoriasConcertadas();
         lista_tutorias.add(nueva);
         controlador_principal.mostarTablaTutorias(fecha);
-        
+
         //Limpiamos el formulario.
         asignatura.setValue(null);
         hora_inicio.setValue(null);
@@ -170,7 +168,7 @@ public class FXMLFormularioTutoriaController implements Initializable {
     public void setInicio() {
         hora_inicio.setItems(getHorasDisponibles());
         inicios = getHorasDisponibles();
-        
+
     }
 
     public void setFecha(LocalDate f) {
@@ -184,28 +182,28 @@ public class FXMLFormularioTutoriaController implements Initializable {
     public void setControladorPrincipal(FXMLGestorTutoriasController c) {
         controlador_principal = c;
     }
-    
+
     @FXML
     private void setDuraciones(ActionEvent event) {
-        if(hora_inicio.getValue() != null) {
+        if (hora_inicio.getValue() != null) {
             duracion.setItems(getDuracionesPosibles(hora_inicio.getValue()));
         }
     }
-    
+
     //Metodo que nos devuelve la lista con las horas de inicio dispoibles para elegir en la nueva tutoria.
     public ObservableList<LocalTime> getHorasDisponibles() {
-        
+
         //Primero creamos la lista con todos los intervalos de 10 minutos entre
         //las 8:00 y las 20:00
         ArrayList<LocalTime> lista = new ArrayList<LocalTime>();
         ObservableList<LocalTime> horasDisponibles = FXCollections.observableList(lista);
-        LocalTime hora = LocalTime.of(8,0);
+        LocalTime hora = LocalTime.of(8, 0);
         horasDisponibles.add(hora);
-        for(int j = 0; j < 72; j++) {
+        for (int j = 0; j < 72; j++) {
             hora = hora.plusMinutes(10);
             horasDisponibles.add(hora);
         }
-        
+
         //Ahora borramos las que estan ocupadas por otras tutorias de ese 
         //mismo dia
         for (Iterator<Tutoria> iterator = listaTutoriasDia.iterator(); iterator.hasNext();) {
@@ -231,7 +229,7 @@ public class FXMLFormularioTutoriaController implements Initializable {
         ObservableList<String> minutos = FXCollections.observableArrayList();
         minutos.add("10");
         long min = 20;
-        
+
         for (int i = 0; i < 5; i++) {
             if (inicios.contains(ini.plusMinutes(min - 10))) {
                 minutos.add(min + "");
@@ -243,7 +241,6 @@ public class FXMLFormularioTutoriaController implements Initializable {
         return minutos;
     }
 
-    
     //AQUI TENEmos LOS CONVERTERS PARA LOS COMBO BOX DEL FORMULARIO, CÓDIGO DE:
     //https://medium.com/@idrisbalikisopeyemi/working-with-javafx-combobox-a0c3ce7a440e
     private void comboBoxAsignaturaConverter() {
@@ -261,7 +258,6 @@ public class FXMLFormularioTutoriaController implements Initializable {
     }
 
 }
-
 
 //Clase para el formato de la listview selectora de los alumnos
 class AlumnoListCell extends ListCell<Alumno> {

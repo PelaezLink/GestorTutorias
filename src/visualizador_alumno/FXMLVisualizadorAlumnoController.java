@@ -42,7 +42,7 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     private TextField correo;
     private Tutorias misTutorias;
     private Alumno alumno;
-    private FXMLGestorTutoriasController controlador_principal; 
+    private FXMLGestorTutoriasController controlador_principal;
     @FXML
     private Button boton_eliminar;
     @FXML
@@ -55,9 +55,9 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         misTutorias = AccesoBD.getInstance().getTutorias();
-        
-        boton_eliminar.disableProperty().bind(Bindings.or(nombre.textProperty().isEmpty(),apellidos.textProperty().isEmpty()));
-    }    
+
+        boton_eliminar.disableProperty().bind(Bindings.or(nombre.textProperty().isEmpty(), apellidos.textProperty().isEmpty()));
+    }
 
     @FXML
     private void cerrar(ActionEvent event) {
@@ -78,14 +78,14 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
         //dialogoAlerta.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/recursos/alertaIcono.png"))));
         //Respuesta
         Optional<ButtonType> result = dialogoAlerta.showAndWait();
-        if(result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             lista_alumnos.remove(alumno);
             nombre.setText(null);
             apellidos.setText(null);
             correo.setText(null);
-        }  
+        }
     }
-    
+
     public void setAlumno(Alumno a) {
         alumno = a;
         //Inicializamos los datos aqui y no en el intialice porque debemos tener
@@ -93,11 +93,11 @@ public class FXMLVisualizadorAlumnoController implements Initializable {
         //setear el alumno.
         nombre.setText(alumno.getNombre());
         apellidos.setText(alumno.getApellidos());
-        correo.setText(alumno.getEmail());       
+        correo.setText(alumno.getEmail());
     }
-    
+
     public void setControladorPrincipal(FXMLGestorTutoriasController c) {
         controlador_principal = c;
     }
-    
+
 }

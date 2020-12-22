@@ -72,7 +72,6 @@ import javafx.util.Callback;
  */
 public class FXMLGestorTutoriasController implements Initializable {
 
-
     private DatePicker calendario;
     @FXML
     private Button boton_crear;
@@ -111,7 +110,8 @@ public class FXMLGestorTutoriasController implements Initializable {
         inicializarBotonBorrar();
         fecha_seleccionada = LocalDate.now();
         mostarTablaTutorias(fecha_seleccionada);
-        
+        crearTFGyTFM();
+
     }
 
 //USAMOS EL CÓDIGO DEL EJEMPLO DATEPIC PARA MOSTRAR EL CALENDARIO
@@ -120,7 +120,6 @@ public class FXMLGestorTutoriasController implements Initializable {
         calendario = new DatePicker(LocalDate.now());
         calendario.setShowWeekNumbers(false);
         calendario.setDayCellFactory(cel -> new DiaCelda());
-        
 
         calendario.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -172,8 +171,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         columna_asignatura.setCellValueFactory(cellData -> cellData.getValue().getAsignatura().descripcionProperty());
         //ReadOnlyStringWrapper para mostrar correctamente el formato de la columan duracion
         columna_duracion.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getDuracion().toMinutes() + " min"));
-        
-        
+
         //CODIGO PARA MOSTRAR LA FILA DE UN COLOR DEPENDIENDO DEL ESTADO DE LA TUTORIA
         //CÓDIGO INSIPIRADO EN: https://stackoverflow.com/questions/20350099/programmatically-change-the-tableview-row-appearance
         tabla_tutorias.setRowFactory(new Callback<TableView<Tutoria>, TableRow<Tutoria>>() {
@@ -186,8 +184,6 @@ public class FXMLGestorTutoriasController implements Initializable {
                     @Override
                     protected void updateItem(Tutoria tutoria, boolean empty) {
                         super.updateItem(tutoria, empty);
-                        
-                        
 
                         if (this.getItem() != null) {
                             if (this.getItem().getEstado() == Tutoria.EstadoTutoria.ANULADA) {
@@ -209,8 +205,7 @@ public class FXMLGestorTutoriasController implements Initializable {
                             this.setStyle(null);
                         }
 
-                         //Posibilidad para mostrar la fila clickada de otro color
-                         
+                        //Posibilidad para mostrar la fila clickada de otro color
 //                        setOnMouseClicked(new EventHandler<MouseEvent>() {
 //                            public void handle(MouseEvent event) {
 //                                if (filaAnterior != null) {
@@ -235,7 +230,7 @@ public class FXMLGestorTutoriasController implements Initializable {
     //Metodo para devolver una lista con las Tutorias de una fecha dada.
     public ObservableList<Tutoria> getTutoriasDia(LocalDate fecha) {
         ObservableList<Tutoria> listaTutoriasDia = FXCollections.observableArrayList();
-        
+
         ObservableList<Tutoria> listaTutorias = misTutorias.getTutoriasConcertadas();
         for (Iterator<Tutoria> iterator = listaTutorias.iterator(); iterator.hasNext();) {
             Tutoria next = iterator.next();
@@ -251,7 +246,6 @@ public class FXMLGestorTutoriasController implements Initializable {
     //Código que quita el calendario y en su lugar muestra el formulario para
     //nueva tutoria, alumno o asignatura. En el caso de asignatura es una
     //ventana modal
-    
     @FXML
     private void crearNuevo(ActionEvent event) throws IOException {
         if ("Nueva Tutoria".equals(boton_crear.getText())) {
@@ -267,7 +261,7 @@ public class FXMLGestorTutoriasController implements Initializable {
             activarBotonAlumnos(false);
             activarBotonAsignaturas(false);
         }
-        
+
         if ("Nuevo Alumno".equals(boton_crear.getText())) {
             centro.getChildren().clear();
             FXMLLoader formulario_alumno = new FXMLLoader(getClass().getResource("/formulario_alumno/FXMLFormularioAlumno.fxml"));
@@ -278,7 +272,7 @@ public class FXMLGestorTutoriasController implements Initializable {
             activarBotonAlumnos(false);
             activarBotonAsignaturas(false);
         }
-        
+
         if ("Nueva Asignatura".equals(boton_crear.getText())) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/formulario_asignatura/FXMLFormularioAsignatura.fxml"));
             Parent root = loader.load();
@@ -288,7 +282,7 @@ public class FXMLGestorTutoriasController implements Initializable {
             ventana2.initModality(Modality.APPLICATION_MODAL);
             ventana2.setScene(scene);
             ventana2.showAndWait();
-        
+
         }
     }
 
@@ -306,7 +300,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         controladorAsignaturas = controlador_tabla_asiganturas;
         controlador_tabla_asiganturas.setControladorPrincipal(this);
         botones_tabla.getChildren().add(boton_borrar_asignatura);
-        boton_borrar_asignatura.setDisable(true);        
+        boton_borrar_asignatura.setDisable(true);
     }
 
     //Metodo que muestra la lista de alumnos en el tableView
@@ -322,7 +316,7 @@ public class FXMLGestorTutoriasController implements Initializable {
         hueco_tabla.getChildren().add(tabla_alumnos.load());
         FXMLTablaAlumnosController controlador_tabla_alumnos = tabla_alumnos.getController();
         controlador_tabla_alumnos.setControladorPrincipal(this);
-        boton_borrar_asignatura.setDisable(true);       
+        boton_borrar_asignatura.setDisable(true);
     }
 
     //Metodo que se lanza al clickar en una Tutoria de la tabla y que muestra sus
@@ -357,6 +351,18 @@ public class FXMLGestorTutoriasController implements Initializable {
         activarBotonAsignaturas(false);
     }
 
+    //Metodo que crea las asignaturas TFG y TFM si no existen ya.
+    public void crearTFGyTFM() {
+        ObservableList<Asignatura> a = misTutorias.getAsignaturas();
+        Asignatura tfg = new Asignatura("0", "TFG");
+        Asignatura tfm = new Asignatura("1", "TFM");
+
+        if (a.isEmpty()) {
+            a.add(tfg);
+            a.add(tfm);
+        }
+    }
+
     //Metodos para poder activar o desctivar botones de la ventana principal 
     //desde otros controladores
     public void activarBotonEliminarAsignatura() {
@@ -377,14 +383,6 @@ public class FXMLGestorTutoriasController implements Initializable {
 
 }
 
-
-
-
-
-
-
-
-
 //USAMOS EL CODIGO DE DATEPIC PARA CUSTOMIZAR LA CELDA y lo modificamos para añadir
 //mas cosas.
 class DiaCelda extends DateCell {
@@ -392,7 +390,7 @@ class DiaCelda extends DateCell {
     String newline = System.getProperty("line.separator");
     Tutorias misTutorias = AccesoBD.getInstance().getTutorias();
     String estiloPrevioHover;
-    
+
     @Override
     public void updateItem(LocalDate item, boolean empty) {
         super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.     
@@ -414,7 +412,6 @@ class DiaCelda extends DateCell {
             }
         });
 
-
         // Show Weekends in blue color
         DayOfWeek day = DayOfWeek.from(item);
         if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) {
@@ -424,30 +421,30 @@ class DiaCelda extends DateCell {
             this.setText(this.getText() + "\r");
             this.setText(this.getText() + "\r");
             //this.setText(this.getText() + "\r");
-            
+
         } else {
             int num = getTutoriasDia(item).size();
             //this.setText(this.getText() + "\r");
-            
+
             if (HuecosLibres(item) && num == 0) {
                 this.setText(this.getText() + "\r");
                 this.setText(this.getText() + "\r" + "Sin tutorias");
-                this.setStyle(null);                
+                this.setStyle(null);
             }
-            
+
             if (!HuecosLibres(item)) {
                 this.setText(this.getText() + "\r" + "Tutorias: " + num);
                 this.setText(this.getText() + "\r" + "Ocupado");
-                this.setStyle("-fx-background-color: LightCoral");               
+                this.setStyle("-fx-background-color: LightCoral");
             }
-            
+
             if (num > 0 && HuecosLibres(item)) {
                 this.setText(this.getText() + "\r" + "Tutorias: " + num);
                 this.setText(this.getText() + "\r" + "Huecos libres");
-                this.setStyle("-fx-background-color: NavajoWhite");              
-                
+                this.setStyle("-fx-background-color: NavajoWhite");
+
             }
-            
+
         }
     }
 
@@ -499,4 +496,3 @@ class DiaCelda extends DateCell {
     }
 
 }
-

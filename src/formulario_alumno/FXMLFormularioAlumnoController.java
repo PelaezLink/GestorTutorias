@@ -47,17 +47,17 @@ public class FXMLFormularioAlumnoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         misTutorias = AccesoBD.getInstance().getTutorias();
-        boton_confirmar.disableProperty().bind(Bindings.or(correo.textProperty().isEmpty(),(Bindings.or(nombre.textProperty().isEmpty(), apellidos.textProperty().isEmpty()))));
-        
-    }    
-    
+        boton_confirmar.disableProperty().bind(Bindings.or(correo.textProperty().isEmpty(), (Bindings.or(nombre.textProperty().isEmpty(), apellidos.textProperty().isEmpty()))));
+
+    }
+
     //Cuando se pulsa el boton confirmar se guarda el alumno y se vacia el formulario
     @FXML
     private void confirmar(ActionEvent event) {
         Alumno nuevoAlumno = new Alumno(nombre.getText(), apellidos.getText(), correo.getText());
         ObservableList<Alumno> listaAlumnos = misTutorias.getAlumnosTutorizados();
         listaAlumnos.add(nuevoAlumno);
-        
+
         nombre.clear();
         apellidos.clear();
         correo.clear();
@@ -70,8 +70,7 @@ public class FXMLFormularioAlumnoController implements Initializable {
         controlador_principal.activarBotonAlumnos(true);
         controlador_principal.activarBotonAsignaturas(true);
     }
-    
-    
+
     public void setControladorPrincipal(FXMLGestorTutoriasController c) {
         controlador_principal = c;
     }

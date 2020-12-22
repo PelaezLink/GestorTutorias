@@ -72,7 +72,7 @@ and open the template in the editor.
 }
 
 .combo:hover{
-     -fx-background-color: linear-gradient(#eaeaea,#ffffff);  
+    -fx-background-color: linear-gradient(#eaeaea,#ffffff);  
 }
 
 
