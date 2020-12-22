@@ -12,29 +12,29 @@
 
 <VBox alignment="TOP_CENTER" prefHeight="778.0" prefWidth="1002.0" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualizador_tutoria.FXMLVisualizadorTutoriaController">
    <children>
-      <VBox alignment="CENTER" prefHeight="118.0" prefWidth="1002.0" VBox.vgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="72.0" prefWidth="1002.0" VBox.vgrow="ALWAYS">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tutoria" textAlignment="CENTER">
                <font>
-                  <Font name="System Bold" size="55.0" />
+                  <Font name="System Bold" size="42.0" />
                </font>
             </Text>
          </children>
       </VBox>
-      <HBox alignment="CENTER" prefHeight="774.0" prefWidth="1002.0">
+      <HBox alignment="CENTER" prefHeight="774.0" prefWidth="1002.0" spacing="20.0">
          <children>
-            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="489.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="489.0" HBox.hgrow="ALWAYS">
                <children>
-                  <HBox alignment="CENTER" prefHeight="34.0" prefWidth="469.0" spacing="2.0">
+                  <HBox alignment="CENTER" prefHeight="141.0" prefWidth="469.0" spacing="2.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Asignatura:" textAlignment="RIGHT" wrappingWidth="108.8359375">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Asignatura:" textAlignment="RIGHT" wrappingWidth="112.8359375">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="asignatura" editable="false">
+                        <TextField fx:id="asignatura" editable="false" prefHeight="31.0" prefWidth="190.0">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="15.0" />
                            </font>
                         </TextField>
                      </children>
@@ -42,32 +42,32 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <VBox prefHeight="121.0" prefWidth="580.0">
+                  <VBox prefHeight="141.0" prefWidth="469.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="109.0" prefWidth="398.0" spacing="2.0">
+                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="469.0" spacing="2.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora Inicio:" textAlignment="RIGHT" wrappingWidth="109.8359375">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora Inicio:" textAlignment="RIGHT" wrappingWidth="114.8359375">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="hora_inicio" editable="false">
+                              <TextField fx:id="hora_inicio" editable="false" prefHeight="31.0" prefWidth="190.0">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="15.0" />
                                  </font>
                               </TextField>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="90.0" prefWidth="398.0" spacing="2.0">
+                        <HBox alignment="CENTER" prefHeight="59.0" prefWidth="469.0" spacing="2.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Duracion:" textAlignment="RIGHT" wrappingWidth="147.8359375">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Duracion:" textAlignment="RIGHT" wrappingWidth="152.8359375">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="duracion" editable="false" prefHeight="36.0" prefWidth="249.0">
+                              <TextField fx:id="duracion" editable="false" prefHeight="31.0" prefWidth="190.0">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="15.0" />
                                  </font>
                               </TextField>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="min">
@@ -79,24 +79,30 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <HBox prefHeight="14.0" prefWidth="469.0" />
-                  <HBox alignment="CENTER" prefHeight="141.0" prefWidth="469.0" spacing="2.0">
+                  <HBox prefHeight="44.0" prefWidth="469.0" />
+                  <HBox alignment="CENTER" prefHeight="187.0" prefWidth="469.0" spacing="2.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Alumnos:" textAlignment="RIGHT" wrappingWidth="106.8359375">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Alumnos:" textAlignment="RIGHT" wrappingWidth="164.8359375">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <TextArea fx:id="alumnos" editable="false" prefHeight="89.0" prefWidth="247.0">
+                        <TextArea fx:id="alumnos" editable="false" prefHeight="147.0" prefWidth="245.0">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="15.0" />
                            </font>
                         </TextArea>
                      </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="466.0" spacing="2.0">
+                  <HBox alignment="CENTER" prefHeight="113.0" prefWidth="469.0" spacing="2.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado:" textAlignment="RIGHT" wrappingWidth="72.8359375">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado:" textAlignment="RIGHT" wrappingWidth="129.8359375">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -104,7 +110,7 @@
                         <ComboBox fx:id="estado" prefHeight="25.0" prefWidth="213.0" styleClass="combo" stylesheets="@../ventana_principal/estiloPrincipal.css" />
                      </children>
                   </HBox>
-                  <HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="429.0" spacing="40.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="87.0" prefWidth="429.0" spacing="40.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </VBox.margin>
