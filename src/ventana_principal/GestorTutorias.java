@@ -25,7 +25,7 @@ public class GestorTutorias extends Application {
         
         Scene scene = new Scene(root);
         stage.setTitle("GESTOR TUTORIAS");
-        stage.setMinHeight(650);
+        stage.setMinHeight(700);
         stage.setMinWidth(1150);
         stage.getIcons().add(new Image("/recursos/en-linea.png"));
         stage.setScene(scene);

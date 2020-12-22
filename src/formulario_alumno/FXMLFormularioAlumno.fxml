@@ -10,17 +10,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formulario_alumno.FXMLFormularioAlumnoController">
+<VBox alignment="TOP_CENTER" prefHeight="792.0" prefWidth="763.0" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formulario_alumno.FXMLFormularioAlumnoController">
    <children>
-      <ImageView fitHeight="212.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="178.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../recursos/graduado.png" />
          </image></ImageView>
-      <HBox alignment="CENTER" prefHeight="84.0" prefWidth="723.0">
+      <HBox alignment="CENTER" prefHeight="36.0" prefWidth="723.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo alumno">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo alumno" wrappingWidth="290.841796875">
                <font>
-                  <Font name="System Bold" size="48.0" />
+                  <Font name="System Bold" size="42.0" />
                </font>
             </Text>
          </children></HBox>
@@ -63,8 +63,8 @@
                </font></TextField>
          </children>
       </HBox>
-      <HBox prefHeight="60.0" prefWidth="723.0" />
-      <HBox alignment="CENTER" prefHeight="48.0" prefWidth="560.0" spacing="30.0">
+      <HBox prefHeight="20.0" prefWidth="723.0" />
+      <HBox alignment="CENTER" prefHeight="85.0" prefWidth="723.0" spacing="30.0">
          <children>
             <Button fx:id="boton_confirmar" mnemonicParsing="false" onAction="#confirmar" prefHeight="40.0" prefWidth="93.0" styleClass="boton_confirmar" stylesheets="@../ventana_principal/estiloPrincipal.css" text="Confimar">
                <font>
@@ -80,6 +80,6 @@
       </HBox>
    </children>
    <padding>
-      <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
 </VBox>
