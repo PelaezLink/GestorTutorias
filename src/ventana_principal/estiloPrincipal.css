@@ -100,3 +100,9 @@ and open the template in the editor.
 .lista_alumnos{
     -fx-font-size: 13;    
 }
+
+
+.cierre_alumno{
+    -fx-border-color: white;
+    -fx-border-width: 3;
+}
